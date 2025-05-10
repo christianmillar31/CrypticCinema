@@ -1,7 +1,6 @@
-
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { generateCrypticClue } from "@/ai/flows/generate-cryptic-clue";
 import type { GenerateCrypticClueInput, GenerateCrypticClueOutput } from "@/ai/flows/generate-cryptic-clue";
 import { Button } from "@/components/ui/button";
@@ -41,6 +40,12 @@ export default function CrypticCinemaGame() {
   const { toast } = useToast();
   const MAX_FAILED_ATTEMPTS = 3;
 
+  const currentMovieRef = useRef<Movie | null>(null);
+
+  useEffect(() => {
+    currentMovieRef.current = currentMovie;
+  }, [currentMovie]);
+
   const normalizeAnswer = (answer: string): string => {
     return answer
       .toLowerCase()
@@ -62,7 +67,7 @@ export default function CrypticCinemaGame() {
     setHintLevel(null);
     setFailedAttempts(0);
 
-    const movieFilters: MovieFilters = { excludeTitle: currentMovie?.title };
+    const movieFilters: MovieFilters = { excludeTitle: currentMovieRef.current?.title };
     if (selectedGenre !== "All Genres") {
       movieFilters.genre = selectedGenre;
     }
@@ -112,13 +117,14 @@ export default function CrypticCinemaGame() {
         variant: "destructive",
       });
     }
-  }, [currentMovie?.title, toast, selectedGenre, selectedDecade, selectedDifficulty]);
+  }, [toast, selectedGenre, selectedDecade, selectedDifficulty]);
 
   useEffect(() => {
     if (availableGenres.length > 0 && availableDecades.length > 0) {
       fetchNewClue();
     }
-  }, [selectedDifficulty, selectedGenre, selectedDecade, availableGenres, availableDecades, fetchNewClue]);
+  }, [fetchNewClue, availableGenres, availableDecades]);
+
 
   const calculatePoints = () => {
     if (!currentMovie) return 0;
