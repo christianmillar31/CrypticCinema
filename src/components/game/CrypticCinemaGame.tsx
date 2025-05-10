@@ -14,6 +14,7 @@ import Header from "@/components/layout/Header";
 import { allMovies as moviesData, getUniqueGenres, getUniqueDecades, getRandomMovie, type Movie, type MovieFilters } from "@/lib/movies";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 type GamePhase = "loading" | "playing" | "correct" | "gave_up" | "game_over" | "error" | "no_movie_found";
 type HintLevel = null | "word_count" | "initial_letters";
@@ -44,7 +45,7 @@ export default function CrypticCinemaGame() {
 
   const currentMovieRef = useRef<Movie | null>(null);
   const isFetchingClue = useRef(false);
-  const gamePhaseRef = useRef(gamePhase); // Ref to track gamePhase for useEffect dependencies
+  const gamePhaseRef = useRef(gamePhase); 
 
   useEffect(() => {
     currentMovieRef.current = currentMovie;
@@ -79,7 +80,7 @@ export default function CrypticCinemaGame() {
     setFeedbackMessage(null);
     setUserGuess("");
     setHintLevel(null);
-    // Lives and score are reset by handleNextClueOrPlayAgain when gamePhase is game_over
+    
 
     const movieFilters: MovieFilters = { excludeTitle: currentMovieRef.current?.title };
     if (selectedGenre !== "All Genres") {
@@ -136,14 +137,14 @@ export default function CrypticCinemaGame() {
     }
   }, [toast, selectedGenre, selectedDecade, selectedDifficulty]);
 
-  // Effect for initial load
+  
   useEffect(() => {
-    if (availableGenres.length > 0 && availableDecades.length > 0 && !currentMovie && gamePhase === 'loading' && !isFetchingClue.current) {
+    if (availableGenres.length > 0 && availableDecades.length > 0 && !currentMovie && gamePhaseRef.current === 'loading' && !isFetchingClue.current) {
         fetchNewClue();
     }
-  }, [availableGenres, availableDecades, currentMovie, gamePhase, fetchNewClue]);
+  }, [availableGenres, availableDecades, currentMovie, fetchNewClue]);
 
-  // Effect for filter changes
+  
   const hasMountedFilters = useRef(false);
   useEffect(() => {
     if (!hasMountedFilters.current) {
@@ -154,9 +155,12 @@ export default function CrypticCinemaGame() {
     const canFetchOnFilterChange = 
         gamePhaseRef.current === 'playing' || 
         gamePhaseRef.current === 'error' || 
-        gamePhaseRef.current === 'no_movie_found';
+        gamePhaseRef.current === 'no_movie_found' ||
+        gamePhaseRef.current === 'correct' || // Allow fetching new clue after correct guess if filters change
+        gamePhaseRef.current === 'gave_up';   // Allow fetching new clue after giving up if filters change
 
-    if (canFetchOnFilterChange && availableGenres.length > 0 && availableDecades.length > 0) {
+
+    if (canFetchOnFilterChange && availableGenres.length > 0 && availableDecades.length > 0 && !isFetchingClue.current) {
         fetchNewClue();
     }
   }, [selectedGenre, selectedDecade, selectedDifficulty, fetchNewClue, availableGenres, availableDecades]);
@@ -198,11 +202,11 @@ export default function CrypticCinemaGame() {
       const newLives = lives - 1;
       setLives(newLives);
       if (newLives <= 0) {
-        setFeedbackMessage(`Game Over! The movie was "${currentMovie.title}". Your score has been reset.`);
+        setFeedbackMessage(`Game Over! The movie was "${currentMovie.title}". Your final score was ${score}.`);
         setGamePhase("game_over");
         toast({
           title: "Game Over!",
-          description: `The movie was "${currentMovie.title}". Your score is reset.`,
+          description: `The movie was "${currentMovie.title}". Your final score: ${score}.`,
           variant: "destructive",
         });
       } else {
@@ -222,11 +226,11 @@ export default function CrypticCinemaGame() {
     setLives(newLives);
 
     if (newLives <= 0) {
-      setFeedbackMessage(`Game Over! The movie was "${currentMovie.title}". Your score has been reset.`);
+      setFeedbackMessage(`Game Over! The movie was "${currentMovie.title}". Your final score was ${score}.`);
       setGamePhase("game_over");
       toast({
         title: "Game Over!",
-        description: `You gave up. The movie was "${currentMovie.title}". Score reset.`,
+        description: `You gave up. The movie was "${currentMovie.title}". Final score: ${score}.`,
         variant: "destructive",
       });
     } else {
@@ -241,7 +245,7 @@ export default function CrypticCinemaGame() {
   };
   
   const handleNextClueOrPlayAgain = () => {
-    if (gamePhase === "game_over") {
+    if (gamePhaseRef.current === "game_over") {
       setScore(0);
       setLives(MAX_LIVES);
     }
@@ -275,9 +279,9 @@ export default function CrypticCinemaGame() {
   };
   
   const getAlertVariant = () => {
-    if (gamePhase === "correct") return "default"; // Will be styled with custom class
+    if (gamePhase === "correct") return "default"; 
     if (gamePhase === "game_over" || gamePhase === "error" || gamePhase === "no_movie_found") return "destructive";
-    if (gamePhase === "gave_up") return "default"; // Can be styled with custom class for warning/info
+    if (gamePhase === "gave_up") return "default"; 
     return "default";
   };
 
@@ -311,7 +315,7 @@ export default function CrypticCinemaGame() {
             <div className="flex flex-col sm:flex-row gap-4 mb-6 w-full">
               <div className="flex-1 space-y-1">
                 <Label htmlFor="difficulty-select">Difficulty</Label>
-                <Select value={selectedDifficulty} onValueChange={(value) => setSelectedDifficulty(value as Difficulty)} disabled={gamePhase === 'loading'}>
+                <Select value={selectedDifficulty} onValueChange={(value) => setSelectedDifficulty(value as Difficulty)} disabled={gamePhase === 'loading' || isFetchingClue.current}>
                   <SelectTrigger id="difficulty-select" className="h-11">
                     <SelectValue placeholder="Select difficulty" />
                   </SelectTrigger>
@@ -322,7 +326,7 @@ export default function CrypticCinemaGame() {
               </div>
               <div className="flex-1 space-y-1">
                 <Label htmlFor="genre-select">Genre</Label>
-                <Select value={selectedGenre} onValueChange={setSelectedGenre} disabled={gamePhase === 'loading' || availableGenres.length === 0}>
+                <Select value={selectedGenre} onValueChange={setSelectedGenre} disabled={gamePhase === 'loading' || availableGenres.length === 0 || isFetchingClue.current}>
                   <SelectTrigger id="genre-select" className="h-11">
                     <SelectValue placeholder="Select genre" />
                   </SelectTrigger>
@@ -333,7 +337,7 @@ export default function CrypticCinemaGame() {
               </div>
               <div className="flex-1 space-y-1">
                 <Label htmlFor="decade-select">Decade</Label>
-                <Select value={selectedDecade} onValueChange={setSelectedDecade} disabled={gamePhase === 'loading' || availableDecades.length === 0}>
+                <Select value={selectedDecade} onValueChange={setSelectedDecade} disabled={gamePhase === 'loading' || availableDecades.length === 0 || isFetchingClue.current}>
                   <SelectTrigger id="decade-select" className="h-11">
                     <SelectValue placeholder="Select decade" />
                   </SelectTrigger>
@@ -449,9 +453,9 @@ export default function CrypticCinemaGame() {
                 )}
 
                 {(gamePhase === "correct" || gamePhase === "gave_up" || gamePhase === "game_over" || gamePhase === "error" || gamePhase === "no_movie_found") && (
-                <Button onClick={handleNextClueOrPlayAgain} className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Button onClick={handleNextClueOrPlayAgain} className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground" disabled={isFetchingClue.current}>
                     <RotateCw className="w-5 h-5 mr-2" aria-hidden="true" />
-                    {gamePhase === "game_over" ? "Play Again" : "Next Clue"}
+                    {gamePhaseRef.current === "game_over" ? "Play Again" : "Next Clue"}
                 </Button>
                 )}
             </div>
@@ -465,3 +469,4 @@ export default function CrypticCinemaGame() {
     </div>
   );
 }
+
