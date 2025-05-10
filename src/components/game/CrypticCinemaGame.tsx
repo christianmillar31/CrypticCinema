@@ -11,10 +11,15 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Clapperboard, Lightbulb, HelpCircle, Star, RotateCw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/layout/Header";
-import { getRandomMovie, type Movie } from "@/lib/movies";
+import { allMovies as moviesData, getUniqueGenres, getUniqueDecades, getRandomMovie, type Movie, type MovieFilters } from "@/lib/movies";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-type GamePhase = "loading" | "playing" | "correct" | "revealed" | "error";
+type GamePhase = "loading" | "playing" | "correct" | "revealed" | "error" | "no_movie_found";
 type HintLevel = null | "word_count" | "initial_letters";
+
+const DIFFICULTIES = ["easy", "medium", "hard"] as const;
+type Difficulty = typeof DIFFICULTIES[number];
 
 export default function CrypticCinemaGame() {
   const [currentMovie, setCurrentMovie] = useState<Movie | null>(null);
@@ -25,6 +30,13 @@ export default function CrypticCinemaGame() {
   const [gamePhase, setGamePhase] = useState<GamePhase>("loading");
   const [hintLevel, setHintLevel] = useState<HintLevel>(null);
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
+
+  const [availableGenres, setAvailableGenres] = useState<string[]>([]);
+  const [availableDecades, setAvailableDecades] = useState<string[]>([]);
+
+  const [selectedGenre, setSelectedGenre] = useState<string>("All Genres");
+  const [selectedDecade, setSelectedDecade] = useState<string>("All Decades");
+  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>("medium");
 
   const { toast } = useToast();
   const MAX_FAILED_ATTEMPTS = 3;
@@ -37,6 +49,11 @@ export default function CrypticCinemaGame() {
       .trim();
   };
 
+  useEffect(() => {
+    setAvailableGenres(getUniqueGenres(moviesData));
+    setAvailableDecades(getUniqueDecades(moviesData));
+  }, []);
+
   const fetchNewClue = useCallback(async () => {
     setGamePhase("loading");
     setClue("");
@@ -45,40 +62,70 @@ export default function CrypticCinemaGame() {
     setHintLevel(null);
     setFailedAttempts(0);
 
-    const newMovie = getRandomMovie(currentMovie?.title);
+    const movieFilters: MovieFilters = { excludeTitle: currentMovie?.title };
+    if (selectedGenre !== "All Genres") {
+      movieFilters.genre = selectedGenre;
+    }
+    if (selectedDecade !== "All Decades") {
+      movieFilters.decade = parseInt(selectedDecade.replace('s', ''));
+    }
+
+    const newMovie = getRandomMovie(movieFilters);
+
+    if (!newMovie) {
+      let errorMsg = "No movies match your current filter settings."
+      if (selectedGenre !== "All Genres" || selectedDecade !== "All Decades") {
+        errorMsg += ` Filters: ${selectedDecade !== "All Decades" ? selectedDecade : ""}${selectedGenre !== "All Genres" ? (selectedDecade !== "All Decades" ? ", " : "") + selectedGenre : ""}.`;
+      }
+      errorMsg += " Please try different options or broaden your search."
+
+      setFeedbackMessage(errorMsg);
+      setGamePhase("no_movie_found");
+      setClue("");
+      setCurrentMovie(null);
+      toast({
+        title: "No Movies Found",
+        description: "Try adjusting your decade or genre filters.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setCurrentMovie(newMovie);
 
-    if (newMovie) {
-      try {
-        const clueInput: GenerateCrypticClueInput = {
-          movieTitle: newMovie.title,
-          crypticLevel: "medium",
-          language: "English",
-        };
-        const result: GenerateCrypticClueOutput = await generateCrypticClue(clueInput);
-        setClue(result.clue);
-        setGamePhase("playing");
-      } catch (error) {
-        console.error("Error generating clue:", error);
-        setFeedbackMessage("Failed to generate a new clue. Please try again.");
-        setGamePhase("error");
-        toast({
-          title: "Error",
-          description: "Could not fetch a new clue. Please refresh or try again later.",
-          variant: "destructive",
-        });
-      }
+    try {
+      const clueInput: GenerateCrypticClueInput = {
+        movieTitle: newMovie.title,
+        crypticLevel: selectedDifficulty,
+        language: "English",
+      };
+      const result: GenerateCrypticClueOutput = await generateCrypticClue(clueInput);
+      setClue(result.clue);
+      setGamePhase("playing");
+    } catch (error) {
+      console.error("Error generating clue:", error);
+      setFeedbackMessage("Failed to generate a new clue. Please try again.");
+      setGamePhase("error");
+      toast({
+        title: "Clue Generation Error",
+        description: "Could not fetch a new clue for the selected movie. Please try again.",
+        variant: "destructive",
+      });
     }
-  }, [currentMovie?.title, toast]);
+  }, [currentMovie?.title, toast, selectedGenre, selectedDecade, selectedDifficulty]);
 
   useEffect(() => {
-    fetchNewClue();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Run once on mount
+    if (availableGenres.length > 0 && availableDecades.length > 0) {
+      fetchNewClue();
+    }
+  }, [selectedDifficulty, selectedGenre, selectedDecade, availableGenres, availableDecades, fetchNewClue]);
 
   const calculatePoints = () => {
     if (!currentMovie) return 0;
     let points = 100; 
+
+    if (selectedDifficulty === "easy") points = Math.max(10, points - 20); // Max 80 for easy
+    if (selectedDifficulty === "hard") points += 20; // Bonus for hard
 
     if (hintLevel === "initial_letters") {
       points -= 50; 
@@ -157,6 +204,7 @@ export default function CrypticCinemaGame() {
     <div className="flex flex-col items-center min-h-screen p-4 selection:bg-accent selection:text-accent-foreground">
       <Header />
       <main className="flex flex-col items-center justify-center w-full max-w-2xl mx-auto mt-8 space-y-8">
+        
         <Card className="w-full shadow-2xl bg-card text-card-foreground">
           <CardHeader className="text-center">
             <div className="flex items-center justify-center mb-4">
@@ -164,10 +212,47 @@ export default function CrypticCinemaGame() {
               <CardTitle className="text-4xl font-bold">Guess the Movie!</CardTitle>
             </div>
             <CardDescription className="text-lg text-muted-foreground">
-              Unravel the cryptic clue and name the film.
+              Select your challenge and unravel the cryptic clue to name the film.
             </CardDescription>
           </CardHeader>
+
           <CardContent className="space-y-6">
+            <div className="flex flex-col sm:flex-row gap-4 mb-6 w-full">
+              <div className="flex-1 space-y-1">
+                <Label htmlFor="difficulty-select">Difficulty</Label>
+                <Select value={selectedDifficulty} onValueChange={(value) => setSelectedDifficulty(value as Difficulty)} disabled={gamePhase === 'loading'}>
+                  <SelectTrigger id="difficulty-select" className="h-11">
+                    <SelectValue placeholder="Select difficulty" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {DIFFICULTIES.map(d => <SelectItem key={d} value={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="flex-1 space-y-1">
+                <Label htmlFor="genre-select">Genre</Label>
+                <Select value={selectedGenre} onValueChange={setSelectedGenre} disabled={gamePhase === 'loading' || availableGenres.length === 0}>
+                  <SelectTrigger id="genre-select" className="h-11">
+                    <SelectValue placeholder="Select genre" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {availableGenres.map(g => <SelectItem key={g} value={g}>{g}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="flex-1 space-y-1">
+                <Label htmlFor="decade-select">Decade</Label>
+                <Select value={selectedDecade} onValueChange={setSelectedDecade} disabled={gamePhase === 'loading' || availableDecades.length === 0}>
+                  <SelectTrigger id="decade-select" className="h-11">
+                    <SelectValue placeholder="Select decade" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {availableDecades.map(d => <SelectItem key={d} value={d}>{d}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
             {gamePhase === "loading" && (
               <div className="text-center py-10 space-y-4">
                 <RotateCw className="w-16 h-16 mx-auto animate-spin text-primary" aria-hidden="true" />
@@ -175,16 +260,16 @@ export default function CrypticCinemaGame() {
               </div>
             )}
 
-            {gamePhase !== "loading" && clue && (
+            {(gamePhase !== "loading" && gamePhase !== "no_movie_found") && clue && (
               <div className="p-6 bg-background/50 rounded-lg shadow-inner min-h-[120px] flex items-center justify-center border border-border">
                 <p className="text-2xl italic text-center font-serif">"{clue}"</p>
               </div>
             )}
             
-            {gamePhase === "error" && feedbackMessage && (
+            {(gamePhase === "error" || gamePhase === "no_movie_found") && feedbackMessage && (
                <Alert variant="destructive">
                  <HelpCircle className="h-5 w-5" aria-hidden="true" />
-                 <AlertTitle className="text-lg">Clue Generation Failed</AlertTitle>
+                 <AlertTitle className="text-lg">{gamePhase === "error" ? "Clue Generation Failed" : "No Movie Found"}</AlertTitle>
                  <AlertDescription>{feedbackMessage}</AlertDescription>
                </Alert>
             )}
@@ -246,7 +331,7 @@ export default function CrypticCinemaGame() {
               </Button>
             )}
 
-            {(gamePhase === "correct" || gamePhase === "revealed" || gamePhase === "error") && (
+            {(gamePhase === "correct" || gamePhase === "revealed" || gamePhase === "error" || gamePhase === "no_movie_found") && (
               <Button onClick={fetchNewClue} className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground">
                 <RotateCw className="w-5 h-5 mr-2" aria-hidden="true" /> Next Clue
               </Button>
