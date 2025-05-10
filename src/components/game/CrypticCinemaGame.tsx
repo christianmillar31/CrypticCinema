@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
@@ -41,6 +42,7 @@ export default function CrypticCinemaGame() {
   const MAX_FAILED_ATTEMPTS = 3;
 
   const currentMovieRef = useRef<Movie | null>(null);
+  const isFetchingClue = useRef(false); // Ref to prevent concurrent fetches
 
   useEffect(() => {
     currentMovieRef.current = currentMovie;
@@ -60,6 +62,12 @@ export default function CrypticCinemaGame() {
   }, []);
 
   const fetchNewClue = useCallback(async () => {
+    if (isFetchingClue.current) {
+      console.log("Fetch already in progress, skipping.");
+      return;
+    }
+    isFetchingClue.current = true;
+
     setGamePhase("loading");
     setClue("");
     setFeedbackMessage(null);
@@ -93,6 +101,7 @@ export default function CrypticCinemaGame() {
         description: "Try adjusting your decade or genre filters.",
         variant: "destructive",
       });
+      isFetchingClue.current = false;
       return;
     }
     
@@ -116,11 +125,15 @@ export default function CrypticCinemaGame() {
         description: "Could not fetch a new clue for the selected movie. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      isFetchingClue.current = false;
     }
   }, [toast, selectedGenre, selectedDecade, selectedDifficulty]);
 
   useEffect(() => {
     if (availableGenres.length > 0 && availableDecades.length > 0) {
+      // The fetchNewClue function now has an internal guard (isFetchingClue.current)
+      // to prevent re-entrancy if this effect is somehow triggered multiple times rapidly.
       fetchNewClue();
     }
   }, [fetchNewClue, availableGenres, availableDecades]);
