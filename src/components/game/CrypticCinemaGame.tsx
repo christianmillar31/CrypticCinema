@@ -8,25 +8,27 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Clapperboard, Lightbulb, HelpCircle, Star, RotateCw } from "lucide-react";
+import { Clapperboard, Lightbulb, HelpCircle, Star, RotateCw, Heart, HeartOff, Flag } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/layout/Header";
 import { allMovies as moviesData, getUniqueGenres, getUniqueDecades, getRandomMovie, type Movie, type MovieFilters } from "@/lib/movies";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-type GamePhase = "loading" | "playing" | "correct" | "revealed" | "error" | "no_movie_found";
+type GamePhase = "loading" | "playing" | "correct" | "gave_up" | "game_over" | "error" | "no_movie_found";
 type HintLevel = null | "word_count" | "initial_letters";
 
 const DIFFICULTIES = ["easy", "medium", "hard"] as const;
 type Difficulty = typeof DIFFICULTIES[number];
+
+const MAX_LIVES = 3;
 
 export default function CrypticCinemaGame() {
   const [currentMovie, setCurrentMovie] = useState<Movie | null>(null);
   const [clue, setClue] = useState<string>("");
   const [userGuess, setUserGuess] = useState<string>("");
   const [score, setScore] = useState<number>(0);
-  const [failedAttempts, setFailedAttempts] = useState<number>(0);
+  const [lives, setLives] = useState<number>(MAX_LIVES);
   const [gamePhase, setGamePhase] = useState<GamePhase>("loading");
   const [hintLevel, setHintLevel] = useState<HintLevel>(null);
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
@@ -39,14 +41,19 @@ export default function CrypticCinemaGame() {
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>("medium");
 
   const { toast } = useToast();
-  const MAX_FAILED_ATTEMPTS = 3;
 
   const currentMovieRef = useRef<Movie | null>(null);
-  const isFetchingClue = useRef(false); // Ref to prevent concurrent fetches
+  const isFetchingClue = useRef(false);
+  const gamePhaseRef = useRef(gamePhase); // Ref to track gamePhase for useEffect dependencies
 
   useEffect(() => {
     currentMovieRef.current = currentMovie;
   }, [currentMovie]);
+
+  useEffect(() => {
+    gamePhaseRef.current = gamePhase;
+  }, [gamePhase]);
+
 
   const normalizeAnswer = (answer: string): string => {
     return answer
@@ -67,13 +74,12 @@ export default function CrypticCinemaGame() {
       return;
     }
     isFetchingClue.current = true;
-
     setGamePhase("loading");
     setClue("");
     setFeedbackMessage(null);
     setUserGuess("");
     setHintLevel(null);
-    setFailedAttempts(0);
+    // Lives and score are reset by handleNextClueOrPlayAgain when gamePhase is game_over
 
     const movieFilters: MovieFilters = { excludeTitle: currentMovieRef.current?.title };
     if (selectedGenre !== "All Genres") {
@@ -130,36 +136,50 @@ export default function CrypticCinemaGame() {
     }
   }, [toast, selectedGenre, selectedDecade, selectedDifficulty]);
 
+  // Effect for initial load
   useEffect(() => {
-    if (availableGenres.length > 0 && availableDecades.length > 0) {
-      // The fetchNewClue function now has an internal guard (isFetchingClue.current)
-      // to prevent re-entrancy if this effect is somehow triggered multiple times rapidly.
-      fetchNewClue();
+    if (availableGenres.length > 0 && availableDecades.length > 0 && !currentMovie && gamePhase === 'loading' && !isFetchingClue.current) {
+        fetchNewClue();
     }
-  }, [fetchNewClue, availableGenres, availableDecades]);
+  }, [availableGenres, availableDecades, currentMovie, gamePhase, fetchNewClue]);
+
+  // Effect for filter changes
+  const hasMountedFilters = useRef(false);
+  useEffect(() => {
+    if (!hasMountedFilters.current) {
+      hasMountedFilters.current = true;
+      return;
+    }
+
+    const canFetchOnFilterChange = 
+        gamePhaseRef.current === 'playing' || 
+        gamePhaseRef.current === 'error' || 
+        gamePhaseRef.current === 'no_movie_found';
+
+    if (canFetchOnFilterChange && availableGenres.length > 0 && availableDecades.length > 0) {
+        fetchNewClue();
+    }
+  }, [selectedGenre, selectedDecade, selectedDifficulty, fetchNewClue, availableGenres, availableDecades]);
 
 
   const calculatePoints = () => {
     if (!currentMovie) return 0;
     let points = 100; 
 
-    if (selectedDifficulty === "easy") points = Math.max(10, points - 20); // Max 80 for easy
-    if (selectedDifficulty === "hard") points += 20; // Bonus for hard
+    if (selectedDifficulty === "easy") points = Math.max(10, points - 20);
+    if (selectedDifficulty === "hard") points += 20;
 
     if (hintLevel === "initial_letters") {
       points -= 50; 
     } else if (hintLevel === "word_count") {
       points -= 20; 
     }
-
-    points -= failedAttempts * 15; 
-
     return Math.max(10, points); 
   };
 
   const handleGuessSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!userGuess.trim() || !currentMovie) return;
+    if (!userGuess.trim() || !currentMovie || gamePhase !== "playing" || lives <= 0) return;
 
     const normalizedGuess = normalizeAnswer(userGuess);
     const normalizedAnswer = normalizeAnswer(currentMovie.title);
@@ -175,27 +195,62 @@ export default function CrypticCinemaGame() {
         className: "border-green-500 bg-green-500/10 text-foreground dark:text-green-300",
       });
     } else {
-      setFailedAttempts((prevAttempts) => prevAttempts + 1);
-      if (failedAttempts + 1 >= MAX_FAILED_ATTEMPTS) {
-        setFeedbackMessage(`Too many attempts! The correct answer was "${currentMovie.title}".`);
-        setGamePhase("revealed");
+      const newLives = lives - 1;
+      setLives(newLives);
+      if (newLives <= 0) {
+        setFeedbackMessage(`Game Over! The movie was "${currentMovie.title}". Your score has been reset.`);
+        setGamePhase("game_over");
         toast({
-          title: "Revealed",
-          description: `The movie was "${currentMovie.title}". Better luck next time!`,
+          title: "Game Over!",
+          description: `The movie was "${currentMovie.title}". Your score is reset.`,
           variant: "destructive",
         });
       } else {
-        setFeedbackMessage("Incorrect. Try again!");
+        setFeedbackMessage(`Incorrect. Try again! ${newLives} ${newLives === 1 ? 'life' : 'lives'} left.`);
         toast({
           title: "Incorrect Guess",
-          description: "That's not it. Try again or use a hint.",
+          description: `That's not it. ${newLives} ${newLives === 1 ? 'life' : 'lives'} remaining.`,
         });
       }
     }
   };
 
+  const handleGiveUp = () => {
+    if (!currentMovie || gamePhase !== "playing" || lives <= 0) return;
+
+    const newLives = lives - 1;
+    setLives(newLives);
+
+    if (newLives <= 0) {
+      setFeedbackMessage(`Game Over! The movie was "${currentMovie.title}". Your score has been reset.`);
+      setGamePhase("game_over");
+      toast({
+        title: "Game Over!",
+        description: `You gave up. The movie was "${currentMovie.title}". Score reset.`,
+        variant: "destructive",
+      });
+    } else {
+      setFeedbackMessage(`You gave up! The movie was "${currentMovie.title}". ${newLives} ${newLives === 1 ? 'life' : 'lives'} left.`);
+      setGamePhase("gave_up");
+      toast({
+        title: "Gave Up",
+        description: `The movie was "${currentMovie.title}". ${newLives} ${newLives === 1 ? 'life' : 'lives'} remaining.`,
+        variant: "default", 
+      });
+    }
+  };
+  
+  const handleNextClueOrPlayAgain = () => {
+    if (gamePhase === "game_over") {
+      setScore(0);
+      setLives(MAX_LIVES);
+    }
+    fetchNewClue();
+  };
+
+
   const handleHint = () => {
-    if (!currentMovie) return;
+    if (!currentMovie || gamePhase !== "playing") return;
     if (hintLevel === null) {
       setHintLevel("word_count");
     } else if (hintLevel === "word_count") {
@@ -218,6 +273,23 @@ export default function CrypticCinemaGame() {
     }
     return null;
   };
+  
+  const getAlertVariant = () => {
+    if (gamePhase === "correct") return "default"; // Will be styled with custom class
+    if (gamePhase === "game_over" || gamePhase === "error" || gamePhase === "no_movie_found") return "destructive";
+    if (gamePhase === "gave_up") return "default"; // Can be styled with custom class for warning/info
+    return "default";
+  };
+
+  const getAlertTitle = () => {
+    if (gamePhase === "correct") return "Bravo!";
+    if (gamePhase === "game_over") return "Game Over!";
+    if (gamePhase === "gave_up") return "Revealed!";
+    if (gamePhase === "error") return "Clue Generation Failed";
+    if (gamePhase === "no_movie_found") return "No Movie Found";
+    return "Feedback";
+  }
+
 
   return (
     <div className="flex flex-col items-center min-h-screen p-4 selection:bg-accent selection:text-accent-foreground">
@@ -279,7 +351,7 @@ export default function CrypticCinemaGame() {
               </div>
             )}
 
-            {(gamePhase !== "loading" && gamePhase !== "no_movie_found") && clue && (
+            {(gamePhase !== "loading" && gamePhase !== "no_movie_found" && gamePhase !== "error") && clue && (
               <div className="p-6 bg-background/50 rounded-lg shadow-inner min-h-[120px] flex items-center justify-center border border-border">
                 <p className="text-2xl italic text-center font-serif">"{clue}"</p>
               </div>
@@ -288,47 +360,58 @@ export default function CrypticCinemaGame() {
             {(gamePhase === "error" || gamePhase === "no_movie_found") && feedbackMessage && (
                <Alert variant="destructive">
                  <HelpCircle className="h-5 w-5" aria-hidden="true" />
-                 <AlertTitle className="text-lg">{gamePhase === "error" ? "Clue Generation Failed" : "No Movie Found"}</AlertTitle>
+                 <AlertTitle className="text-lg">{getAlertTitle()}</AlertTitle>
                  <AlertDescription>{feedbackMessage}</AlertDescription>
                </Alert>
             )}
 
-            {(gamePhase === "playing" || gamePhase === "correct" || gamePhase === "revealed") && currentMovie && (
+            {(gamePhase === "playing") && currentMovie && lives > 0 && (
               <form onSubmit={handleGuessSubmit} className="space-y-4">
                 <Input
                   type="text"
                   placeholder="Enter your guess here..."
                   value={userGuess}
                   onChange={(e) => setUserGuess(e.target.value)}
-                  disabled={gamePhase === "correct" || gamePhase === "revealed"}
+                  disabled={gamePhase !== "playing"}
                   className="text-xl p-4 h-14 focus:ring-accent focus:border-accent"
                   aria-label="Movie guess input"
                 />
                 <Button 
                   type="submit" 
                   className="w-full text-lg py-3 h-14 bg-accent hover:bg-accent/90 text-accent-foreground"
-                  disabled={gamePhase === "correct" || gamePhase === "revealed" || !userGuess.trim() || gamePhase === 'loading'}
+                  disabled={gamePhase !== "playing" || !userGuess.trim() || lives <= 0}
                 >
                   Submit Guess
                 </Button>
               </form>
             )}
 
-            {feedbackMessage && (gamePhase === "playing" || gamePhase === "correct" || gamePhase === "revealed") && (
+            {feedbackMessage && (gamePhase === "playing" || gamePhase === "correct" || gamePhase === "gave_up" || gamePhase === "game_over") && (
               <Alert 
-                variant={gamePhase === "correct" ? "default" : gamePhase === "revealed" ? "destructive" : "default"} 
-                className={`${gamePhase === "correct" ? "border-green-500 bg-green-500/10 text-green-300 dark:text-green-400" : ""} 
-                           ${gamePhase === "revealed" ? "border-destructive bg-destructive/10 text-destructive-foreground dark:text-red-400" : ""}`}
+                variant={getAlertVariant()}
+                className={cn(
+                  gamePhase === "correct" && "border-green-500 bg-green-500/10 text-green-700 dark:text-green-400 dark:border-green-700",
+                  (gamePhase === "gave_up") && "border-yellow-500 bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 dark:border-yellow-700",
+                  gamePhase === "game_over" && "border-destructive bg-destructive/10 text-destructive dark:text-red-400"
+                )}
               >
-                 <AlertTitle className={`text-lg ${gamePhase === "correct" ? "text-green-400 dark:text-green-300" : gamePhase === "revealed" ? "text-red-400 dark:text-red-300" : ""}`}>
-                    {gamePhase === "correct" ? "Bravo!" : gamePhase === "revealed" ? "Curtains Closed!" : "Feedback"}
+                <AlertTitle className={cn("text-lg",
+                  gamePhase === "correct" && "text-green-600 dark:text-green-300",
+                  gamePhase === "gave_up" && "text-yellow-600 dark:text-yellow-300",
+                  gamePhase === "game_over" && "text-red-600 dark:text-red-300"
+                 )}>
+                    {getAlertTitle()}
                 </AlertTitle>
-                <AlertDescription className={gamePhase === "correct" ? "dark:text-green-500" : gamePhase === "revealed" ? "dark:text-red-500" : ""}>
+                <AlertDescription className={cn(
+                   gamePhase === "correct" && "dark:text-green-500",
+                   gamePhase === "gave_up" && "dark:text-yellow-500",
+                   gamePhase === "game_over" && "dark:text-red-500"
+                )}>
                     {feedbackMessage}
                 </AlertDescription>
               </Alert>
             )}
-             {hintLevel && currentMovie && (gamePhase === "playing" || gamePhase === "correct" || gamePhase === "revealed") && (
+            {hintLevel && currentMovie && (gamePhase === "playing" || gamePhase === "correct" || gamePhase === "gave_up") && (
               <div className="p-4 mt-2 text-center bg-muted rounded-md border border-border">
                 <p className="font-semibold text-accent text-lg">Hint Unlocked:</p>
                 <p className="text-muted-foreground text-md">{getHintText()}</p>
@@ -336,25 +419,42 @@ export default function CrypticCinemaGame() {
             )}
           </CardContent>
           <CardFooter className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0 pt-6 border-t">
-            <div className="flex items-center text-3xl font-bold text-secondary">
-              <Star className="w-8 h-8 mr-2 fill-current" aria-hidden="true" /> Score: {score}
+            <div className="flex items-center space-x-4">
+                <div className="flex items-center text-2xl sm:text-3xl font-bold text-secondary">
+                <Star className="w-7 h-7 sm:w-8 sm:h-8 mr-2 fill-current" aria-hidden="true" /> Score: {score}
+                </div>
+                <div className="flex items-center">
+                {[...Array(MAX_LIVES)].map((_, i) =>
+                    i < lives ? (
+                    <Heart key={i} className="w-5 h-5 mr-1 fill-red-500 text-red-600" />
+                    ) : (
+                    <HeartOff key={i} className="w-5 h-5 mr-1 text-muted-foreground" />
+                    )
+                )}
+                </div>
             </div>
             
-            {gamePhase === "playing" && (
-                 <p className="text-md text-muted-foreground">Attempts: {failedAttempts} / {MAX_FAILED_ATTEMPTS}</p>
-            )}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 w-full sm:w-auto">
+                {gamePhase === "playing" && lives > 0 && (
+                <>
+                    {currentMovie && hintLevel !== "initial_letters" && (
+                    <Button variant="outline" onClick={handleHint} className="border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto">
+                        <Lightbulb className="w-5 h-5 mr-2" aria-hidden="true" /> Get Hint ({hintLevel === null ? 'Level 1' : 'Level 2'})
+                    </Button>
+                    )}
+                    <Button variant="outline" onClick={handleGiveUp} className="border-destructive text-destructive hover:text-destructive hover:bg-destructive/10 w-full sm:w-auto">
+                        <Flag className="w-5 h-5 mr-2" aria-hidden="true" /> Give Up
+                    </Button>
+                </>
+                )}
 
-            {gamePhase === "playing" && currentMovie && hintLevel !== "initial_letters" && (
-              <Button variant="outline" onClick={handleHint} className="border-primary text-primary hover:bg-primary/10 hover:text-primary">
-                <Lightbulb className="w-5 h-5 mr-2" aria-hidden="true" /> Get Hint ({hintLevel === null ? 'Level 1' : 'Level 2'})
-              </Button>
-            )}
-
-            {(gamePhase === "correct" || gamePhase === "revealed" || gamePhase === "error" || gamePhase === "no_movie_found") && (
-              <Button onClick={fetchNewClue} className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground">
-                <RotateCw className="w-5 h-5 mr-2" aria-hidden="true" /> Next Clue
-              </Button>
-            )}
+                {(gamePhase === "correct" || gamePhase === "gave_up" || gamePhase === "game_over" || gamePhase === "error" || gamePhase === "no_movie_found") && (
+                <Button onClick={handleNextClueOrPlayAgain} className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground">
+                    <RotateCw className="w-5 h-5 mr-2" aria-hidden="true" />
+                    {gamePhase === "game_over" ? "Play Again" : "Next Clue"}
+                </Button>
+                )}
+            </div>
           </CardFooter>
         </Card>
       </main>
