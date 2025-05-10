@@ -4,7 +4,8 @@ import CrypticCinemaGame from '@/components/game/CrypticCinemaGame';
 import { JsonLdScript } from '@/components/seo/JsonLdScript';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
-const pageTitle = "Play Cryptic Cinema - The Ultimate AI Movie Guessing Game";
+const siteName = 'Cryptic Cinema'; // Defined for consistency
+const pageTitle = `Play ${siteName} - The Ultimate AI Movie Guessing Game`;
 const pageDescription = "Test your film knowledge by guessing movies from AI-generated cryptic clues. Play Cryptic Cinema now and see how many you can get right!";
 const ogImageUrl = 'https://picsum.photos/1200/630?image=1062';
 
@@ -27,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
           alt: 'Cryptic Cinema Game Teaser Image',
         },
       ],
-      type: 'website', // Can also be 'game' or 'article' depending on how you classify the page
+      type: 'website',
     },
     twitter: {
       title: pageTitle,
@@ -39,36 +40,49 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const gameJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
+  '@type': 'VideoGame', // Changed from WebApplication
   name: pageTitle,
   description: pageDescription,
-  applicationCategory: 'Game',
-  operatingSystem: 'Any (Web-based)',
-  browserRequirements: 'Requires HTML5, CSS3, JavaScript. Modern browser recommended.',
   url: siteUrl,
   image: ogImageUrl,
+  applicationCategory: 'Game',
+  genre: ['Puzzle Game', 'Trivia Game', 'Movie Quiz'],
+  playMode: 'SinglePlayer',
+  operatingSystem: 'Any (Web-based)',
+  browserRequirements: 'Requires HTML5, CSS3, JavaScript. Modern browser recommended.',
   offers: {
     '@type': 'Offer',
     price: '0',
     priceCurrency: 'USD',
   },
-  author: {
+  publisher: { // Changed from author to publisher for VideoGame schema consistency
     '@type': 'Organization',
-    name: 'Cryptic Cinema',
+    name: siteName,
     url: siteUrl,
+    logo: { // Added publisher logo placeholder
+      '@type': 'ImageObject',
+      url: `${siteUrl}/android-chrome-512x512.png`, // Needs an actual logo image
+    }
   },
   potentialAction: {
      '@type': 'PlayAction',
      target: siteUrl,
   },
-  keywords: "movie game, AI game, cryptic clue game, film trivia, cinema quiz, puzzle game, online game, guess the film",
+  keywords: "movie game, AI game, cryptic clue game, film trivia, cinema quiz, puzzle game, online game, guess the film, interactive game, movie puzzle, AI movie quiz",
+  isAccessibleForFree: true,
+  inLanguage: 'en-US',
+  // Example of adding an aggregate rating if you implement a rating system
+  // aggregateRating: {
+  //   "@type": "AggregateRating",
+  //   "ratingValue": "4.5", // Example value
+  //   "reviewCount": "100"  // Example value
+  // },
 };
 
 export default function HomePage() {
   return (
     <>
-      {/* This script will be rendered by Next.js, typically in the body. JSON-LD is fine in body or head. */}
-      <JsonLdScript data={gameJsonLd} id="game-application-jsonld" />
+      <JsonLdScript data={gameJsonLd} id="video-game-jsonld" />
       <CrypticCinemaGame />
     </>
   );

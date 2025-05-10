@@ -20,6 +20,7 @@ const siteName = 'Cryptic Cinema';
 const title = `${siteName}: AI Movie Guessing Game`;
 const description = `Challenge your movie knowledge with ${siteName}, an AI-powered game that generates cryptic clues for famous films. Guess the movie, earn points, and become a cinephile master!`;
 const ogImageUrl = 'https://picsum.photos/1200/630?image=1062'; // Cinema seats image
+const themeColorDark = '#3C3C8F'; // HSL(231, 64%, 55%) --primary dark
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteName}`,
   },
   description: description,
-  keywords: ['movie guessing game', 'cryptic clues', 'AI game', 'film trivia', 'cinema quiz', 'movie puzzle', 'guess the movie', 'AI movie game', 'artificial intelligence game', 'movie riddle'],
+  keywords: ['movie guessing game', 'cryptic clues', 'AI game', 'film trivia', 'cinema quiz', 'movie puzzle', 'guess the movie', 'AI movie game', 'artificial intelligence game', 'movie riddle', 'interactive movie game', 'film puzzle game', 'online movie quiz'],
   openGraph: {
     title: title,
     description: `Think you know movies? Try ${siteName} and guess films from AI-generated cryptic clues!`,
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
-  manifest: '/manifest.webmanifest', // Placeholder, actual file not created in this step
+  manifest: '/manifest.webmanifest',
   robots: {
     index: true,
     follow: true,
@@ -68,10 +69,21 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  // icons: { // Example if you add favicons
-  //   icon: '/favicon.ico',
-  //   apple: '/apple-touch-icon.png',
-  // },
+  icons: {
+    icon: '/favicon.ico', // Standard favicon
+    shortcut: '/favicon.ico', // For older browsers
+    apple: '/apple-touch-icon.png', // Apple touch icon
+    // other: [ // For manifest and modern browsers
+    //   { rel: 'icon', type: 'image/png', sizes: '16x16', url: '/favicon-16x16.png' },
+    //   { rel: 'icon', type: 'image/png', sizes: '32x32', url: '/favicon-32x32.png' },
+    //   { rel: 'icon', type: 'image/png', sizes: '192x192', url: '/android-chrome-192x192.png' }, // For PWA
+    //   { rel: 'icon', type: 'image/png', sizes: '512x512', url: '/android-chrome-512x512.png' }, // For PWA
+    // ],
+  },
+  themeColor: [ // For browser UI theming
+    { media: '(prefers-color-scheme: light)', color: '#FFFFFF' }, // Placeholder for light theme primary or white
+    { media: '(prefers-color-scheme: dark)', color: themeColorDark },
+  ],
 };
 
 const webSiteJsonLd = {
@@ -81,6 +93,14 @@ const webSiteJsonLd = {
   url: siteUrl,
   description: description,
   image: ogImageUrl,
+  publisher: {
+    '@type': 'Organization',
+    name: siteName,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${siteUrl}/android-chrome-512x512.png`, // Assuming a logo image exists
+    }
+  },
   potentialAction: {
     '@type': 'SearchAction',
     target: {
@@ -100,6 +120,19 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content={siteName} />
+        <meta name="application-name" content={siteName} />
+        <meta name="msapplication-TileColor" content={themeColorDark} />
+        <meta name="msapplication-tap-highlight" content="no" />
+        
+        {/* Favicon links - ensure these files exist in /public */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.webmanifest" />
+
         <JsonLdScript data={webSiteJsonLd} id="website-jsonld" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
