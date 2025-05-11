@@ -10,6 +10,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Mail, MessageSquare, User } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
+const CONTACT_EMAIL = 'christianmillar31@gmail.com';
+
 export default function ContactClientForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -21,13 +23,46 @@ export default function ContactClientForm() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
+    // In a real application, you would send this data to a backend API
+    // which would then handle sending the email.
+    // For example, using fetch:
+    //
+    // try {
+    //   const response = await fetch('/api/contact', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ name, email, message, recipientEmail: CONTACT_EMAIL }),
+    //   });
+    //   if (response.ok) {
+    //     toast({
+    //       title: "Message Sent!",
+    //       description: "Thank you for your message. We'll get back to you if a response is needed.",
+    //       className: "border-green-500 bg-green-500/10 text-foreground dark:text-green-300",
+    //     });
+    //     setName('');
+    //     setEmail('');
+    //     setMessage('');
+    //   } else {
+    //     throw new Error('Failed to send message');
+    //   }
+    // } catch (error) {
+    //   console.error("Error sending message:", error);
+    //   toast({
+    //     title: "Error Sending Message",
+    //     description: "Something went wrong. Please try again or email us directly.",
+    //     variant: "destructive",
+    //   });
+    // } finally {
+    //   setIsSubmitting(false);
+    // }
+
+    // Simulate API call for now
     await new Promise(resolve => setTimeout(resolve, 1500));
 
-    console.log('Form submitted (simulated):', { name, email, message });
+    console.log('Form submitted (simulated). Intended recipient:', CONTACT_EMAIL, { name, email, message });
     toast({
       title: "Message Sent (Simulated)",
-      description: "Thank you for your message! We'll get back to you if a response is needed.",
+      description: `Your message has been prepared. In a live system, it would be sent to ${CONTACT_EMAIL}.`,
       className: "border-green-500 bg-green-500/10 text-foreground dark:text-green-300",
     });
     
@@ -102,8 +137,9 @@ export default function ContactClientForm() {
         </form>
       </CardContent>
       <CardFooter className="text-center text-sm text-muted-foreground pt-6">
-          <p>Alternatively, you can reach us at: <a href="mailto:contact@crypticcinema.com" className="text-primary hover:underline">contact@crypticcinema.com</a> (This is a placeholder email).</p>
+          <p>Alternatively, you can reach us at: <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary hover:underline">{CONTACT_EMAIL}</a>.</p>
       </CardFooter>
     </Card>
   );
 }
+
