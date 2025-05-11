@@ -32,20 +32,31 @@ const prompt = ai.definePrompt({
   output: {schema: GenerateCrypticClueOutputSchema},
   prompt: `You are a master of cryptic clues. Generate a cryptic clue for the movie "{{movieTitle}}".
 
-      The cryptic level should be {{crypticLevel}} (easy, medium, or hard). If no cryptic level is specified, use medium. The clue should be in {{language}}. If no language is specified, use English.
+      The clue should be in {{language}}. If no language is specified, use English.
 
-      The clue should be creative, engaging, and challenging, but not impossible to solve. Focus on wordplay, metaphors, and indirect references to the movie's plot, characters, or themes. The clue should not directly reveal the movie title.
+      Adjust the clue's nature based on the cryptic level:
+      - Easy: The clue should use more direct (though still cryptic) references to plot, characters, or prominent themes. Wordplay should be relatively straightforward.
+      - Medium (default if not specified): A standard cryptic clue involving clever wordplay, metaphors, and indirect references. It should be challenging but fair.
+      - Hard: The clue should be highly abstract, employ sophisticated wordplay, or reference more subtle, less obvious aspects of the movie (e.g., minor characters, deeper thematic elements, or unique directorial choices). The connection to the movie should be more obscure.
+
+      Focus on creativity, engaging language, and intellectual challenge. The clue must NOT directly reveal the movie title or character names.
+      The clue does not need to rhyme. Prioritize cleverness and cryptic misdirection over poetic structure.
 
       Ensure that the clue is appropriate for a general audience and avoids offensive or controversial topics.
 
-      Here are a few examples:
+      Here are a few examples of good cryptic clues:
 
       - Movie: La La Land
         Clue: Two dreamers dance through delusion, chasing stars while missing steps.
       - Movie: Oppenheimer
         Clue: A mind splits the atom and the self, unleashing both gods and ghosts.
+      - Movie: The Matrix
+        Clue: A digital prophet awakens to a shattered reality, choosing pills and purpose.
+      - Movie: Pulp Fiction
+        Clue: Interwoven tales of hitmen, molls, and a mysterious briefcase, told out of time.
 
-      Now generate a cryptic clue for "{{movieTitle}}":`,
+
+      Now generate a cryptic clue for "{{movieTitle}}" with a cryptic level of "{{crypticLevel}}":`,
 });
 
 const generateCrypticClueFlow = ai.defineFlow(
@@ -59,3 +70,4 @@ const generateCrypticClueFlow = ai.defineFlow(
     return output!;
   }
 );
+
