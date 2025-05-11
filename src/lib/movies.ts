@@ -1021,22 +1021,20 @@ export const getDecadeForMovie = (year: number): number => {
 
 export const getUniqueGenres = (movieList: Movie[]): string[] => {
   const allGenres = movieList.flatMap(movie => movie.genres);
-  const uniqueSortedGenres = Array.from(new Set(allGenres)).sort();
-  return ["All Genres", ...uniqueSortedGenres];
+  return Array.from(new Set(allGenres)).sort();
 };
 
 export const getUniqueDecades = (movieList: Movie[]): string[] => {
   const allDecades = movieList.map(movie => `${getDecadeForMovie(movie.year)}s`);
-  const uniqueSortedDecades = Array.from(new Set(allDecades)).sort((a, b) => {
+  return Array.from(new Set(allDecades)).sort((a, b) => {
     return parseInt(a.substring(0,4)) - parseInt(b.substring(0,4));
   });
-  return ["All Decades", ...uniqueSortedDecades];
 };
 
 export interface MovieFilters {
-  genre?: string; 
-  decade?: number; 
-  excludeTitles?: string[]; // Changed from excludeTitle to excludeTitles
+  genres?: string[]; 
+  decades?: number[]; 
+  excludeTitles?: string[];
   difficulty?: MovieDifficulty; 
 }
 
@@ -1060,24 +1058,23 @@ export function getRandomMovie(filters: MovieFilters): Movie | null {
   }
 
   if (baseMovies.length === 0) {
-    return null; // All potential movies were excluded or no movies to begin with
+    return null; 
   }
 
   let selectableMovies = baseMovies;
 
-  const hasGenreFilter = filters.genre && filters.genre !== "All Genres";
-  const hasDecadeFilter = filters.decade !== undefined;
+  const hasGenreFilter = filters.genres && filters.genres.length > 0;
+  const hasDecadeFilter = filters.decades && filters.decades.length > 0;
   const hasDifficultyFilter = filters.difficulty !== undefined;
 
   if (hasGenreFilter) {
-    selectableMovies = selectableMovies.filter(m => m.genres.includes(filters.genre!));
+    selectableMovies = selectableMovies.filter(m => filters.genres!.some(fg => m.genres.includes(fg)));
   }
 
   if (hasDecadeFilter) {
-    selectableMovies = selectableMovies.filter(m => getDecadeForMovie(m.year) === filters.decade!);
+    selectableMovies = selectableMovies.filter(m => filters.decades!.includes(getDecadeForMovie(m.year)));
   }
   
-  // Store movies matching genre/decade (these already respect exclusions via baseMovies)
   const moviesMatchingPrimaryFilters = selectableMovies.slice();
 
   if (hasDifficultyFilter) {
@@ -1097,16 +1094,11 @@ export function getRandomMovie(filters: MovieFilters): Movie | null {
     if (difficultyFilteredMovies.length > 0) {
       selectableMovies = difficultyFilteredMovies;
     } else if (moviesMatchingPrimaryFilters.length > 0) {
-      // Fallback: If current filters + difficulty yield no results,
-      // use movies that matched primary filters (genre/decade) from the already excluded list.
-      // This effectively ignores/broadens the difficulty if specific difficulty yields no results.
       selectableMovies = moviesMatchingPrimaryFilters;
     } else {
-      // No movies matched even primary filters (genre/decade) after initial exclusions.
       return null; 
     }
   } else {
-      // No difficulty filter applied, selectableMovies are those matching genre/decade (and exclusions)
       if (selectableMovies.length === 0) return null;
   }
   

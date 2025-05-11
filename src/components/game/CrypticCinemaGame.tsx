@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
@@ -10,12 +9,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Clapperboard, Lightbulb, HelpCircle, Star, RotateCw, Heart, HeartOff, Flag } from "lucide-react";
+import { Clapperboard, Lightbulb, HelpCircle, Star, RotateCw, Heart, HeartOff, Flag, Check as CheckIcon, ChevronDown } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/layout/Header";
 import { allMovies as moviesData, getUniqueGenres, getUniqueDecades, getRandomMovie, type Movie, type MovieFilters, type MovieDifficulty } from "@/lib/movies";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
 
 type GamePhase = "loading" | "playing" | "correct" | "gave_up" | "game_over" | "error" | "no_movie_found";
@@ -40,8 +42,8 @@ export default function CrypticCinemaGame() {
   const [availableGenres, setAvailableGenres] = useState<string[]>([]);
   const [availableDecades, setAvailableDecades] = useState<string[]>([]);
 
-  const [selectedGenre, setSelectedGenre] = useState<string>("All Genres");
-  const [selectedDecade, setSelectedDecade] = useState<string>("All Decades");
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [selectedDecades, setSelectedDecades] = useState<string[]>([]);
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>("medium");
 
   const { toast } = useToast();
@@ -83,11 +85,11 @@ export default function CrypticCinemaGame() {
       difficulty: selectedDifficulty as MovieDifficulty,
       excludeTitles: shownMovieTitlesThisSession, 
     };
-    if (selectedGenre !== "All Genres") {
-      movieFilters.genre = selectedGenre;
+    if (selectedGenres.length > 0) {
+      movieFilters.genres = selectedGenres;
     }
-    if (selectedDecade !== "All Decades") {
-      movieFilters.decade = parseInt(selectedDecade.replace('s', ''));
+    if (selectedDecades.length > 0) {
+      movieFilters.decades = selectedDecades.map(d => parseInt(d.replace('s', '')));
     }
 
     const newMovie = getRandomMovie(movieFilters);
@@ -97,15 +99,21 @@ export default function CrypticCinemaGame() {
       if (shownMovieTitlesThisSession.length > 0) {
         errorMsg += " You might have seen all available movies for these filters in this session."
       }
-      if (selectedGenre !== "All Genres" || selectedDecade !== "All Decades" || selectedDifficulty) {
-         errorMsg += ` Filters: Difficulty: ${selectedDifficulty}${selectedDecade !== "All Decades" ? ", Decade: " + selectedDecade : ""}${selectedGenre !== "All Genres" ? ", Genre: " + selectedGenre : ""}.`;
+      
+      let filterDetails = [];
+      if (selectedDifficulty) filterDetails.push(`Difficulty: ${selectedDifficulty}`);
+      if (selectedDecades.length > 0) filterDetails.push(`Decades: ${selectedDecades.join('/')}`);
+      if (selectedGenres.length > 0) filterDetails.push(`Genres: ${selectedGenres.join('/')}`);
+
+      if (filterDetails.length > 0) {
+        errorMsg += ` Filters: ${filterDetails.join(', ')}.`;
       }
       errorMsg += " Please try different options or broaden your search."
 
       setFeedbackMessage(errorMsg);
       setGamePhase("no_movie_found");
       setClue("");
-      setCurrentMovie(null); // Ensure currentMovie is null if no movie found
+      setCurrentMovie(null); 
       toast({
         title: "No New Movies Found",
         description: "Try adjusting your filters or you may have seen all available movies for the current selection this session.",
@@ -122,7 +130,7 @@ export default function CrypticCinemaGame() {
     try {
       const clueInput: GenerateCrypticClueInput = {
         movieTitle: newMovie.title,
-        crypticLevel: selectedDifficulty,
+        crypticLevel: selectedDifficulty, // Still pass difficulty for AI clue style if ever used
         language: "English",
       };
       const result: GenerateCrypticClueOutput = await generateCrypticClue(clueInput);
@@ -132,7 +140,7 @@ export default function CrypticCinemaGame() {
       console.error("Error generating clue:", error);
       setFeedbackMessage("Failed to generate a new clue. Please try again.");
       setGamePhase("error");
-      setCurrentMovie(null); // Reset current movie on error to allow fetching a new one
+      setCurrentMovie(null); 
       toast({
         title: "Clue Generation Error",
         description: "Could not fetch a new clue. Please try again.",
@@ -141,11 +149,10 @@ export default function CrypticCinemaGame() {
     } finally {
       isFetchingClue.current = false;
     }
-  }, [toast, selectedGenre, selectedDecade, selectedDifficulty, shownMovieTitlesThisSession]);
+  }, [toast, selectedGenres, selectedDecades, selectedDifficulty, shownMovieTitlesThisSession]);
 
   
   useEffect(() => {
-    // Initial fetch when component mounts and essential data (genres, decades) is ready
     if (availableGenres.length > 0 && availableDecades.length > 0 && gamePhaseRef.current === 'loading' && !isFetchingClue.current && !currentMovie) {
         fetchNewClue();
     }
@@ -156,10 +163,9 @@ export default function CrypticCinemaGame() {
   useEffect(() => {
     if (!hasMountedFilters.current) {
       hasMountedFilters.current = true;
-      return; // Skip first render effect
+      return; 
     }
 
-    // Fetch new clue if filters change and we are in a state where a new clue makes sense
     const canFetchOnFilterChange = 
         gamePhaseRef.current === 'playing' || 
         gamePhaseRef.current === 'error' || 
@@ -170,8 +176,7 @@ export default function CrypticCinemaGame() {
     if (canFetchOnFilterChange && availableGenres.length > 0 && availableDecades.length > 0 && !isFetchingClue.current) {
         fetchNewClue();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps 
-  }, [selectedGenre, selectedDecade, selectedDifficulty]); // Deliberately excluding fetchNewClue, availableGenres, availableDecades to avoid loops with fetchNewClue's dependencies
+  }, [JSON.stringify(selectedGenres), JSON.stringify(selectedDecades), selectedDifficulty, fetchNewClue, availableGenres, availableDecades]);
 
 
   const calculatePoints = () => {
@@ -256,9 +261,8 @@ export default function CrypticCinemaGame() {
     if (gamePhaseRef.current === "game_over") {
       setScore(0);
       setLives(MAX_LIVES);
-      setShownMovieTitlesThisSession([]); // Reset shown movies for a new game session
+      setShownMovieTitlesThisSession([]); 
     }
-    // currentMovie will be set to null by fetchNewClue if no movie is found, or to the new movie
     fetchNewClue();
   };
 
@@ -304,6 +308,28 @@ export default function CrypticCinemaGame() {
     return "Feedback";
   }
 
+  const handleGenreChange = (genre: string, checked: boolean | 'indeterminate') => {
+    if (typeof checked === 'boolean') {
+      setSelectedGenres(prev =>
+        checked ? [...prev, genre] : prev.filter(g => g !== genre)
+      );
+    }
+  };
+
+  const handleDecadeChange = (decade: string, checked: boolean | 'indeterminate') => {
+     if (typeof checked === 'boolean') {
+      setSelectedDecades(prev =>
+        checked ? [...prev, decade] : prev.filter(d => d !== decade)
+      );
+    }
+  };
+
+  const getSelectedItemsText = (selectedItems: string[], itemType: string, allText: string) => {
+    if (selectedItems.length === 0) return allText;
+    if (selectedItems.length === 1) return selectedItems[0];
+    if (selectedItems.length > 2) return `${selectedItems.length} ${itemType} selected`;
+    return selectedItems.join(', ');
+  };
 
   return (
     <div className="flex flex-col items-center min-h-screen p-4 selection:bg-accent selection:text-accent-foreground">
@@ -322,8 +348,8 @@ export default function CrypticCinemaGame() {
           </CardHeader>
 
           <CardContent className="space-y-6">
-            <div className="flex flex-col sm:flex-row gap-4 mb-6 w-full">
-              <div className="flex-1 space-y-1">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 w-full">
+              <div className="space-y-1">
                 <Label htmlFor="difficulty-select">Difficulty</Label>
                 <Select value={selectedDifficulty} onValueChange={(value) => setSelectedDifficulty(value as Difficulty)} disabled={gamePhase === 'loading' || isFetchingClue.current}>
                   <SelectTrigger id="difficulty-select" className="h-11">
@@ -334,27 +360,73 @@ export default function CrypticCinemaGame() {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="flex-1 space-y-1">
-                <Label htmlFor="genre-select">Genre</Label>
-                <Select value={selectedGenre} onValueChange={setSelectedGenre} disabled={gamePhase === 'loading' || availableGenres.length === 0 || isFetchingClue.current}>
-                  <SelectTrigger id="genre-select" className="h-11">
-                    <SelectValue placeholder="Select genre" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {availableGenres.map(g => <SelectItem key={g} value={g}>{g}</SelectItem>)}
-                  </SelectContent>
-                </Select>
+              
+              <div className="space-y-1">
+                <Label htmlFor="genre-popover-trigger">Genres</Label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      id="genre-popover-trigger"
+                      variant="outline"
+                      role="combobox"
+                      className="w-full justify-between h-11 font-normal"
+                      disabled={gamePhase === 'loading' || availableGenres.length === 0 || isFetchingClue.current}
+                    >
+                      <span className="truncate">{getSelectedItemsText(selectedGenres, "genres", "All Genres")}</span>
+                      <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+                    <ScrollArea className="h-72">
+                      <div className="p-4 space-y-2">
+                        {availableGenres.map((genre) => (
+                          <div key={genre} className="flex items-center space-x-2">
+                            <Checkbox
+                              id={`genre-${genre}`}
+                              checked={selectedGenres.includes(genre)}
+                              onCheckedChange={(checked) => handleGenreChange(genre, checked)}
+                            />
+                            <Label htmlFor={`genre-${genre}`} className="font-normal flex-1 cursor-pointer">{genre}</Label>
+                          </div>
+                        ))}
+                      </div>
+                    </ScrollArea>
+                  </PopoverContent>
+                </Popover>
               </div>
-              <div className="flex-1 space-y-1">
-                <Label htmlFor="decade-select">Decade</Label>
-                <Select value={selectedDecade} onValueChange={setSelectedDecade} disabled={gamePhase === 'loading' || availableDecades.length === 0 || isFetchingClue.current}>
-                  <SelectTrigger id="decade-select" className="h-11">
-                    <SelectValue placeholder="Select decade" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {availableDecades.map(d => <SelectItem key={d} value={d}>{d}</SelectItem>)}
-                  </SelectContent>
-                </Select>
+
+              <div className="space-y-1">
+                <Label htmlFor="decade-popover-trigger">Decades</Label>
+                 <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      id="decade-popover-trigger"
+                      variant="outline"
+                      role="combobox"
+                      className="w-full justify-between h-11 font-normal"
+                      disabled={gamePhase === 'loading' || availableDecades.length === 0 || isFetchingClue.current}
+                    >
+                       <span className="truncate">{getSelectedItemsText(selectedDecades, "decades", "All Decades")}</span>
+                      <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+                    <ScrollArea className="h-72">
+                       <div className="p-4 space-y-2">
+                        {availableDecades.map((decade) => (
+                          <div key={decade} className="flex items-center space-x-2">
+                            <Checkbox
+                              id={`decade-${decade}`}
+                              checked={selectedDecades.includes(decade)}
+                              onCheckedChange={(checked) => handleDecadeChange(decade, checked)}
+                            />
+                            <Label htmlFor={`decade-${decade}`} className="font-normal flex-1 cursor-pointer">{decade}</Label>
+                          </div>
+                        ))}
+                      </div>
+                    </ScrollArea>
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
 
@@ -490,4 +562,3 @@ export default function CrypticCinemaGame() {
     </div>
   );
 }
-
