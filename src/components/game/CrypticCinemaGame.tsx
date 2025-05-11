@@ -1,7 +1,9 @@
 
+
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import Link from 'next/link';
 import { generateCrypticClue } from "@/ai/flows/generate-cryptic-clue";
 import type { GenerateCrypticClueInput, GenerateCrypticClueOutput } from "@/ai/flows/generate-cryptic-clue";
 import { Button } from "@/components/ui/button";
@@ -465,8 +467,20 @@ export default function CrypticCinemaGame() {
       <footer className="w-full max-w-2xl mx-auto mt-12 text-center text-sm text-muted-foreground pb-8">
         <p>&copy; {new Date().getFullYear()} Cryptic Cinema. All rights reserved.</p>
         <p>An AI-powered movie guessing game. Test your film knowledge!</p>
+        <nav className="mt-4 space-x-4">
+          <Link href="/about" className="hover:text-primary transition-colors">
+            About Us
+          </Link>
+          <Link href="/privacy" className="hover:text-primary transition-colors">
+            Privacy Policy
+          </Link>
+          <Link href="/contact" className="hover:text-primary transition-colors">
+            Contact Us
+          </Link>
+        </nav>
       </footer>
     </div>
   );
 }
+
 

@@ -2,10 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://example.com/</loc>
-    <lastmod>2024-01-01</lastmod> <!-- Replace with actual last modification date -->
+    <lastmod>2024-07-28</lastmod> <!-- Replace with actual last modification date -->
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
-  <!-- Add other URLs here if your site expands -->
+  <url>
+    <loc>https://example.com/about</loc>
+    <lastmod>2024-07-28</lastmod> <!-- Replace with actual last modification date -->
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://example.com/privacy</loc>
+    <lastmod>2024-07-28</lastmod> <!-- Replace with actual last modification date -->
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://example.com/contact</loc>
+    <lastmod>2024-07-28</lastmod> <!-- Replace with actual last modification date -->
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <!-- Replace https://example.com with your actual domain -->
+  <!-- Update lastmod dates as content changes -->
 </urlset>
