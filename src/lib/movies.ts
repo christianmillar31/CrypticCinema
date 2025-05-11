@@ -447,7 +447,7 @@ const movies: Movie[] = [
   { title: "All Quiet on the Western Front", year: 2022, genres: ["Action", "Drama", "War"], popularity: 4 }, // Germany
 
   // Westerns
-  { title: "The Searchers", year: 1956, genres: ["Adventure", "Drama", "Western"], popularity: 4 },
+  // { title: "The Searchers", year: 1956, genres: ["Adventure", "Drama", "Western"], popularity: 4 }, // Already listed earlier
   { title: "A Fistful of Dollars", year: 1964, genres: ["Action", "Drama", "Western"], popularity: 4 },
   { title: "For a Few Dollars More", year: 1965, genres: ["Drama", "Western"], popularity: 4 },
   { title: "Butch Cassidy and the Sundance Kid", year: 1969, genres: ["Biography", "Crime", "Drama", "Western"], popularity: 4 },
@@ -459,8 +459,8 @@ const movies: Movie[] = [
   { title: "The Power of the Dog", year: 2021, genres: ["Drama", "Romance", "Western"], popularity: 3 },
 
   // Romance
-  { title: "Roman Holiday", year: 1953, genres: ["Comedy", "Romance"], popularity: 4 },
-  { title: "An Affair to Remember", year: 1957, genres: ["Drama", "Romance"], popularity: 4 },
+  // { title: "Roman Holiday", year: 1953, genres: ["Comedy", "Romance"], popularity: 4 }, // Already listed
+  // { title: "An Affair to Remember", year: 1957, genres: ["Drama", "Romance"], popularity: 4 }, // Already listed
   { title: "Breakfast at Tiffany's", year: 1961, genres: ["Comedy", "Drama", "Romance"], popularity: 5 },
   { title: "Doctor Zhivago", year: 1965, genres: ["Drama", "Romance", "War"], popularity: 4 },
   { title: "Love Story", year: 1970, genres: ["Drama", "Romance"], popularity: 4 },
@@ -500,9 +500,9 @@ const movies: Movie[] = [
   { title: "Past Lives", year: 2023, genres: ["Drama", "Romance"], popularity: 3 },
 
   // Thrillers
-  { title: "The Third Man", year: 1949, genres: ["Film-Noir", "Mystery", "Thriller"], popularity: 4 },
-  { title: "Dial M for Murder", year: 1954, genres: ["Crime", "Thriller"], popularity: 4 },
-  { title: "The Manchurian Candidate", year: 1962, genres: ["Drama", "Thriller"], popularity: 3 },
+  // { title: "The Third Man", year: 1949, genres: ["Film-Noir", "Mystery", "Thriller"], popularity: 4 }, // Already listed
+  // { title: "Dial M for Murder", year: 1954, genres: ["Crime", "Thriller"], popularity: 4 }, // Already listed
+  // { title: "The Manchurian Candidate", year: 1962, genres: ["Drama", "Thriller"], popularity: 3 }, // Already listed
   { title: "Wait Until Dark", year: 1967, genres: ["Horror", "Thriller"], popularity: 3 },
   { title: "The French Connection", year: 1971, genres: ["Action", "Crime", "Drama", "Thriller"], popularity: 4 },
   { title: "Marathon Man", year: 1976, genres: ["Crime", "Drama", "Thriller"], popularity: 3 },
@@ -827,10 +827,10 @@ const movies: Movie[] = [
   { title: "Cinderella", year: 2015, genres: ["Drama", "Family", "Fantasy", "Romance"], popularity: 4 }, // Live-action
   { title: "Fantastic Beasts and Where to Find Them", year: 2016, genres: ["Adventure", "Family", "Fantasy"], popularity: 4 },
   { title: "A Monster Calls", year: 2016, genres: ["Drama", "Fantasy"], popularity: 3 },
-  { title: "Beauty and the Beast", year: 2017, genres: ["Family", "Fantasy", "Musical", "Romance"], popularity: 5 }, // Live-action
-  { title: "Aladdin", year: 2019, genres: ["Adventure", "Family", "Fantasy", "Musical", "Romance"], popularity: 4 }, // Live-action
+  // { title: "Beauty and the Beast", year: 2017, genres: ["Family", "Fantasy", "Musical", "Romance"], popularity: 5 }, // Live-action, already listed
+  // { title: "Aladdin", year: 2019, genres: ["Adventure", "Family", "Fantasy", "Musical", "Romance"], popularity: 4 }, // Live-action, already listed
   // { title: "The Lion King", year: 2019, genres: ["Animation", "Adventure", "Drama", "Family", "Musical"], popularity: 5 }, // "Live-action" (photorealistic CGI) - already listed
-  { title: "Raya and the Last Dragon", year: 2021, genres: ["Animation", "Action", "Adventure", "Comedy", "Family", "Fantasy"], popularity: 4 }, // Already in animation, but strong fantasy
+  // { title: "Raya and the Last Dragon", year: 2021, genres: ["Animation", "Action", "Adventure", "Comedy", "Family", "Fantasy"], popularity: 4 }, // Already in animation, but strong fantasy
   { title: "Dungeons & Dragons: Honor Among Thieves", year: 2023, genres: ["Action", "Adventure", "Comedy", "Fantasy"], popularity: 4 },
   { title: "Wonka", year: 2023, genres: ["Adventure", "Comedy", "Family", "Fantasy", "Musical"], popularity: 4 },
 
@@ -976,19 +976,19 @@ const movies: Movie[] = [
   { title: "Inside Out 2", year: 2024, genres: ["Animation", "Adventure", "Comedy", "Drama", "Family", "Fantasy"], popularity: 5 },
 
   // Rounding out with some more classics and variety
-  { title: "A Streetcar Named Desire", year: 1951, genres: ["Drama"], popularity: 4 }, // Already listed, check
-  { title: "On the Waterfront", year: 1954, genres: ["Crime", "Drama", "Thriller"], popularity: 4 }, // Already listed, check
-  { title: "Rebel Without a Cause", year: 1955, genres: ["Drama"], popularity: 4 }, // Already listed, check
-  { title: "Giant", year: 1956, genres: ["Drama", "Western"], popularity: 3 }, // Already listed, check
-  { title: "Ben-Hur", year: 1959, genres: ["Adventure", "Drama", "History"], popularity: 4 }, // Already listed, check
-  { title: "Spartacus", year: 1960, genres: ["Adventure", "Biography", "Drama", "History", "War"], popularity: 4 }, // Already listed, check
-  { title: "The Hustler", year: 1961, genres: ["Drama", "Sport"], popularity: 3 }, // Already listed, check
-  { title: "To Kill a Mockingbird", year: 1962, genres: ["Crime", "Drama"], popularity: 5 }, // Already listed, check
-  { title: "The Graduate", year: 1967, genres: ["Comedy", "Drama", "Romance"], popularity: 4 }, // Already listed, check
-  { title: "Midnight Cowboy", year: 1969, genres: ["Drama"], popularity: 3 }, // Already listed, check
+  // { title: "A Streetcar Named Desire", year: 1951, genres: ["Drama"], popularity: 4 }, // Already listed
+  // { title: "On the Waterfront", year: 1954, genres: ["Crime", "Drama", "Thriller"], popularity: 4 }, // Already listed
+  // { title: "Rebel Without a Cause", year: 1955, genres: ["Drama"], popularity: 4 }, // Already listed
+  // { title: "Giant", year: 1956, genres: ["Drama", "Western"], popularity: 3 }, // Already listed
+  { title: "Ben-Hur", year: 1959, genres: ["Adventure", "Drama", "History"], popularity: 4 },
+  { title: "Spartacus", year: 1960, genres: ["Adventure", "Biography", "Drama", "History", "War"], popularity: 4 },
+  // { title: "The Hustler", year: 1961, genres: ["Drama", "Sport"], popularity: 3 }, // Already listed
+  { title: "To Kill a Mockingbird", year: 1962, genres: ["Crime", "Drama"], popularity: 5 },
+  { title: "The Graduate", year: 1967, genres: ["Comedy", "Drama", "Romance"], popularity: 4 },
+  { title: "Midnight Cowboy", year: 1969, genres: ["Drama"], popularity: 3 },
   { title: "Patton", year: 1970, genres: ["Biography", "Drama", "War"], popularity: 3 },
   { title: "American Graffiti", year: 1973, genres: ["Comedy", "Drama"], popularity: 4 },
-  { title: "Close Encounters of the Third Kind", year: 1977, genres: ["Drama", "Sci-Fi"], popularity: 4 }, // Already listed, check
+  // { title: "Close Encounters of the Third Kind", year: 1977, genres: ["Drama", "Sci-Fi"], popularity: 4 }, // Already listed
   { title: "Sophie's Choice", year: 1982, genres: ["Drama", "Romance"], popularity: 3 },
   { title: "The Right Stuff", year: 1983, genres: ["Adventure", "Biography", "Drama", "History"], popularity: 3 },
   { title: "Beverly Hills Cop", year: 1984, genres: ["Action", "Comedy", "Crime"], popularity: 4 },
@@ -1002,7 +1002,7 @@ const movies: Movie[] = [
   { title: "Malcolm X", year: 1992, genres: ["Biography", "Drama", "History"], popularity: 4 },
   { title: "What's Eating Gilbert Grape", year: 1993, genres: ["Drama"], popularity: 4 },
   { title: "Legends of the Fall", year: 1994, genres: ["Drama", "Romance", "War", "Western"], popularity: 4 },
-  { title: "Seven", year: 1995, genres: ["Crime", "Drama", "Mystery", "Thriller"], popularity: 5 }, // Also as Se7en
+  // { title: "Seven", year: 1995, genres: ["Crime", "Drama", "Mystery", "Thriller"], popularity: 5 }, // Also as Se7en
   { title: "Sling Blade", year: 1996, genres: ["Drama"], popularity: 3 },
   { title: "As Good as It Gets", year: 1997, genres: ["Comedy", "Drama", "Romance"], popularity: 4 },
   { title: "The Truman Show", year: 1998, genres: ["Comedy", "Drama", "Sci-Fi"], popularity: 5 },
@@ -1030,6 +1030,7 @@ const movies: Movie[] = [
 
 ];
 
+export type MovieDifficulty = "easy" | "medium" | "hard";
 
 export const getDecadeForMovie = (year: number): number => {
   return Math.floor(year / 10) * 10;
@@ -1051,10 +1052,10 @@ export const getUniqueDecades = (movieList: Movie[]): string[] => {
 };
 
 export interface MovieFilters {
-  genre?: string; // Specific genre string, not "All Genres"
-  decade?: number; // e.g., 1980, not "1980s" or "All Decades"
+  genre?: string; 
+  decade?: number; 
   excludeTitle?: string;
-  // popularityThreshold?: number; // e.g. only movies with popularity >= threshold
+  difficulty?: MovieDifficulty; 
 }
 
 export function getRandomMovie(filters: MovieFilters): Movie | null {
@@ -1062,7 +1063,6 @@ export function getRandomMovie(filters: MovieFilters): Movie | null {
     filters.excludeTitle ? movie.title !== filters.excludeTitle : true
   );
 
-  // Fallback if excluding the current movie leaves no options, but there are movies in the master list
   if (selectableMovies.length === 0 && movies.length > 0) {
     selectableMovies = movies.filter(m => filters.excludeTitle ? m.title !== filters.excludeTitle : true);
      if (selectableMovies.length === 0 && movies.length > 0) { 
@@ -1073,13 +1073,13 @@ export function getRandomMovie(filters: MovieFilters): Movie | null {
             selectableMovies = movies.slice(); 
         }
     }
-     if (selectableMovies.length === 0) return null; 
   }
-   if (selectableMovies.length === 0) return null;
+  if (selectableMovies.length === 0) return null;
 
 
   const hasGenreFilter = filters.genre && filters.genre !== "All Genres";
   const hasDecadeFilter = filters.decade !== undefined;
+  const hasDifficultyFilter = filters.difficulty !== undefined;
 
   if (hasGenreFilter) {
     selectableMovies = selectableMovies.filter(m => m.genres.includes(filters.genre!));
@@ -1088,38 +1088,62 @@ export function getRandomMovie(filters: MovieFilters): Movie | null {
   if (hasDecadeFilter) {
     selectableMovies = selectableMovies.filter(m => getDecadeForMovie(m.year) === filters.decade!);
   }
+
+  if (hasDifficultyFilter) {
+    switch (filters.difficulty) {
+      case "easy":
+        selectableMovies = selectableMovies.filter(m => m.popularity === 5);
+        break;
+      case "medium":
+        selectableMovies = selectableMovies.filter(m => m.popularity === 3 || m.popularity === 4);
+        break;
+      case "hard":
+        selectableMovies = selectableMovies.filter(m => m.popularity === 1 || m.popularity === 2);
+        break;
+    }
+  }
+  
+  if (selectableMovies.length === 0) {
+    // If difficulty filter results in no movies, try without it but keeping other filters
+    let fallbackMovies = movies.filter(movie => 
+        filters.excludeTitle ? movie.title !== filters.excludeTitle : true
+    );
+    if (hasGenreFilter) {
+        fallbackMovies = fallbackMovies.filter(m => m.genres.includes(filters.genre!));
+    }
+    if (hasDecadeFilter) {
+        fallbackMovies = fallbackMovies.filter(m => getDecadeForMovie(m.year) === filters.decade!);
+    }
+    if (fallbackMovies.length > 0) {
+        selectableMovies = fallbackMovies;
+    } else {
+        return null; // No movies match even the broader filters
+    }
+  }
   
   if (selectableMovies.length === 0) {
     return null; 
   }
 
+
   const randomIndex = Math.floor(Math.random() * selectableMovies.length);
   return selectableMovies[randomIndex];
 }
 
-// Ensure all movies have a default popularity if not specified
 movies.forEach(movie => {
   if (movie.popularity === undefined) {
     movie.popularity = 3; 
   }
 });
 
-// Create a Set of titles to find duplicates
 const titles = new Set<string>();
 const uniqueMovies: Movie[] = [];
 movies.forEach(movie => {
-  if (!titles.has(movie.title.toLowerCase())) {
-    titles.add(movie.title.toLowerCase());
+  const normalizedTitle = movie.title.toLowerCase().trim();
+  if (!titles.has(normalizedTitle)) {
+    titles.add(normalizedTitle);
     uniqueMovies.push(movie);
-  } else {
-    // Optionally log duplicate titles if needed for debugging the list
-    // console.log(`Duplicate movie title (case-insensitive): ${movie.title}`);
   }
 });
 
-
-// Export the de-duplicated movie list
 export const allMovies: Movie[] = uniqueMovies;
-
-// console.log(`Total unique movies in list: ${allMovies.length}`);
-// The current unique count is approximately 900+ after additions and de-duplication.

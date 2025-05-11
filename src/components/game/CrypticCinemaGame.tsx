@@ -13,7 +13,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Clapperboard, Lightbulb, HelpCircle, Star, RotateCw, Heart, HeartOff, Flag } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/layout/Header";
-import { allMovies as moviesData, getUniqueGenres, getUniqueDecades, getRandomMovie, type Movie, type MovieFilters } from "@/lib/movies";
+import { allMovies as moviesData, getUniqueGenres, getUniqueDecades, getRandomMovie, type Movie, type MovieFilters, type MovieDifficulty } from "@/lib/movies";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
@@ -22,7 +22,7 @@ type GamePhase = "loading" | "playing" | "correct" | "gave_up" | "game_over" | "
 type HintLevel = null | "word_count" | "initial_letters";
 
 const DIFFICULTIES = ["easy", "medium", "hard"] as const;
-type Difficulty = typeof DIFFICULTIES[number];
+type Difficulty = typeof DIFFICULTIES[number]; // This is "easy" | "medium" | "hard"
 
 const MAX_LIVES = 3;
 
@@ -84,7 +84,10 @@ export default function CrypticCinemaGame() {
     setHintLevel(null);
     
 
-    const movieFilters: MovieFilters = { excludeTitle: currentMovieRef.current?.title };
+    const movieFilters: MovieFilters = { 
+      excludeTitle: currentMovieRef.current?.title,
+      difficulty: selectedDifficulty as MovieDifficulty, // Pass selectedDifficulty for popularity filtering
+    };
     if (selectedGenre !== "All Genres") {
       movieFilters.genre = selectedGenre;
     }
@@ -96,8 +99,8 @@ export default function CrypticCinemaGame() {
 
     if (!newMovie) {
       let errorMsg = "No movies match your current filter settings."
-      if (selectedGenre !== "All Genres" || selectedDecade !== "All Decades") {
-        errorMsg += ` Filters: ${selectedDecade !== "All Decades" ? selectedDecade : ""}${selectedGenre !== "All Genres" ? (selectedDecade !== "All Decades" ? ", " : "") + selectedGenre : ""}.`;
+      if (selectedGenre !== "All Genres" || selectedDecade !== "All Decades" || selectedDifficulty) {
+         errorMsg += ` Filters: Difficulty: ${selectedDifficulty}${selectedDecade !== "All Decades" ? ", Decade: " + selectedDecade : ""}${selectedGenre !== "All Genres" ? ", Genre: " + selectedGenre : ""}.`;
       }
       errorMsg += " Please try different options or broaden your search."
 
@@ -107,7 +110,7 @@ export default function CrypticCinemaGame() {
       setCurrentMovie(null);
       toast({
         title: "No Movies Found",
-        description: "Try adjusting your decade or genre filters.",
+        description: "Try adjusting your difficulty, decade or genre filters.",
         variant: "destructive",
       });
       isFetchingClue.current = false;
@@ -119,7 +122,7 @@ export default function CrypticCinemaGame() {
     try {
       const clueInput: GenerateCrypticClueInput = {
         movieTitle: newMovie.title,
-        crypticLevel: selectedDifficulty,
+        crypticLevel: selectedDifficulty, // Still passed, but AI prompt doesn't use it for clue style
         language: "English",
       };
       const result: GenerateCrypticClueOutput = await generateCrypticClue(clueInput);
@@ -158,8 +161,8 @@ export default function CrypticCinemaGame() {
         gamePhaseRef.current === 'playing' || 
         gamePhaseRef.current === 'error' || 
         gamePhaseRef.current === 'no_movie_found' ||
-        gamePhaseRef.current === 'correct' || // Allow fetching new clue after correct guess if filters change
-        gamePhaseRef.current === 'gave_up';   // Allow fetching new clue after giving up if filters change
+        gamePhaseRef.current === 'correct' || 
+        gamePhaseRef.current === 'gave_up';
 
 
     if (canFetchOnFilterChange && availableGenres.length > 0 && availableDecades.length > 0 && !isFetchingClue.current) {
@@ -172,8 +175,9 @@ export default function CrypticCinemaGame() {
     if (!currentMovie) return 0;
     let points = 100; 
 
-    if (selectedDifficulty === "easy") points = Math.max(10, points - 20);
-    if (selectedDifficulty === "hard") points += 20;
+    // Points based on movie obscurity (selectedDifficulty reflects this now)
+    if (selectedDifficulty === "easy") points = Math.max(10, points - 20); // Easier (more popular) movies = fewer base points
+    if (selectedDifficulty === "hard") points += 20; // Harder (less popular) movies = more base points
 
     if (hintLevel === "initial_letters") {
       points -= 50; 

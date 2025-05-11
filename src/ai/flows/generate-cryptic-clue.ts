@@ -12,7 +12,7 @@ import {z} from 'genkit';
 
 const GenerateCrypticClueInputSchema = z.object({
   movieTitle: z.string().describe('The title of the movie for which to generate a cryptic clue.'),
-  crypticLevel: z.string().optional().describe('The desired cryptic level of the clue (e.g., easy, medium, hard). Defaults to medium.'),
+  crypticLevel: z.string().optional().describe('The user-selected difficulty level (e.g., easy, medium, hard). This is used for movie selection strategy, not directly for AI clue style adjustment anymore.'),
   language: z.string().optional().describe('The language for the clue. Defaults to English.'),
 });
 export type GenerateCrypticClueInput = z.infer<typeof GenerateCrypticClueInputSchema>;
@@ -34,11 +34,6 @@ const prompt = ai.definePrompt({
 
       The clue should be in {{language}}. If no language is specified, use English.
 
-      Adjust the clue's nature based on the cryptic level:
-      - Easy: The clue should use more direct (though still cryptic) references to plot, characters, or prominent themes. Wordplay should be relatively straightforward.
-      - Medium (default if not specified): A standard cryptic clue involving clever wordplay, metaphors, and indirect references. It should be challenging but fair.
-      - Hard: The clue should be highly abstract, employ sophisticated wordplay, or reference more subtle, less obvious aspects of the movie (e.g., minor characters, deeper thematic elements, or unique directorial choices). The connection to the movie should be more obscure.
-
       Focus on creativity, engaging language, and intellectual challenge. The clue must NOT directly reveal the movie title or character names.
       The clue does not need to rhyme. Prioritize cleverness and cryptic misdirection over poetic structure.
 
@@ -56,7 +51,7 @@ const prompt = ai.definePrompt({
         Clue: Interwoven tales of hitmen, molls, and a mysterious briefcase, told out of time.
 
 
-      Now generate a cryptic clue for "{{movieTitle}}" with a cryptic level of "{{crypticLevel}}":`,
+      Now generate a cryptic clue for "{{movieTitle}}":`,
 });
 
 const generateCrypticClueFlow = ai.defineFlow(
@@ -66,8 +61,9 @@ const generateCrypticClueFlow = ai.defineFlow(
     outputSchema: GenerateCrypticClueOutputSchema,
   },
   async input => {
+    // The 'crypticLevel' from input is not directly used in the prompt string for AI style adjustment anymore.
+    // It's used in the game component to select movies based on popularity.
     const {output} = await prompt(input);
     return output!;
   }
 );
-
