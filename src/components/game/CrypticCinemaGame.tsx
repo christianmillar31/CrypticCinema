@@ -22,7 +22,7 @@ type GamePhase = "loading" | "playing" | "correct" | "gave_up" | "game_over" | "
 type HintLevel = null | "word_count" | "initial_letters";
 
 const DIFFICULTIES = ["easy", "medium", "hard"] as const;
-type Difficulty = typeof DIFFICULTIES[number]; // This is "easy" | "medium" | "hard"
+type Difficulty = typeof DIFFICULTIES[number]; 
 
 const MAX_LIVES = 3;
 
@@ -35,6 +35,7 @@ export default function CrypticCinemaGame() {
   const [gamePhase, setGamePhase] = useState<GamePhase>("loading");
   const [hintLevel, setHintLevel] = useState<HintLevel>(null);
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
+  const [shownMovieTitlesThisSession, setShownMovieTitlesThisSession] = useState<string[]>([]);
 
   const [availableGenres, setAvailableGenres] = useState<string[]>([]);
   const [availableDecades, setAvailableDecades] = useState<string[]>([]);
@@ -45,13 +46,8 @@ export default function CrypticCinemaGame() {
 
   const { toast } = useToast();
 
-  const currentMovieRef = useRef<Movie | null>(null);
   const isFetchingClue = useRef(false);
   const gamePhaseRef = useRef(gamePhase); 
-
-  useEffect(() => {
-    currentMovieRef.current = currentMovie;
-  }, [currentMovie]);
 
   useEffect(() => {
     gamePhaseRef.current = gamePhase;
@@ -83,10 +79,9 @@ export default function CrypticCinemaGame() {
     setUserGuess("");
     setHintLevel(null);
     
-
     const movieFilters: MovieFilters = { 
-      excludeTitle: currentMovieRef.current?.title,
-      difficulty: selectedDifficulty as MovieDifficulty, // Pass selectedDifficulty for popularity filtering
+      difficulty: selectedDifficulty as MovieDifficulty,
+      excludeTitles: shownMovieTitlesThisSession, 
     };
     if (selectedGenre !== "All Genres") {
       movieFilters.genre = selectedGenre;
@@ -98,7 +93,10 @@ export default function CrypticCinemaGame() {
     const newMovie = getRandomMovie(movieFilters);
 
     if (!newMovie) {
-      let errorMsg = "No movies match your current filter settings."
+      let errorMsg = "No new movies match your current filter settings."
+      if (shownMovieTitlesThisSession.length > 0) {
+        errorMsg += " You might have seen all available movies for these filters in this session."
+      }
       if (selectedGenre !== "All Genres" || selectedDecade !== "All Decades" || selectedDifficulty) {
          errorMsg += ` Filters: Difficulty: ${selectedDifficulty}${selectedDecade !== "All Decades" ? ", Decade: " + selectedDecade : ""}${selectedGenre !== "All Genres" ? ", Genre: " + selectedGenre : ""}.`;
       }
@@ -107,10 +105,10 @@ export default function CrypticCinemaGame() {
       setFeedbackMessage(errorMsg);
       setGamePhase("no_movie_found");
       setClue("");
-      setCurrentMovie(null);
+      setCurrentMovie(null); // Ensure currentMovie is null if no movie found
       toast({
-        title: "No Movies Found",
-        description: "Try adjusting your difficulty, decade or genre filters.",
+        title: "No New Movies Found",
+        description: "Try adjusting your filters or you may have seen all available movies for the current selection this session.",
         variant: "destructive",
       });
       isFetchingClue.current = false;
@@ -118,11 +116,13 @@ export default function CrypticCinemaGame() {
     }
     
     setCurrentMovie(newMovie);
+    setShownMovieTitlesThisSession(prev => [...prev, newMovie.title]);
+
 
     try {
       const clueInput: GenerateCrypticClueInput = {
         movieTitle: newMovie.title,
-        crypticLevel: selectedDifficulty, // Still passed, but AI prompt doesn't use it for clue style
+        crypticLevel: selectedDifficulty,
         language: "English",
       };
       const result: GenerateCrypticClueOutput = await generateCrypticClue(clueInput);
@@ -132,31 +132,34 @@ export default function CrypticCinemaGame() {
       console.error("Error generating clue:", error);
       setFeedbackMessage("Failed to generate a new clue. Please try again.");
       setGamePhase("error");
+      setCurrentMovie(null); // Reset current movie on error to allow fetching a new one
       toast({
         title: "Clue Generation Error",
-        description: "Could not fetch a new clue for the selected movie. Please try again.",
+        description: "Could not fetch a new clue. Please try again.",
         variant: "destructive",
       });
     } finally {
       isFetchingClue.current = false;
     }
-  }, [toast, selectedGenre, selectedDecade, selectedDifficulty]);
+  }, [toast, selectedGenre, selectedDecade, selectedDifficulty, shownMovieTitlesThisSession]);
 
   
   useEffect(() => {
-    if (availableGenres.length > 0 && availableDecades.length > 0 && !currentMovie && gamePhaseRef.current === 'loading' && !isFetchingClue.current) {
+    // Initial fetch when component mounts and essential data (genres, decades) is ready
+    if (availableGenres.length > 0 && availableDecades.length > 0 && gamePhaseRef.current === 'loading' && !isFetchingClue.current && !currentMovie) {
         fetchNewClue();
     }
-  }, [availableGenres, availableDecades, currentMovie, fetchNewClue]);
+  }, [availableGenres, availableDecades, fetchNewClue, currentMovie]);
 
   
   const hasMountedFilters = useRef(false);
   useEffect(() => {
     if (!hasMountedFilters.current) {
       hasMountedFilters.current = true;
-      return;
+      return; // Skip first render effect
     }
 
+    // Fetch new clue if filters change and we are in a state where a new clue makes sense
     const canFetchOnFilterChange = 
         gamePhaseRef.current === 'playing' || 
         gamePhaseRef.current === 'error' || 
@@ -164,20 +167,19 @@ export default function CrypticCinemaGame() {
         gamePhaseRef.current === 'correct' || 
         gamePhaseRef.current === 'gave_up';
 
-
     if (canFetchOnFilterChange && availableGenres.length > 0 && availableDecades.length > 0 && !isFetchingClue.current) {
         fetchNewClue();
     }
-  }, [selectedGenre, selectedDecade, selectedDifficulty, fetchNewClue, availableGenres, availableDecades]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps 
+  }, [selectedGenre, selectedDecade, selectedDifficulty]); // Deliberately excluding fetchNewClue, availableGenres, availableDecades to avoid loops with fetchNewClue's dependencies
 
 
   const calculatePoints = () => {
     if (!currentMovie) return 0;
     let points = 100; 
 
-    // Points based on movie obscurity (selectedDifficulty reflects this now)
-    if (selectedDifficulty === "easy") points = Math.max(10, points - 20); // Easier (more popular) movies = fewer base points
-    if (selectedDifficulty === "hard") points += 20; // Harder (less popular) movies = more base points
+    if (selectedDifficulty === "easy") points = Math.max(10, points - 20); 
+    if (selectedDifficulty === "hard") points += 20; 
 
     if (hintLevel === "initial_letters") {
       points -= 50; 
@@ -254,7 +256,9 @@ export default function CrypticCinemaGame() {
     if (gamePhaseRef.current === "game_over") {
       setScore(0);
       setLives(MAX_LIVES);
+      setShownMovieTitlesThisSession([]); // Reset shown movies for a new game session
     }
+    // currentMovie will be set to null by fetchNewClue if no movie is found, or to the new movie
     fetchNewClue();
   };
 
@@ -296,7 +300,7 @@ export default function CrypticCinemaGame() {
     if (gamePhase === "game_over") return "Game Over!";
     if (gamePhase === "gave_up") return "Revealed!";
     if (gamePhase === "error") return "Clue Generation Failed";
-    if (gamePhase === "no_movie_found") return "No Movie Found";
+    if (gamePhase === "no_movie_found") return "No New Movie Found";
     return "Feedback";
   }
 
@@ -461,7 +465,7 @@ export default function CrypticCinemaGame() {
                 {(gamePhase === "correct" || gamePhase === "gave_up" || gamePhase === "game_over" || gamePhase === "error" || gamePhase === "no_movie_found") && (
                 <Button onClick={handleNextClueOrPlayAgain} className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground" disabled={isFetchingClue.current}>
                     <RotateCw className="w-5 h-5 mr-2" aria-hidden="true" />
-                    {gamePhaseRef.current === "game_over" ? "Play Again" : "Next Clue"}
+                    {gamePhaseRef.current === "game_over" ? "Play Again" : (isFetchingClue.current ? "Loading..." : "Next Clue")}
                 </Button>
                 )}
             </div>
@@ -486,5 +490,4 @@ export default function CrypticCinemaGame() {
     </div>
   );
 }
-
 
