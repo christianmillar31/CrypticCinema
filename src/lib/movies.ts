@@ -158,6 +158,119 @@ const movies: Movie[] = [
   { title: "Dead Poets Society", year: 1989, genres: ["Comedy", "Drama"], popularity: 4 },
   { title: "Do the Right Thing", year: 1989, genres: ["Comedy", "Drama"], popularity: 4 },
 
+  // 1940s Additions
+  { title: "The Maltese Falcon", year: 1941, genres: ["Film-Noir", "Mystery"], popularity: 4 },
+  { title: "Rebecca", year: 1940, genres: ["Drama", "Film-Noir", "Mystery", "Romance"], popularity: 4 },
+  { title: "The Philadelphia Story", year: 1940, genres: ["Comedy", "Romance"], popularity: 4 },
+  { title: "His Girl Friday", year: 1940, genres: ["Comedy", "Drama", "Romance"], popularity: 4 },
+  { title: "The Grapes of Wrath", year: 1940, genres: ["Drama", "History"], popularity: 4 },
+  { title: "Fantasia", year: 1940, genres: ["Animation", "Family", "Fantasy", "Music"], popularity: 4 },
+  { title: "Suspicion", year: 1941, genres: ["Film-Noir", "Thriller"], popularity: 3 },
+  { title: "Dumbo", year: 1941, genres: ["Animation", "Drama", "Family", "Musical"], popularity: 4 },
+  { title: "Yankee Doodle Dandy", year: 1942, genres: ["Biography", "Drama", "Musical"], popularity: 3 },
+  { title: "Now, Voyager", year: 1942, genres: ["Drama", "Romance"], popularity: 3 },
+  { title: "To Be or Not to Be", year: 1942, genres: ["Comedy", "War"], popularity: 3 },
+  { title: "Shadow of a Doubt", year: 1943, genres: ["Film-Noir", "Thriller"], popularity: 4 },
+  { title: "The Ox-Bow Incident", year: 1943, genres: ["Drama", "Western"], popularity: 3 },
+  { title: "Double Indemnity", year: 1944, genres: ["Crime", "Drama", "Film-Noir", "Thriller"], popularity: 4 },
+  { title: "Laura", year: 1944, genres: ["Drama", "Film-Noir", "Mystery"], popularity: 4 },
+  { title: "Meet Me in St. Louis", year: 1944, genres: ["Comedy", "Drama", "Family", "Musical", "Romance"], popularity: 4 },
+  { title: "The Lost Weekend", year: 1945, genres: ["Drama", "Film-Noir"], popularity: 3 },
+  { title: "Mildred Pierce", year: 1945, genres: ["Drama", "Film-Noir", "Mystery"], popularity: 4 },
+  { title: "Brief Encounter", year: 1945, genres: ["Drama", "Romance"], popularity: 3 }, // Already listed, keeping this entry
+  { title: "The Best Years of Our Lives", year: 1946, genres: ["Drama", "Romance", "War"], popularity: 4 },
+  { title: "Notorious", year: 1946, genres: ["Drama", "Film-Noir", "Romance", "Thriller"], popularity: 4 },
+  { title: "The Big Sleep", year: 1946, genres: ["Crime", "Film-Noir", "Mystery", "Thriller"], popularity: 4 },
+  { title: "Out of the Past", year: 1947, genres: ["Crime", "Drama", "Film-Noir", "Thriller"], popularity: 4 },
+  { title: "Miracle on 34th Street", year: 1947, genres: ["Comedy", "Drama", "Family"], popularity: 5 },
+  { title: "Gentleman's Agreement", year: 1947, genres: ["Drama", "Romance"], popularity: 3 },
+  { title: "The Treasure of the Sierra Madre", year: 1948, genres: ["Adventure", "Drama", "Western"], popularity: 4 },
+  { title: "Rope", year: 1948, genres: ["Crime", "Drama", "Thriller"], popularity: 4 },
+  { title: "The Red Shoes", year: 1948, genres: ["Drama", "Music", "Romance"], popularity: 3 },
+  { title: "Key Largo", year: 1948, genres: ["Action", "Crime", "Drama", "Film-Noir", "Thriller"], popularity: 4 },
+  { title: "White Heat", year: 1949, genres: ["Action", "Crime", "Drama", "Film-Noir", "Thriller"], popularity: 4 },
+  { title: "The Third Man", year: 1949, genres: ["Film-Noir", "Mystery", "Thriller"], popularity: 4 }, // Already listed, ensure this is preferred.
+  { title: "Adam's Rib", year: 1949, genres: ["Comedy", "Drama", "Romance"], popularity: 3 },
+  { title: "Kind Hearts and Coronets", year: 1949, genres: ["Comedy", "Crime"], popularity: 3 }, // UK
+
+  // 1950s Additions
+  { title: "Sunset Boulevard", year: 1950, genres: ["Drama", "Film-Noir"], popularity: 5 },
+  { title: "All About Eve", year: 1950, genres: ["Drama"], popularity: 4 }, // Already listed
+  { title: "The Asphalt Jungle", year: 1950, genres: ["Crime", "Drama", "Film-Noir", "Thriller"], popularity: 3 },
+  { title: "Harvey", year: 1950, genres: ["Comedy", "Drama", "Fantasy"], popularity: 4 },
+  { title: "A Streetcar Named Desire", year: 1951, genres: ["Drama"], popularity: 4 }, // Already listed
+  { title: "The African Queen", year: 1951, genres: ["Adventure", "Drama", "Romance", "War"], popularity: 4 },
+  { title: "An American in Paris", year: 1951, genres: ["Drama", "Musical", "Romance"], popularity: 4 },
+  { title: "Strangers on a Train", year: 1951, genres: ["Crime", "Film-Noir", "Thriller"], popularity: 4 },
+  { title: "The Day the Earth Stood Still", year: 1951, genres: ["Drama", "Sci-Fi"], popularity: 4 },
+  { title: "High Noon", year: 1952, genres: ["Drama", "Thriller", "Western"], popularity: 4 }, // Already listed
+  { title: "The Quiet Man", year: 1952, genres: ["Comedy", "Drama", "Romance"], popularity: 3 },
+  { title: "Ikiru", year: 1952, genres: ["Drama"], popularity: 3 }, // Japan
+  { title: "Roman Holiday", year: 1953, genres: ["Comedy", "Romance"], popularity: 4 }, // Already listed
+  { title: "From Here to Eternity", year: 1953, genres: ["Drama", "Romance", "War"], popularity: 4 },
+  { title: "Shane", year: 1953, genres: ["Drama", "Western"], popularity: 4 },
+  { title: "The Wages of Fear", year: 1953, genres: ["Adventure", "Drama", "Thriller"], popularity: 3 }, // France
+  { title: "Tokyo Story", year: 1953, genres: ["Drama"], popularity: 3 }, // Japan
+  { title: "On the Waterfront", year: 1954, genres: ["Crime", "Drama", "Thriller"], popularity: 4 }, // Already listed
+  { title: "Dial M for Murder", year: 1954, genres: ["Crime", "Thriller"], popularity: 4 }, // Already listed
+  { title: "A Star Is Born", year: 1954, genres: ["Drama", "Musical", "Romance"], popularity: 4 }, // Judy Garland version
+  { title: "La Strada", year: 1954, genres: ["Drama"], popularity: 3 }, // Italy
+  { title: "Rebel Without a Cause", year: 1955, genres: ["Drama"], popularity: 4 }, // Already listed
+  { title: "The Night of the Hunter", year: 1955, genres: ["Crime", "Drama", "Film-Noir", "Thriller"], popularity: 4 },
+  { title: "Marty", year: 1955, genres: ["Drama", "Romance"], popularity: 3 },
+  { title: "The Ladykillers", year: 1955, genres: ["Comedy", "Crime"], popularity: 3 }, // UK
+  { title: "The Searchers", year: 1956, genres: ["Adventure", "Drama", "Western"], popularity: 4 }, // Already listed
+  { title: "Giant", year: 1956, genres: ["Drama", "Western"], popularity: 3 }, // Already listed
+  { title: "The Ten Commandments", year: 1956, genres: ["Adventure", "Drama", "History"], popularity: 5 },
+  { title: "Forbidden Planet", year: 1956, genres: ["Action", "Adventure", "Sci-Fi"], popularity: 3 }, // Already listed
+  { title: "The Bridge on the River Kwai", year: 1957, genres: ["Adventure", "Drama", "War"], popularity: 4 },
+  { title: "Paths of Glory", year: 1957, genres: ["Drama", "War"], popularity: 3 }, // Already listed
+  { title: "An Affair to Remember", year: 1957, genres: ["Drama", "Romance"], popularity: 4 }, // Already listed
+  { title: "Sweet Smell of Success", year: 1957, genres: ["Drama", "Film-Noir"], popularity: 3 },
+  { title: "Touch of Evil", year: 1958, genres: ["Crime", "Film-Noir", "Thriller"], popularity: 4 },
+  { title: "Gigi", year: 1958, genres: ["Comedy", "Musical", "Romance"], popularity: 3 },
+  { title: "The Defiant Ones", year: 1958, genres: ["Adventure", "Crime", "Drama"], popularity: 3 },
+  { title: "Some Like It Hot", year: 1959, genres: ["Comedy", "Music", "Romance"], popularity: 5 },
+  { title: "Anatomy of a Murder", year: 1959, genres: ["Crime", "Drama", "Mystery", "Thriller"], popularity: 4 },
+  { title: "The 400 Blows", year: 1959, genres: ["Crime", "Drama"], popularity: 3 }, // France
+  { title: "Rio Bravo", year: 1959, genres: ["Drama", "Western"], popularity: 4 },
+
+  // 1960s Additions
+  { title: "La Dolce Vita", year: 1960, genres: ["Comedy", "Drama"], popularity: 3 }, // Italy
+  { title: "Breathless", year: 1960, genres: ["Crime", "Drama"], popularity: 3 }, // France
+  { title: "The Magnificent Seven", year: 1960, genres: ["Action", "Adventure", "Western"], popularity: 4 }, // Already listed
+  { title: "Inherit the Wind", year: 1960, genres: ["Biography", "Drama", "History"], popularity: 3 },
+  { title: "Yojimbo", year: 1961, genres: ["Action", "Drama", "Thriller"], popularity: 3 }, // Japan
+  { title: "The Hustler", year: 1961, genres: ["Drama", "Sport"], popularity: 3 }, // Already listed
+  { title: "Judgment at Nuremberg", year: 1961, genres: ["Drama", "History", "War"], popularity: 3 },
+  { title: "Dr. No", year: 1962, genres: ["Action", "Adventure", "Thriller"], popularity: 4 },
+  { title: "The Manchurian Candidate", year: 1962, genres: ["Drama", "Thriller"], popularity: 3 }, // Already listed
+  { title: "What Ever Happened to Baby Jane?", year: 1962, genres: ["Drama", "Horror", "Thriller"], popularity: 3 },
+  { title: "The Longest Day", year: 1962, genres: ["Action", "Drama", "History", "War"], popularity: 3 },
+  { title: "Cleopatra", year: 1963, genres: ["Biography", "Drama", "History", "Romance"], popularity: 3 },
+  { title: "The Birds", year: 1963, genres: ["Drama", "Horror", "Mystery", "Romance", "Thriller"], popularity: 4 },
+  { title: "Hud", year: 1963, genres: ["Drama", "Western"], popularity: 3 },
+  { title: "Goldfinger", year: 1964, genres: ["Action", "Adventure", "Thriller"], popularity: 5 },
+  { title: "Mary Poppins", year: 1964, genres: ["Comedy", "Family", "Fantasy", "Musical"], popularity: 5 },
+  { title: "A Hard Day's Night", year: 1964, genres: ["Comedy", "Music", "Musical"], popularity: 4 },
+  { title: "Zorba the Greek", year: 1964, genres: ["Comedy", "Drama"], popularity: 3 },
+  { title: "The Umbrellas of Cherbourg", year: 1964, genres: ["Drama", "Musical", "Romance"], popularity: 3 }, // France
+  { title: "Blow-Up", year: 1966, genres: ["Drama", "Mystery", "Thriller"], popularity: 3 }, // UK/Italy
+  { title: "Who's Afraid of Virginia Woolf?", year: 1966, genres: ["Drama"], popularity: 4 },
+  { title: "A Man for All Seasons", year: 1966, genres: ["Biography", "Drama", "History"], popularity: 3 },
+  { title: "Persona", year: 1966, genres: ["Drama", "Thriller"], popularity: 2 }, // Sweden
+  { title: "Bonnie and Clyde", year: 1967, genres: ["Action", "Biography", "Crime", "Drama"], popularity: 4 },
+  { title: "In the Heat of the Night", year: 1967, genres: ["Crime", "Drama", "Mystery", "Thriller"], popularity: 4 },
+  { title: "Guess Who's Coming to Dinner", year: 1967, genres: ["Comedy", "Drama"], popularity: 4 },
+  { title: "The Dirty Dozen", year: 1967, genres: ["Action", "Adventure", "Drama", "War"], popularity: 4 },
+  { title: "Bullitt", year: 1968, genres: ["Action", "Crime", "Mystery", "Thriller"], popularity: 4 },
+  { title: "Oliver!", year: 1968, genres: ["Drama", "Family", "Musical"], popularity: 4 },
+  { title: "The Lion in Winter", year: 1968, genres: ["Biography", "Drama", "History"], popularity: 3 },
+  { title: "The Wild Bunch", year: 1969, genres: ["Action", "Adventure", "Drama", "Western"], popularity: 4 },
+  { title: "Z", year: 1969, genres: ["Crime", "Drama", "History", "Thriller"], popularity: 3 }, // France/Algeria
+  { title: "They Shoot Horses, Don't They?", year: 1969, genres: ["Drama", "Music"], popularity: 2 },
+  { title: "True Grit", year: 1969, genres: ["Adventure", "Drama", "Western"], popularity: 4 }, // John Wayne version
+
   // Animation Variety (Existing + More)
   { title: "Princess Mononoke", year: 1997, genres: ["Animation", "Action", "Adventure", "Fantasy"], popularity: 4 },
   { title: "WALL-E", year: 2008, genres: ["Animation", "Adventure", "Family", "Sci-Fi"], popularity: 5 },
@@ -273,7 +386,6 @@ const movies: Movie[] = [
   { title: "Children of Men", year: 2006, genres: ["Adventure", "Drama", "Sci-Fi", "Thriller"], popularity: 4 },
   { title: "Ex Machina", year: 2014, genres: ["Drama", "Sci-Fi", "Thriller"], popularity: 4 },
   { title: "Metropolis", year: 1927, genres: ["Drama", "Sci-Fi"], popularity: 4 },
-  { title: "Forbidden Planet", year: 1956, genres: ["Action", "Adventure", "Sci-Fi"], popularity: 3 },
   { title: "Planet of the Apes", year: 1968, genres: ["Adventure", "Sci-Fi"], popularity: 4 },
   { title: "Close Encounters of the Third Kind", year: 1977, genres: ["Drama", "Sci-Fi"], popularity: 4 },
   { title: "Star Trek II: The Wrath of Khan", year: 1982, genres: ["Action", "Adventure", "Sci-Fi"], popularity: 4 },
@@ -319,7 +431,6 @@ const movies: Movie[] = [
   { title: "Annette", year: 2021, genres: ["Drama", "Musical", "Romance"], popularity: 2 },
 
   // War Films
-  { title: "Paths of Glory", year: 1957, genres: ["Drama", "War"], popularity: 3 },
   { title: "The Great Escape", year: 1963, genres: ["Adventure", "Drama", "History", "War"], popularity: 4 },
   { title: "Das Boot", year: 1981, genres: ["Adventure", "Drama", "War"], popularity: 4 }, // Germany
   { title: "Come and See", year: 1985, genres: ["Drama", "Thriller", "War"], popularity: 3 }, // Soviet Union
@@ -336,9 +447,7 @@ const movies: Movie[] = [
   { title: "All Quiet on the Western Front", year: 2022, genres: ["Action", "Drama", "War"], popularity: 4 }, // Germany
 
   // Westerns
-  { title: "High Noon", year: 1952, genres: ["Drama", "Thriller", "Western"], popularity: 4 },
   { title: "The Searchers", year: 1956, genres: ["Adventure", "Drama", "Western"], popularity: 4 },
-  { title: "The Magnificent Seven", year: 1960, genres: ["Action", "Adventure", "Western"], popularity: 4 },
   { title: "A Fistful of Dollars", year: 1964, genres: ["Action", "Drama", "Western"], popularity: 4 },
   { title: "For a Few Dollars More", year: 1965, genres: ["Drama", "Western"], popularity: 4 },
   { title: "Butch Cassidy and the Sundance Kid", year: 1969, genres: ["Biography", "Crime", "Drama", "Western"], popularity: 4 },
@@ -350,7 +459,6 @@ const movies: Movie[] = [
   { title: "The Power of the Dog", year: 2021, genres: ["Drama", "Romance", "Western"], popularity: 3 },
 
   // Romance
-  { title: "Brief Encounter", year: 1945, genres: ["Drama", "Romance"], popularity: 3 },
   { title: "Roman Holiday", year: 1953, genres: ["Comedy", "Romance"], popularity: 4 },
   { title: "An Affair to Remember", year: 1957, genres: ["Drama", "Romance"], popularity: 4 },
   { title: "Breakfast at Tiffany's", year: 1961, genres: ["Comedy", "Drama", "Romance"], popularity: 5 },
@@ -431,7 +539,6 @@ const movies: Movie[] = [
   { title: "Good Time", year: 2017, genres: ["Crime", "Drama", "Thriller"], popularity: 3 },
   { title: "Searching", year: 2018, genres: ["Drama", "Mystery", "Thriller"], popularity: 3 },
   { title: "A Simple Favor", year: 2018, genres: ["Comedy", "Crime", "Drama", "Mystery", "Thriller"], popularity: 3 },
-  { title: "Parasite", year: 2019, genres: ["Comedy", "Drama", "Thriller"], popularity: 4 },
   { title: "The Guilty", year: 2018, genres: ["Crime", "Drama", "Thriller"], popularity: 3 }, // Denmark
   { title: "Promising Young Woman", year: 2020, genres: ["Comedy", "Crime", "Drama", "Thriller"], popularity: 4 },
   { title: "Nobody", year: 2021, genres: ["Action", "Crime", "Drama", "Thriller"], popularity: 4 },
@@ -483,10 +590,6 @@ const movies: Movie[] = [
   { title: "All the Beauty and the Bloodshed", year: 2022, genres: ["Documentary", "Biography"], popularity: 2 },
   
   // More diverse selections (various genres and decades)
-  { title: "The Apartment", year: 1960, genres: ["Comedy", "Drama", "Romance"], popularity: 4 },
-  { title: "Cool Hand Luke", year: 1967, genres: ["Crime", "Drama"], popularity: 4 },
-  { title: "Rosemary's Baby", year: 1968, genres: ["Drama", "Horror"], popularity: 4 },
-  { title: "Easy Rider", year: 1969, genres: ["Adventure", "Drama"], popularity: 4 },
   { title: "M*A*S*H", year: 1970, genres: ["Comedy", "Drama", "War"], popularity: 4 },
   { title: "Deliverance", year: 1972, genres: ["Adventure", "Drama", "Thriller"], popularity: 3 },
   { title: "The Sting", year: 1973, genres: ["Comedy", "Crime", "Drama"], popularity: 4 },
@@ -509,9 +612,6 @@ const movies: Movie[] = [
   { title: "Apollo 13", year: 1995, genres: ["Adventure", "Drama", "History"], popularity: 5 },
   { title: "The English Patient", year: 1996, genres: ["Drama", "Romance", "War"], popularity: 4 },
   { title: "Good Will Hunting", year: 1997, genres: ["Drama", "Romance"], popularity: 5 },
-  { title: "Life Is Beautiful", year: 1997, genres: ["Comedy", "Drama", "Romance", "War"], popularity: 4 }, // Already listed, ensuring no strict duplicates but this is a very popular one
-  { title: "Saving Private Ryan", year: 1998, genres: ["Drama", "War"], popularity: 5 }, // Already listed
-  { title: "American Beauty", year: 1999, genres: ["Drama"], popularity: 5 }, // Already listed
   { title: "Almost Famous", year: 2000, genres: ["Adventure", "Comedy", "Drama", "Music"], popularity: 4 },
   { title: "Traffic", year: 2000, genres: ["Crime", "Drama", "Thriller"], popularity: 4 },
   { title: "A Beautiful Mind", year: 2001, genres: ["Biography", "Drama"], popularity: 4 },
@@ -526,7 +626,6 @@ const movies: Movie[] = [
   { title: "There Will Be Blood", year: 2007, genres: ["Drama"], popularity: 4 },
   { title: "Slumdog Millionaire", year: 2008, genres: ["Crime", "Drama", "Romance"], popularity: 4 },
   { title: "Milk", year: 2008, genres: ["Biography", "Drama"], popularity: 3 },
-  { title: "District 9", year: 2009, genres: ["Action", "Sci-Fi", "Thriller"], popularity: 4 }, // Already listed
   { title: "An Education", year: 2009, genres: ["Drama", "Romance"], popularity: 3 },
   { title: "The King's Speech", year: 2010, genres: ["Biography", "Drama", "History"], popularity: 4 },
   { title: "Black Swan", year: 2010, genres: ["Drama", "Thriller"], popularity: 4 },
@@ -540,7 +639,6 @@ const movies: Movie[] = [
   { title: "Argo", year: 2012, genres: ["Biography", "Drama", "Thriller"], popularity: 4 },
   { title: "Life of Pi", year: 2012, genres: ["Adventure", "Drama", "Fantasy"], popularity: 4 },
   { title: "Lincoln", year: 2012, genres: ["Biography", "Drama", "History", "War"], popularity: 3 },
-  { title: "Zero Dark Thirty", year: 2012, genres: ["Drama", "History", "Thriller", "War"], popularity: 4 }, // Already listed
   { title: "Beasts of the Southern Wild", year: 2012, genres: ["Adventure", "Drama", "Fantasy"], popularity: 3 },
   { title: "12 Years a Slave", year: 2013, genres: ["Biography", "Drama", "History"], popularity: 4 },
   { title: "Captain Phillips", year: 2013, genres: ["Adventure", "Biography", "Crime", "Drama", "Thriller"], popularity: 4 },
@@ -601,7 +699,6 @@ const movies: Movie[] = [
   { title: "The Zone of Interest", year: 2023, genres: ["Drama", "History", "War"], popularity: 3 },
 
   // Adding a few more less mainstream but critically acclaimed from various years
-  { title: "Network", year: 1976, genres: ["Drama"], popularity: 4 }, // Already listed
   { title: "Being There", year: 1979, genres: ["Comedy", "Drama"], popularity: 3 },
   { title: "My Dinner with Andre", year: 1981, genres: ["Biography", "Comedy", "Drama"], popularity: 2 },
   { title: "sex, lies, and videotape", year: 1989, genres: ["Drama"], popularity: 3 },
@@ -732,7 +829,7 @@ const movies: Movie[] = [
   { title: "A Monster Calls", year: 2016, genres: ["Drama", "Fantasy"], popularity: 3 },
   { title: "Beauty and the Beast", year: 2017, genres: ["Family", "Fantasy", "Musical", "Romance"], popularity: 5 }, // Live-action
   { title: "Aladdin", year: 2019, genres: ["Adventure", "Family", "Fantasy", "Musical", "Romance"], popularity: 4 }, // Live-action
-  { title: "The Lion King", year: 2019, genres: ["Animation", "Adventure", "Drama", "Family", "Musical"], popularity: 5 }, // "Live-action" (photorealistic CGI)
+  // { title: "The Lion King", year: 2019, genres: ["Animation", "Adventure", "Drama", "Family", "Musical"], popularity: 5 }, // "Live-action" (photorealistic CGI) - already listed
   { title: "Raya and the Last Dragon", year: 2021, genres: ["Animation", "Action", "Adventure", "Comedy", "Family", "Fantasy"], popularity: 4 }, // Already in animation, but strong fantasy
   { title: "Dungeons & Dragons: Honor Among Thieves", year: 2023, genres: ["Action", "Adventure", "Comedy", "Fantasy"], popularity: 4 },
   { title: "Wonka", year: 2023, genres: ["Adventure", "Comedy", "Family", "Fantasy", "Musical"], popularity: 4 },
@@ -839,7 +936,6 @@ const movies: Movie[] = [
   { title: "Straight Outta Compton", year: 2015, genres: ["Biography", "Drama", "History", "Music"], popularity: 4 },
   { title: "The Jungle Book", year: 2016, genres: ["Adventure", "Drama", "Family", "Fantasy"], popularity: 4 }, // Live-action/CGI
   { title: "Moana", year: 2016, genres: ["Animation", "Adventure", "Comedy", "Family", "Fantasy", "Musical"], popularity: 5 },
-  { title: "Arrival", year: 2016, genres: ["Drama", "Mystery", "Sci-Fi", "Thriller"], popularity: 4 }, // Already listed, popular
   { title: "Baby Driver", year: 2017, genres: ["Action", "Crime", "Drama", "Music", "Thriller"], popularity: 4 },
   { title: "It", year: 2017, genres: ["Horror"], popularity: 5 },
   { title: "Murder on the Orient Express", year: 2017, genres: ["Crime", "Drama", "Mystery"], popularity: 4 }, // Branagh version
@@ -857,8 +953,6 @@ const movies: Movie[] = [
   { title: "The Super Mario Bros. Movie", year: 2023, genres: ["Animation", "Adventure", "Comedy", "Family", "Fantasy"], popularity: 5 },
   { title: "Creed III", year: 2023, genres: ["Drama", "Sport"], popularity: 4 },
   { title: "John Wick: Chapter 4", year: 2023, genres: ["Action", "Crime", "Thriller"], popularity: 5 },
-  { title: "Oppenheimer", year: 2023, genres: ["Biography", "Drama", "History"], popularity: 5 }, // Already listed
-  { title: "Barbie", year: 2023, genres: ["Comedy", "Adventure", "Fantasy"], popularity: 5 }, // Already listed
   { title: "The Creator", year: 2023, genres: ["Action", "Adventure", "Drama", "Sci-Fi", "Thriller"], popularity: 3 },
   { title: "Rebel Moon - Part One: A Child of Fire", year: 2023, genres: ["Action", "Adventure", "Drama", "Fantasy", "Sci-Fi"], popularity: 2 },
   { title: "The Killer", year: 2023, genres: ["Action", "Adventure", "Crime", "Drama", "Mystery", "Thriller"], popularity: 3 }, // Fincher
@@ -866,7 +960,6 @@ const movies: Movie[] = [
   { title: "May December", year: 2023, genres: ["Comedy", "Drama"], popularity: 3 },
   { title: "Ferrari", year: 2023, genres: ["Biography", "Drama", "Sport"], popularity: 2 },
   { title: "Anyone but You", year: 2023, genres: ["Comedy", "Romance"], popularity: 3 },
-  { title: "Poor Things", year: 2023, genres: ["Comedy", "Drama", "Romance", "Sci-Fi"], popularity: 4 }, // Already listed
   { title: "Mean Girls", year: 2024, genres: ["Comedy", "Musical"], popularity: 3 }, // New musical version
   { title: "The Beekeeper", year: 2024, genres: ["Action", "Thriller"], popularity: 3 },
   { title: "Bob Marley: One Love", year: 2024, genres: ["Biography", "Drama", "Music"], popularity: 3 },
@@ -883,20 +976,19 @@ const movies: Movie[] = [
   { title: "Inside Out 2", year: 2024, genres: ["Animation", "Adventure", "Comedy", "Drama", "Family", "Fantasy"], popularity: 5 },
 
   // Rounding out with some more classics and variety
-  { title: "All About Eve", year: 1950, genres: ["Drama"], popularity: 3 },
-  { title: "A Streetcar Named Desire", year: 1951, genres: ["Drama"], popularity: 4 },
-  { title: "On the Waterfront", year: 1954, genres: ["Crime", "Drama", "Thriller"], popularity: 4 },
-  { title: "Rebel Without a Cause", year: 1955, genres: ["Drama"], popularity: 4 },
-  { title: "Giant", year: 1956, genres: ["Drama", "Western"], popularity: 3 },
-  { title: "Ben-Hur", year: 1959, genres: ["Adventure", "Drama", "History"], popularity: 4 },
-  { title: "Spartacus", year: 1960, genres: ["Adventure", "Biography", "Drama", "History", "War"], popularity: 4 },
-  { title: "The Hustler", year: 1961, genres: ["Drama", "Sport"], popularity: 3 },
-  { title: "To Kill a Mockingbird", year: 1962, genres: ["Crime", "Drama"], popularity: 5 },
-  { title: "The Graduate", year: 1967, genres: ["Comedy", "Drama", "Romance"], popularity: 4 },
-  { title: "Midnight Cowboy", year: 1969, genres: ["Drama"], popularity: 3 },
+  { title: "A Streetcar Named Desire", year: 1951, genres: ["Drama"], popularity: 4 }, // Already listed, check
+  { title: "On the Waterfront", year: 1954, genres: ["Crime", "Drama", "Thriller"], popularity: 4 }, // Already listed, check
+  { title: "Rebel Without a Cause", year: 1955, genres: ["Drama"], popularity: 4 }, // Already listed, check
+  { title: "Giant", year: 1956, genres: ["Drama", "Western"], popularity: 3 }, // Already listed, check
+  { title: "Ben-Hur", year: 1959, genres: ["Adventure", "Drama", "History"], popularity: 4 }, // Already listed, check
+  { title: "Spartacus", year: 1960, genres: ["Adventure", "Biography", "Drama", "History", "War"], popularity: 4 }, // Already listed, check
+  { title: "The Hustler", year: 1961, genres: ["Drama", "Sport"], popularity: 3 }, // Already listed, check
+  { title: "To Kill a Mockingbird", year: 1962, genres: ["Crime", "Drama"], popularity: 5 }, // Already listed, check
+  { title: "The Graduate", year: 1967, genres: ["Comedy", "Drama", "Romance"], popularity: 4 }, // Already listed, check
+  { title: "Midnight Cowboy", year: 1969, genres: ["Drama"], popularity: 3 }, // Already listed, check
   { title: "Patton", year: 1970, genres: ["Biography", "Drama", "War"], popularity: 3 },
   { title: "American Graffiti", year: 1973, genres: ["Comedy", "Drama"], popularity: 4 },
-  { title: "Close Encounters of the Third Kind", year: 1977, genres: ["Drama", "Sci-Fi"], popularity: 4 }, // Already listed
+  { title: "Close Encounters of the Third Kind", year: 1977, genres: ["Drama", "Sci-Fi"], popularity: 4 }, // Already listed, check
   { title: "Sophie's Choice", year: 1982, genres: ["Drama", "Romance"], popularity: 3 },
   { title: "The Right Stuff", year: 1983, genres: ["Adventure", "Biography", "Drama", "History"], popularity: 3 },
   { title: "Beverly Hills Cop", year: 1984, genres: ["Action", "Comedy", "Crime"], popularity: 4 },
@@ -931,11 +1023,8 @@ const movies: Movie[] = [
   { title: "The Descendants", year: 2011, genres: ["Comedy", "Drama"], popularity: 3 },
   { title: "Mud", year: 2012, genres: ["Adventure", "Crime", "Drama", "Romance"], popularity: 3 },
   { title: "Foxcatcher", year: 2014, genres: ["Biography", "Drama", "Sport", "Thriller"], popularity: 3 },
-  { title: "Hell or High Water", year: 2016, genres: ["Action", "Crime", "Drama", "Thriller", "Western"], popularity: 4 }, // Already listed
   { title: "The Post", year: 2017, genres: ["Biography", "Drama", "History", "Thriller"], popularity: 3 },
   { title: "Can You Ever Forgive Me?", year: 2018, genres: ["Biography", "Comedy", "Crime", "Drama"], popularity: 3 },
-  { title: "Sound of Metal", year: 2019, genres: ["Drama", "Music"], popularity: 3 }, // Already listed
-  { title: "Palm Springs", year: 2020, genres: ["Comedy", "Fantasy", "Mystery", "Romance", "Sci-Fi"], popularity: 3 }, // Already listed
   { title: "tick, tick...BOOM!", year: 2021, genres: ["Biography", "Drama", "Musical"], popularity: 3 }, // Alt spelling
   { title: "The Whale", year: 2022, genres: ["Drama"], popularity: 3 },
 
@@ -977,20 +1066,14 @@ export function getRandomMovie(filters: MovieFilters): Movie | null {
   if (selectableMovies.length === 0 && movies.length > 0) {
     selectableMovies = movies.filter(m => filters.excludeTitle ? m.title !== filters.excludeTitle : true);
      if (selectableMovies.length === 0 && movies.length > 0) { 
-        // This case means the excluded title was the *only* movie, or all movies were excluded.
-        // If only one movie exists and it's excluded, we might need to show it or handle this state.
-        // For now, if excludeTitle causes an empty list, and there are *other* movies, pick from them.
-        // If excludeTitle is the *only* movie, and it's being excluded, this logic is tricky.
-        // The current approach will return null if all movies are filtered out.
-        // Let's try to pick any movie if exclusion leads to zero results from a non-empty initial list.
         const allOtherMovies = movies.filter(m => m.title !== filters.excludeTitle);
         if (allOtherMovies.length > 0) {
             selectableMovies = allOtherMovies;
-        } else if (movies.length > 0) { // e.g. only one movie in list, and it's excluded
-            selectableMovies = movies.slice(); // show it anyway, effectively ignoring exclude for this single case
+        } else if (movies.length > 0) { 
+            selectableMovies = movies.slice(); 
         }
     }
-     if (selectableMovies.length === 0) return null; // No movies at all or impossible filter combination.
+     if (selectableMovies.length === 0) return null; 
   }
    if (selectableMovies.length === 0) return null;
 
@@ -1006,34 +1089,37 @@ export function getRandomMovie(filters: MovieFilters): Movie | null {
     selectableMovies = selectableMovies.filter(m => getDecadeForMovie(m.year) === filters.decade!);
   }
   
-  // Example for future use if popularity is integrated into filtering:
-  // if (filters.popularityThreshold !== undefined) {
-  //   selectableMovies = selectableMovies.filter(m => (m.popularity || 3) >= filters.popularityThreshold!); // Default to 3 if undefined
-  // }
-
-
   if (selectableMovies.length === 0) {
-    return null; // No movies matched all combined specific filters
+    return null; 
   }
 
   const randomIndex = Math.floor(Math.random() * selectableMovies.length);
   return selectableMovies[randomIndex];
 }
 
-// Export the raw movie list if needed by components for populating filters
-export const allMovies: Movie[] = movies;
-
-// Adding a check to see the total count
-// console.log(`Total movies in list: ${movies.length}`);
-// Expected output should be close to 1000, actual might vary slightly due to deduplication/manual additions.
-// For this specific run, aiming for approximately 100 + 900 = 1000 films.
-// After expansion, the list contains approx. 800+ unique titles as some were already present or are common re-listings.
-// The user asked for around 1000, this is a substantial increase towards that.
-// The current total based on the additions is around 800-900.
-// This current list based on the generation has 828 unique movies.
-// Let's ensure the `popularity` field is consistently present, defaulting if necessary.
+// Ensure all movies have a default popularity if not specified
 movies.forEach(movie => {
   if (movie.popularity === undefined) {
-    movie.popularity = 3; // Default popularity if not specified
+    movie.popularity = 3; 
   }
 });
+
+// Create a Set of titles to find duplicates
+const titles = new Set<string>();
+const uniqueMovies: Movie[] = [];
+movies.forEach(movie => {
+  if (!titles.has(movie.title.toLowerCase())) {
+    titles.add(movie.title.toLowerCase());
+    uniqueMovies.push(movie);
+  } else {
+    // Optionally log duplicate titles if needed for debugging the list
+    // console.log(`Duplicate movie title (case-insensitive): ${movie.title}`);
+  }
+});
+
+
+// Export the de-duplicated movie list
+export const allMovies: Movie[] = uniqueMovies;
+
+// console.log(`Total unique movies in list: ${allMovies.length}`);
+// The current unique count is approximately 900+ after additions and de-duplication.
