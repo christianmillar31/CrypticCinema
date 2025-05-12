@@ -1,4 +1,3 @@
-
 // Attempt to import the generated movie data from OMDB.
 import movieDataFile from '../data/omdb_movies.json';
 
@@ -104,56 +103,72 @@ const normalizeTitleForComparison = (title: string): string => {
 };
 
 export function getRandomMovie(filters: MovieFilters): Movie | null {
+  console.log("[getRandomMovie] Called with filters:", JSON.stringify(filters));
   let filteredMovies = allMovies;
+  console.log(`[getRandomMovie] Starting with ${allMovies.length} total movies.`);
 
   if (filters.excludeTitles && filters.excludeTitles.length > 0) {
     const excludeSet = new Set(filters.excludeTitles.map(t => normalizeTitleForComparison(t)));
+    const beforeExcludeCount = filteredMovies.length;
     filteredMovies = filteredMovies.filter(movie => !excludeSet.has(normalizeTitleForComparison(movie.title)));
+    console.log(`[getRandomMovie] After excluding ${filters.excludeTitles.length} titles, ${filteredMovies.length} movies remain (was ${beforeExcludeCount}).`);
   }
 
   if (filters.genres && filters.genres.length > 0) {
+    const beforeGenreFilterCount = filteredMovies.length;
     filteredMovies = filteredMovies.filter(movie =>
       filters.genres!.some(filterGenre => (movie.genres || []).includes(filterGenre))
     );
+    console.log(`[getRandomMovie] After filtering by genres [${filters.genres.join(', ')}], ${filteredMovies.length} movies remain (was ${beforeGenreFilterCount}).`);
   }
 
   if (filters.decades && filters.decades.length > 0) {
+    const beforeDecadeFilterCount = filteredMovies.length;
     filteredMovies = filteredMovies.filter(movie =>
       filters.decades!.includes(getDecadeForMovie(movie.year))
     );
+    console.log(`[getRandomMovie] After filtering by decades [${filters.decades.map(d => d + 's').join(', ')}], ${filteredMovies.length} movies remain (was ${beforeDecadeFilterCount}).`);
   }
 
   if (filters.difficulty) {
+    const beforeDifficultyFilterCount = filteredMovies.length;
     const difficultyFiltered = filteredMovies.filter(movie => movie.difficulty === filters.difficulty);
+     console.log(`[getRandomMovie] Attempting to filter by difficulty "${filters.difficulty}". Found ${difficultyFiltered.length} movies of this difficulty within the current pool of ${beforeDifficultyFilterCount} movies.`);
     if (difficultyFiltered.length > 0) {
         filteredMovies = difficultyFiltered;
+        console.log(`[getRandomMovie] Applied difficulty filter "${filters.difficulty}". ${filteredMovies.length} movies remain.`);
     } else if (allMovies.some(m => m.difficulty === filters.difficulty)) {
+        console.warn(`[getRandomMovie] No movies of difficulty "${filters.difficulty}" found with current genre/decade filters. Total movies of this difficulty in dataset: ${allMovies.filter(m => m.difficulty === filters.difficulty).length}. Keeping current filtered set of ${beforeDifficultyFilterCount} movies.`);
         // If movies of this difficulty exist in general, but not with current filters,
         // this means other filters (genre/decade) are too restrictive.
-        // The calling component should handle "no movie found" appropriately.
         // We don't relax the difficulty filter here, let the user adjust.
+    } else {
+      console.warn(`[getRandomMovie] No movies of difficulty "${filters.difficulty}" found AT ALL in the entire dataset. Keeping current filtered set of ${beforeDifficultyFilterCount} movies.`);
     }
   }
   
   if (filteredMovies.length === 0) {
+    console.warn("[getRandomMovie] No movies left after all filters. Returning null.");
     return null; 
   }
 
   const randomIndex = Math.floor(Math.random() * filteredMovies.length);
-  return filteredMovies[randomIndex];
+  const selectedMovie = filteredMovies[randomIndex];
+  console.log(`[getRandomMovie] Selected random movie: "${selectedMovie.title}" from ${filteredMovies.length} candidates.`);
+  return selectedMovie;
 }
 
 // This block will only run in Node.js environments (e.g., during build or server-side rendering if this file is imported there)
 // It won't run in the browser console directly unless this file is specifically imported and executed there.
 if (typeof process !== 'undefined' && process.versions && process.versions.node) { 
-    console.log(`Total unique movies loaded from OMDB: ${allMovies.length}`);
+    console.log(`[movies.ts] Total unique movies loaded from OMDB: ${allMovies.length}`);
     const easyCount = allMovies.filter(m => m.difficulty === 'easy').length;
     const mediumCount = allMovies.filter(m => m.difficulty === 'medium').length;
     const hardCount = allMovies.filter(m => m.difficulty === 'hard').length;
-    console.log(`Easy movies (OMDB): ${easyCount}`);
-    console.log(`Medium movies (OMDB): ${mediumCount}`);
-    console.log(`Hard movies (OMDB): ${hardCount}`);
+    console.log(`[movies.ts] Easy movies (OMDB): ${easyCount}`);
+    console.log(`[movies.ts] Medium movies (OMDB): ${mediumCount}`);
+    console.log(`[movies.ts] Hard movies (OMDB): ${hardCount}`);
     if (allMovies.length === 0 && (!movieDataFile || !isValidMovieData(movieDataFile) || (movieDataFile.easy.length === 0 && movieDataFile.medium.length === 0 && movieDataFile.hard.length === 0))){
-         console.error("CRITICAL: src/data/omdb_movies.json appears to be empty or not loaded correctly. Please ensure the omdb_fetcher.py script ran successfully and the output was moved to src/data/omdb_movies.json.");
+         console.error("[movies.ts] CRITICAL: src/data/omdb_movies.json appears to be empty or not loaded correctly. Please ensure the omdb_fetcher.py script ran successfully and the output was moved to src/data/omdb_movies.json.");
     }
 }

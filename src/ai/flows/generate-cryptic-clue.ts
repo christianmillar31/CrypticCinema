@@ -23,13 +23,13 @@ const GenerateCrypticClueOutputSchema = z.object({
 export type GenerateCrypticClueOutput = z.infer<typeof GenerateCrypticClueOutputSchema>;
 
 export async function generateCrypticClue(input: GenerateCrypticClueInput): Promise<GenerateCrypticClueOutput> {
+  console.log('[Genkit Flow] generateCrypticClue called with input:', input);
   try {
-    return await generateCrypticClueFlow(input);
+    const result = await generateCrypticClueFlow(input);
+    console.log('[Genkit Flow] generateCrypticClueFlow returned:', result);
+    return result;
   } catch (error) {
-    console.error(`Error in generateCrypticClueFlow for movie "${input.movieTitle}":`, error);
-    // Re-throw the error so client-side error handling can catch it.
-    // Depending on Next.js/Genkit error masking, client might get a generic error.
-    // Logging it here ensures server-side visibility.
+    console.error(`[Genkit Flow] Error in generateCrypticClueFlow for movie "${input.movieTitle}":`, error);
     if (error instanceof Error) {
         throw new Error(`Failed to generate clue for "${input.movieTitle}": ${error.message}`);
     }
@@ -72,17 +72,15 @@ const generateCrypticClueFlow = ai.defineFlow(
     outputSchema: GenerateCrypticClueOutputSchema,
   },
   async (input): Promise<GenerateCrypticClueOutput> => {
-    // The 'crypticLevel' from input is not directly used in the prompt string for AI style adjustment anymore.
-    // It's used in the game component to select movies based on popularity.
+    console.log('[Genkit Flow] generateCrypticClueFlow (inner) called with input:', input);
+    
     const { output, usage } = await prompt(input);
+    console.log('[Genkit Flow] Prompt execution result - output:', output, 'usage:', usage);
     
     if (!output) {
-      console.error('Genkit prompt did not return an output.', { input, usage });
+      console.error('[Genkit Flow] Genkit prompt did not return an output.', { input, usage });
       throw new Error('AI model did not return the expected output format.');
     }
-    // Zod validation is implicitly handled by the prompt's output schema.
-    // If output is present but doesn't match GenerateCrypticClueOutputSchema, an error would have been thrown already.
     return output;
   }
 );
-

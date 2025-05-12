@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
@@ -70,8 +69,9 @@ export default function CrypticCinemaGame() {
   }, []);
 
   const fetchNewClue = useCallback(async () => {
+    console.log("[CrypticCinemaGame] fetchNewClue called.");
     if (isFetchingClue.current) {
-      console.log("Fetch already in progress, skipping.");
+      console.log("[CrypticCinemaGame] Fetch already in progress, skipping.");
       return;
     }
     isFetchingClue.current = true;
@@ -91,8 +91,11 @@ export default function CrypticCinemaGame() {
     if (selectedDecades.length > 0) {
       movieFilters.decades = selectedDecades.map(d => parseInt(d.replace('s', '')));
     }
+    console.log("[CrypticCinemaGame] Movie filters for getRandomMovie:", movieFilters);
 
     const newMovie = getRandomMovie(movieFilters);
+    console.log("[CrypticCinemaGame] Selected movie by getRandomMovie:", newMovie);
+
 
     if (!newMovie) {
       let errorMsg = "No new movies match your current filter settings."
@@ -109,7 +112,8 @@ export default function CrypticCinemaGame() {
         errorMsg += ` Filters: ${filterDetails.join(', ')}.`;
       }
       errorMsg += " Please try different options or broaden your search."
-
+      
+      console.warn("[CrypticCinemaGame] No movie found with current filters. Message:", errorMsg);
       setFeedbackMessage(errorMsg);
       setGamePhase("no_movie_found");
       setClue("");
@@ -126,34 +130,38 @@ export default function CrypticCinemaGame() {
     setCurrentMovie(newMovie);
     setShownMovieTitlesThisSession(prev => [...prev, newMovie.title]);
 
-
+    console.log(`[CrypticCinemaGame] Attempting to generate clue for: "${newMovie.title}" with difficulty: ${selectedDifficulty}`);
     try {
       const clueInput: GenerateCrypticClueInput = {
         movieTitle: newMovie.title,
-        crypticLevel: selectedDifficulty, // Still pass difficulty for AI clue style if ever used
+        crypticLevel: selectedDifficulty, 
         language: "English",
       };
+      console.log("[CrypticCinemaGame] Input for generateCrypticClue:", clueInput);
       const result: GenerateCrypticClueOutput = await generateCrypticClue(clueInput);
+      console.log("[CrypticCinemaGame] Result from generateCrypticClue:", result);
       setClue(result.clue);
       setGamePhase("playing");
     } catch (error) {
-      console.error("Error generating clue:", error);
-      setFeedbackMessage("Failed to generate a new clue. Please try again.");
+      console.error("[CrypticCinemaGame] Error generating clue in component:", error);
+      setFeedbackMessage(`Failed to generate a new clue for "${newMovie.title}". Please try again.`);
       setGamePhase("error");
       setCurrentMovie(null); 
       toast({
         title: "Clue Generation Error",
-        description: "Could not fetch a new clue. Please try again.",
+        description: `Could not fetch a new clue for "${newMovie.title}". Check console for details.`,
         variant: "destructive",
       });
     } finally {
       isFetchingClue.current = false;
+      console.log("[CrypticCinemaGame] fetchNewClue finished.");
     }
   }, [toast, selectedGenres, selectedDecades, selectedDifficulty, shownMovieTitlesThisSession]);
 
   
   useEffect(() => {
     if (availableGenres.length > 0 && availableDecades.length > 0 && gamePhaseRef.current === 'loading' && !isFetchingClue.current && !currentMovie) {
+        console.log("[CrypticCinemaGame] Initial fetchNewClue on mount/data load.");
         fetchNewClue();
     }
   }, [availableGenres, availableDecades, fetchNewClue, currentMovie]);
@@ -174,6 +182,7 @@ export default function CrypticCinemaGame() {
         gamePhaseRef.current === 'gave_up';
 
     if (canFetchOnFilterChange && availableGenres.length > 0 && availableDecades.length > 0 && !isFetchingClue.current) {
+        console.log("[CrypticCinemaGame] Fetching new clue due to filter change.");
         fetchNewClue();
     }
   }, [JSON.stringify(selectedGenres), JSON.stringify(selectedDecades), selectedDifficulty, fetchNewClue, availableGenres, availableDecades]);
@@ -561,4 +570,3 @@ export default function CrypticCinemaGame() {
       </footer>
     </div>
   );
-}
