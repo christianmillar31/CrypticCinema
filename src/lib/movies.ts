@@ -26,9 +26,9 @@ function isValidMovieData(data: any): data is MovieDataFile {
     Array.isArray(data.medium) &&
     Array.isArray(data.hard) &&
     // Optionally, add checks for movie properties if needed
-    (data.easy.every((m: any) => typeof m.title === 'string') || data.easy.length === 0) &&
-    (data.medium.every((m: any) => typeof m.title === 'string') || data.medium.length === 0) &&
-    (data.hard.every((m: any) => typeof m.title === 'string') || data.hard.length === 0)
+    (data.easy.every((m: any) => typeof m.title === 'string' && typeof m.year === 'number' && Array.isArray(m.genres) && typeof m.popularity === 'number' && typeof m.difficulty === 'string') || data.easy.length === 0) &&
+    (data.medium.every((m: any) => typeof m.title === 'string' && typeof m.year === 'number' && Array.isArray(m.genres) && typeof m.popularity === 'number' && typeof m.difficulty === 'string') || data.medium.length === 0) &&
+    (data.hard.every((m: any) => typeof m.title === 'string' && typeof m.year === 'number' && Array.isArray(m.genres) && typeof m.popularity === 'number' && typeof m.difficulty === 'string') || data.hard.length === 0)
   );
 }
 
@@ -38,7 +38,7 @@ if (isValidMovieData(movieDataFile)) {
   movieData = movieDataFile;
 } else {
   console.warn(
-    "tmdb_movies.json is missing, malformed, or empty. Using empty movie list. Please run the tmdb_fetcher.py script."
+    "tmdb_movies.json is missing, malformed, or empty. Using empty movie list. Please run the tmdb_fetcher.py script and place tmdb_movies.json in src/data/"
   );
 }
 
@@ -147,7 +147,13 @@ export function getRandomMovie(filters: MovieFilters): Movie | null {
 // Log counts on server start for diagnostics if run in a Node environment (e.g. Next.js server-side)
 if (typeof process !== 'undefined') { // Basic check for Node.js environment
     console.log(`Total unique movies loaded: ${allMovies.length}`);
-    console.log(`Easy movies: ${allMovies.filter(m => m.difficulty === 'easy').length}`);
-    console.log(`Medium movies: ${allMovies.filter(m => m.difficulty === 'medium').length}`);
-    console.log(`Hard movies: ${allMovies.filter(m => m.difficulty === 'hard').length}`);
+    const easyCount = allMovies.filter(m => m.difficulty === 'easy').length;
+    const mediumCount = allMovies.filter(m => m.difficulty === 'medium').length;
+    const hardCount = allMovies.filter(m => m.difficulty === 'hard').length;
+    console.log(`Easy movies: ${easyCount}`);
+    console.log(`Medium movies: ${mediumCount}`);
+    console.log(`Hard movies: ${hardCount}`);
+    if (allMovies.length === 0 && (!movieData || !movieData.easy || !movieData.medium || !movieData.hard)){
+         console.error("CRITICAL: tmdb_movies.json might be empty or not loaded correctly. Please check the file in src/data/ and ensure the tmdb_fetcher.py script ran successfully.");
+    }
 }

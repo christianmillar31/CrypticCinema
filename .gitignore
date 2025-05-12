@@ -9,83 +9,116 @@
 # Testing
 /coverage
 
-# Next.js build output
+# Next.js
 /.next/
 /out/
 
 # Production
 /build
 
-# Static Site Generators
-/public # This is often where SSGs store their output
-
-# Miscellaneous
+# Misc
 .DS_Store
 *.pem
 
-# Node Secret Files
+# Logs
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-key.pem
-cert.pem
+pnpm-debug.log*
+lerna-debug.log*
 
-# Local environment variables
+# Local Environment Variables
 .env
 .env*.local
 .env.development.local
 .env.test.local
 .env.production.local
+!SSR_ENVIRONMENT_VARIABLES_SOURCE.js
 
-# TypeScript cache
-*.tsbuildinfo
-
-# IDEs and editors
-/.idea
-/.vscode/*
+# IDEs and Editors
+.idea/
+.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 *.sublime-workspace
 
-# Optional eslint cache
-.eslintcache
-
-# Optional Prettier cache
-.prettiercache
-
-# Docusaurus output
-.docusaurus
-
-# Monorepo Yarn Berry specific
-.yarn/cache
-.yarn/unplugged
-.yarn/build-state.yml
-.yarn/install-state.gz
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
 
 # Firebase
 .firebase/
 firebase-debug.log
-firebase.json # Often user-specific, but can be committed if generic enough
-firestore.rules # Commit if you manage rules in code
-firestore.indexes.json # Commit if you manage indexes in code
-database.rules.json # Commit if you manage rules in code
-storage.rules # Commit if you manage rules in code
+database-debug.log
 
-# Genkit
-.genkit/
-
-# Python specific
+# Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 .Python
-/venv/
-/env/
-pip-freeze.txt
-pipenv.lock
+/build/
+/develop-eggs/
+/dist/
+/downloads/
+/eggs/
+/.eggs/
+/lib/
+/lib64/
+/parts/
+/sdist/
+/var/
+/wheels/
+/share/python-wheels/
+/*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds a program for an operating system.
+#  *.manifest
+#  *.spec
 
-# Movie data file if generated in root (should be in src/data)
-/tmdb_movies.json
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/

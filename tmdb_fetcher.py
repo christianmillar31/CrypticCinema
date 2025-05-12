@@ -156,8 +156,9 @@ def main():
                     time.sleep(0.25) # Brief pause to be nice to the API
 
                 except requests.exceptions.RequestException as e:
+                    response_obj = e.response # Store response object if available
                     print(f"Error fetching page {page_for_this_segment} for segment: {e}")
-                    if response and response.status_code == 429: # Check if response object exists
+                    if response_obj is not None and response_obj.status_code == 429:
                         print("Rate limit likely hit. Waiting 30 seconds...")
                         time.sleep(30)
                     else:
@@ -193,10 +194,8 @@ def main():
         "hard": hard_movies,
     }
 
-    output_dir = "src/data"
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-    output_filename = os.path.join(output_dir, "tmdb_movies.json")
+    # Output to root directory, user will move it to src/data/
+    output_filename = "tmdb_movies.json" 
     
     try:
         with open(output_filename, "w", encoding='utf-8') as outfile:
@@ -207,5 +206,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-    
