@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
@@ -52,6 +53,7 @@ export default function CrypticCinemaGame() {
 
   useEffect(() => {
     gamePhaseRef.current = gamePhase;
+    console.log("[CrypticCinemaGame] gamePhase updated to:", gamePhase);
   }, [gamePhase]);
 
 
@@ -66,6 +68,7 @@ export default function CrypticCinemaGame() {
   useEffect(() => {
     setAvailableGenres(getUniqueGenres(moviesData));
     setAvailableDecades(getUniqueDecades(moviesData));
+    console.log("[CrypticCinemaGame] Available genres and decades set.");
   }, []);
 
   const fetchNewClue = useCallback(async () => {
@@ -75,7 +78,10 @@ export default function CrypticCinemaGame() {
       return;
     }
     isFetchingClue.current = true;
+    console.log("[CrypticCinemaGame] isFetchingClue.current set to true.");
+    
     setGamePhase("loading");
+    console.log("[CrypticCinemaGame] gamePhase set to 'loading'.");
     setClue("");
     setFeedbackMessage(null);
     setUserGuess("");
@@ -116,6 +122,7 @@ export default function CrypticCinemaGame() {
       console.warn("[CrypticCinemaGame] No movie found with current filters. Message:", errorMsg);
       setFeedbackMessage(errorMsg);
       setGamePhase("no_movie_found");
+      console.log("[CrypticCinemaGame] gamePhase set to 'no_movie_found'.");
       setClue("");
       setCurrentMovie(null); 
       toast({
@@ -124,6 +131,7 @@ export default function CrypticCinemaGame() {
         variant: "destructive",
       });
       isFetchingClue.current = false;
+      console.log("[CrypticCinemaGame] isFetchingClue.current set to false (no movie found).");
       return;
     }
     
@@ -140,12 +148,19 @@ export default function CrypticCinemaGame() {
       console.log("[CrypticCinemaGame] Input for generateCrypticClue:", clueInput);
       const result: GenerateCrypticClueOutput = await generateCrypticClue(clueInput);
       console.log("[CrypticCinemaGame] Result from generateCrypticClue:", result);
-      setClue(result.clue);
-      setGamePhase("playing");
+      if (result && result.clue) {
+        setClue(result.clue);
+        setGamePhase("playing");
+        console.log("[CrypticCinemaGame] gamePhase set to 'playing'.");
+      } else {
+        console.error("[CrypticCinemaGame] Received invalid result from generateCrypticClue:", result);
+        throw new Error("Invalid clue data received from AI.");
+      }
     } catch (error) {
       console.error("[CrypticCinemaGame] Error generating clue in component:", error);
       setFeedbackMessage(`Failed to generate a new clue for "${newMovie.title}". Please try again.`);
       setGamePhase("error");
+      console.log("[CrypticCinemaGame] gamePhase set to 'error'.");
       setCurrentMovie(null); 
       toast({
         title: "Clue Generation Error",
@@ -154,7 +169,7 @@ export default function CrypticCinemaGame() {
       });
     } finally {
       isFetchingClue.current = false;
-      console.log("[CrypticCinemaGame] fetchNewClue finished.");
+      console.log("[CrypticCinemaGame] fetchNewClue finished. isFetchingClue.current set to false.");
     }
   }, [toast, selectedGenres, selectedDecades, selectedDifficulty, shownMovieTitlesThisSession]);
 
@@ -170,6 +185,7 @@ export default function CrypticCinemaGame() {
   const hasMountedFilters = useRef(false);
   useEffect(() => {
     if (!hasMountedFilters.current) {
+      console.log("[CrypticCinemaGame] Filter useEffect: Skipping initial mount.");
       hasMountedFilters.current = true;
       return; 
     }
@@ -180,6 +196,10 @@ export default function CrypticCinemaGame() {
         gamePhaseRef.current === 'no_movie_found' ||
         gamePhaseRef.current === 'correct' || 
         gamePhaseRef.current === 'gave_up';
+    
+    console.log(`[CrypticCinemaGame] Filter useEffect: canFetchOnFilterChange=${canFetchOnFilterChange}, availableData=${availableGenres.length > 0 && availableDecades.length > 0}, !isFetching=${!isFetchingClue.current}`);
+    console.log(`[CrypticCinemaGame] Filter useEffect: Current filters - Genres: ${JSON.stringify(selectedGenres)}, Decades: ${JSON.stringify(selectedDecades)}, Difficulty: ${selectedDifficulty}`);
+
 
     if (canFetchOnFilterChange && availableGenres.length > 0 && availableDecades.length > 0 && !isFetchingClue.current) {
         console.log("[CrypticCinemaGame] Fetching new clue due to filter change.");
@@ -267,7 +287,9 @@ export default function CrypticCinemaGame() {
   };
   
   const handleNextClueOrPlayAgain = () => {
+    console.log("[CrypticCinemaGame] handleNextClueOrPlayAgain called. Current gamePhase:", gamePhaseRef.current);
     if (gamePhaseRef.current === "game_over") {
+      console.log("[CrypticCinemaGame] Resetting score, lives, and shown movies for new game.");
       setScore(0);
       setLives(MAX_LIVES);
       setShownMovieTitlesThisSession([]); 
@@ -474,7 +496,7 @@ export default function CrypticCinemaGame() {
                 <Button 
                   type="submit" 
                   className="w-full text-lg py-3 h-14 bg-accent hover:bg-accent/90 text-accent-foreground"
-                  disabled={gamePhase !== "playing" || !userGuess.trim() || lives <= 0}
+                  disabled={gamePhase !== "playing" || !userGuess.trim() || lives <= 0 || isFetchingClue.current}
                 >
                   Submit Guess
                 </Button>
@@ -530,7 +552,7 @@ export default function CrypticCinemaGame() {
             </div>
             
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 w-full sm:w-auto">
-                {gamePhase === "playing" && lives > 0 && (
+                {gamePhase === "playing" && lives > 0 && !isFetchingClue.current && (
                 <>
                     {currentMovie && hintLevel !== "initial_letters" && (
                     <Button variant="outline" onClick={handleHint} className="border-primary text-primary hover:bg-primary/10 hover:text-primary w-full sm:w-auto">
@@ -570,3 +592,4 @@ export default function CrypticCinemaGame() {
       </footer>
     </div>
   );
+
