@@ -1,23 +1,7 @@
 
 // Attempt to import the generated movie data.
 // If it doesn't exist (e.g., script not run yet), use a fallback or error.
-let movieData: { easy: Movie[]; medium: Movie[]; hard: Movie[] } = { easy: [], medium: [], hard: [] };
-try {
-  // Important: The path to tmdb_movies.json must be correct relative to this file's location after build,
-  // or ensure it's copied to a location accessible at runtime if not bundled.
-  // For Next.js, placing it in `public` and fetching, or directly importing if your bundler handles JSON, are options.
-  // For simplicity in this step, we're assuming it's directly importable or will be handled by a build step.
-  // If you place tmdb_movies.json in src/data/, the path would be '../data/tmdb_movies.json'
-  // For this example, let's assume you've placed it in `src/data/tmdb_movies.json`
-  const rawMovieData = require('../data/tmdb_movies.json'); // Using require for broader compatibility if not using ES modules for JSON
-  if (rawMovieData && rawMovieData.easy && rawMovieData.medium && rawMovieData.hard) {
-    movieData = rawMovieData;
-  } else {
-    console.warn("tmdb_movies.json is missing or malformed. Using empty movie list.");
-  }
-} catch (error) {
-  console.warn("Could not load tmdb_movies.json. Ensure the file exists in src/data/ and the Python script has been run. Using empty movie list.", error);
-}
+import movieDataFile from '../data/tmdb_movies.json';
 
 export interface Movie {
   title: string;
@@ -27,6 +11,37 @@ export interface Movie {
   difficulty: "easy" | "medium" | "hard";
 }
 
+// Type guard for the structure of tmdb_movies.json
+interface MovieDataFile {
+  easy: Movie[];
+  medium: Movie[];
+  hard: Movie[];
+}
+
+function isValidMovieData(data: any): data is MovieDataFile {
+  return (
+    data &&
+    typeof data === 'object' &&
+    Array.isArray(data.easy) &&
+    Array.isArray(data.medium) &&
+    Array.isArray(data.hard) &&
+    // Optionally, add checks for movie properties if needed
+    (data.easy.every((m: any) => typeof m.title === 'string') || data.easy.length === 0) &&
+    (data.medium.every((m: any) => typeof m.title === 'string') || data.medium.length === 0) &&
+    (data.hard.every((m: any) => typeof m.title === 'string') || data.hard.length === 0)
+  );
+}
+
+let movieData: MovieDataFile = { easy: [], medium: [], hard: [] };
+
+if (isValidMovieData(movieDataFile)) {
+  movieData = movieDataFile;
+} else {
+  console.warn(
+    "tmdb_movies.json is missing, malformed, or empty. Using empty movie list. Please run the tmdb_fetcher.py script."
+  );
+}
+
 // Combine all movies from the different difficulty categories
 const allFetchedMovies: Movie[] = [
   ...(movieData.easy || []),
@@ -34,12 +49,14 @@ const allFetchedMovies: Movie[] = [
   ...(movieData.hard || [])
 ];
 
-// Deduplicate movies based on title and year to be safe, as TMDb might return slight variations
+// Deduplicate movies based on title and year to be safe
 const uniqueMoviesMap = new Map<string, Movie>();
 allFetchedMovies.forEach(movie => {
-  const key = `${movie.title.toLowerCase()}_${movie.year}`;
-  if (!uniqueMoviesMap.has(key)) {
-    uniqueMoviesMap.set(key, movie);
+  if (movie && typeof movie.title === 'string' && typeof movie.year === 'number') {
+    const key = `${movie.title.toLowerCase()}_${movie.year}`;
+    if (!uniqueMoviesMap.has(key)) {
+      uniqueMoviesMap.set(key, movie);
+    }
   }
 });
 
@@ -52,77 +69,85 @@ export const getDecadeForMovie = (year: number): number => {
 };
 
 export const getUniqueGenres = (movieList: Movie[]): string[] => {
-  const allGenres = movieList.flatMap(movie => movie.genres);
+  const allGenres = movieList.flatMap(movie => movie.genres || []); // Handle undefined genres
   return Array.from(new Set(allGenres)).sort();
 };
 
 export const getUniqueDecades = (movieList: Movie[]): string[] => {
   const allDecades = movieList.map(movie => `${getDecadeForMovie(movie.year)}s`);
   return Array.from(new Set(allDecades)).sort((a, b) => {
+    // Ensure correct numeric sort for decades like "1980s"
     return parseInt(a.substring(0,4)) - parseInt(b.substring(0,4));
   });
 };
 
 export interface MovieFilters {
   genres?: string[];
-  decades?: number[];
+  decades?: number[]; // Store decades as numbers (e.g., 1980, 1990)
   excludeTitles?: string[];
   difficulty?: MovieDifficulty;
 }
 
+// Normalize title for consistent comparison (e.g., ignore case, punctuation)
 const normalizeTitleForComparison = (title: string): string => {
   return title
     .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, "")
-    .replace(/\s+/g, " ")
+    .replace(/[^a-z0-9\s]/g, "") // Remove non-alphanumeric characters except spaces
+    .replace(/\s+/g, " ") // Normalize multiple spaces to single space
     .trim();
 };
 
 export function getRandomMovie(filters: MovieFilters): Movie | null {
   let filteredMovies = allMovies;
 
+  // 1. Filter by excluded titles (movies already shown in this session)
   if (filters.excludeTitles && filters.excludeTitles.length > 0) {
     const excludeSet = new Set(filters.excludeTitles.map(t => normalizeTitleForComparison(t)));
     filteredMovies = filteredMovies.filter(movie => !excludeSet.has(normalizeTitleForComparison(movie.title)));
   }
 
+  // 2. Filter by selected genres (if any)
   if (filters.genres && filters.genres.length > 0) {
     filteredMovies = filteredMovies.filter(movie =>
-      filters.genres!.some(filterGenre => movie.genres.includes(filterGenre))
+      filters.genres!.some(filterGenre => (movie.genres || []).includes(filterGenre))
     );
   }
 
+  // 3. Filter by selected decades (if any)
   if (filters.decades && filters.decades.length > 0) {
     filteredMovies = filteredMovies.filter(movie =>
       filters.decades!.includes(getDecadeForMovie(movie.year))
     );
   }
 
-  // Apply difficulty filter *after* other filters to ensure relevance
+  // 4. Filter by selected difficulty
+  // This assumes the Python script has correctly assigned 'difficulty' to each movie.
+  // The difficulty filter is applied *after* other filters to narrow down the selection.
   if (filters.difficulty) {
     const difficultyFiltered = filteredMovies.filter(movie => movie.difficulty === filters.difficulty);
+    // If specific difficulty yields results, use that. Otherwise, stick with the broader set
+    // (already filtered by genre/decade) to avoid "no movie found" if the combination is too narrow.
     if (difficultyFiltered.length > 0) {
-      filteredMovies = difficultyFiltered;
+        filteredMovies = difficultyFiltered;
     } else {
-      // If no movies match the difficulty AND other filters, broaden the search
-      // by ignoring difficulty for this round, but keeping other filters.
-      // This prevents "no movie found" if, e.g., "Easy Action 1950s" has no entries.
-      // The original 'filteredMovies' (before difficulty) is already set.
-      // We log this case for potential data review.
-      console.warn(`No movies found for difficulty '${filters.difficulty}' with current filters. Broadening search by ignoring difficulty for this selection.`);
+        // Optional: log if no movies match the specific difficulty with other filters.
+        // console.warn(`No movies found for difficulty '${filters.difficulty}' with current genre/decade filters. Using broader selection if available.`);
     }
   }
   
   if (filteredMovies.length === 0) {
-    return null;
+    return null; // No movies match all specified criteria
   }
 
+  // Select a random movie from the finally filtered list
   const randomIndex = Math.floor(Math.random() * filteredMovies.length);
   return filteredMovies[randomIndex];
 }
 
-// Log counts on server start for diagnostics
-console.log(`Total unique movies loaded: ${allMovies.length}`);
-console.log(`Easy movies: ${allMovies.filter(m => m.difficulty === 'easy').length}`);
-console.log(`Medium movies: ${allMovies.filter(m => m.difficulty === 'medium').length}`);
-console.log(`Hard movies: ${allMovies.filter(m => m.difficulty === 'hard').length}`);
+// Log counts on server start for diagnostics if run in a Node environment (e.g. Next.js server-side)
+if (typeof process !== 'undefined') { // Basic check for Node.js environment
+    console.log(`Total unique movies loaded: ${allMovies.length}`);
+    console.log(`Easy movies: ${allMovies.filter(m => m.difficulty === 'easy').length}`);
+    console.log(`Medium movies: ${allMovies.filter(m => m.difficulty === 'medium').length}`);
+    console.log(`Hard movies: ${allMovies.filter(m => m.difficulty === 'hard').length}`);
+}

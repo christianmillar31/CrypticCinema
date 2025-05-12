@@ -9,55 +9,83 @@
 # Testing
 /coverage
 
-# Next.js build
+# Next.js build output
 /.next/
 /out/
 
 # Production
 /build
 
-# Misc
+# Static Site Generators
+/public # This is often where SSGs store their output
+
+# Miscellaneous
 .DS_Store
 *.pem
 
-# Logs
+# Node Secret Files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
+key.pem
+cert.pem
 
-# Local .env file
+# Local environment variables
 .env
 .env*.local
-.env*.development.local
-.env*.test.local
-.env*.production.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Debug log from Next.js
-.nextjs.debug.log
+# TypeScript cache
+*.tsbuildinfo
 
-# Editor directories and files
-.vscode/*
+# IDEs and editors
+/.idea
+/.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 *.sublime-workspace
 
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.production.local
-.env.test.local
+# Optional eslint cache
+.eslintcache
 
-# Output files from Python script
-*.json
+# Optional Prettier cache
+.prettiercache
 
-# Optional: if you want to exclude the Python script itself from the repo
-# (though often utility scripts are kept, just ensure no sensitive data in them)
-# tmdb_fetcher.py
+# Docusaurus output
+.docusaurus
+
+# Monorepo Yarn Berry specific
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
 
 # Firebase
-.firebase
+.firebase/
 firebase-debug.log
+firebase.json # Often user-specific, but can be committed if generic enough
+firestore.rules # Commit if you manage rules in code
+firestore.indexes.json # Commit if you manage indexes in code
+database.rules.json # Commit if you manage rules in code
+storage.rules # Commit if you manage rules in code
+
+# Genkit
+.genkit/
+
+# Python specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+/venv/
+/env/
+pip-freeze.txt
+pipenv.lock
+
+# Movie data file if generated in root (should be in src/data)
+/tmdb_movies.json
