@@ -23,7 +23,18 @@ const GenerateCrypticClueOutputSchema = z.object({
 export type GenerateCrypticClueOutput = z.infer<typeof GenerateCrypticClueOutputSchema>;
 
 export async function generateCrypticClue(input: GenerateCrypticClueInput): Promise<GenerateCrypticClueOutput> {
-  return generateCrypticClueFlow(input);
+  try {
+    return await generateCrypticClueFlow(input);
+  } catch (error) {
+    console.error(`Error in generateCrypticClueFlow for movie "${input.movieTitle}":`, error);
+    // Re-throw the error so client-side error handling can catch it.
+    // Depending on Next.js/Genkit error masking, client might get a generic error.
+    // Logging it here ensures server-side visibility.
+    if (error instanceof Error) {
+        throw new Error(`Failed to generate clue for "${input.movieTitle}": ${error.message}`);
+    }
+    throw new Error(`Failed to generate clue for "${input.movieTitle}": An unknown error occurred.`);
+  }
 }
 
 const prompt = ai.definePrompt({
@@ -60,10 +71,18 @@ const generateCrypticClueFlow = ai.defineFlow(
     inputSchema: GenerateCrypticClueInputSchema,
     outputSchema: GenerateCrypticClueOutputSchema,
   },
-  async input => {
+  async (input): Promise<GenerateCrypticClueOutput> => {
     // The 'crypticLevel' from input is not directly used in the prompt string for AI style adjustment anymore.
     // It's used in the game component to select movies based on popularity.
-    const {output} = await prompt(input);
-    return output!;
+    const { output, usage } = await prompt(input);
+    
+    if (!output) {
+      console.error('Genkit prompt did not return an output.', { input, usage });
+      throw new Error('AI model did not return the expected output format.');
+    }
+    // Zod validation is implicitly handled by the prompt's output schema.
+    // If output is present but doesn't match GenerateCrypticClueOutputSchema, an error would have been thrown already.
+    return output;
   }
 );
+
