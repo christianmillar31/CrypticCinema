@@ -1,24 +1,35 @@
-
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Firebase
+firebase.json
+.firebaserc
+firebase-debug.log
+firebase-crashlytics-build.id
 
 # Dependencies
 /node_modules
 /.pnp
 .pnp.js
 
-# Testing
-/coverage
-
 # Next.js
 /.next/
 /out/
 
-# Production
-/build
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
 
 # Misc
 .DS_Store
 *.pem
+
+# Environment Variables
+.env
+.env*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+.vercel
 
 # Logs
 logs
@@ -29,16 +40,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Local Environment Variables
-.env
-.env*.local
-.env.development.local
-.env.test.local
-.env.production.local
-!SSR_ENVIRONMENT_VARIABLES_SOURCE.js
-
-# IDEs and Editors
-.idea/
+# IDE files
+.idea
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -46,79 +49,6 @@ lerna-debug.log*
 !.vscode/extensions.json
 *.sublime-workspace
 
-# TypeScript
-*.tsbuildinfo
-next-env.d.ts
-
-# Firebase
-.firebase/
-firebase-debug.log
-database-debug.log
-
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-/build/
-/develop-eggs/
-/dist/
-/downloads/
-/eggs/
-/.eggs/
-/lib/
-/lib64/
-/parts/
-/sdist/
-/var/
-/wheels/
-/share/python-wheels/
-/*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds a program for an operating system.
-#  *.manifest
-#  *.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-cover/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
+# Output files
+dist
+coverage
