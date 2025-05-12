@@ -23,6 +23,9 @@ MAX_TOTAL_MOVIES_GOAL = 500 # Adjust as needed, but be mindful of API limits (10
 
 def fetch_movie_details(imdb_id):
     """Fetches detailed information for a single movie by its IMDb ID."""
+    if not OMDB_API_KEY:
+        print("OMDB_API_KEY is not configured. Please check your .env file.")
+        return None
     params = {
         "apikey": OMDB_API_KEY,
         "i": imdb_id,
@@ -44,6 +47,9 @@ def fetch_movie_details(imdb_id):
 
 def search_movies_page(search_term, year, page=1):
     """Searches for movies on OMDB for a given term, year, and page."""
+    if not OMDB_API_KEY:
+        print("OMDB_API_KEY is not configured. Please check your .env file.")
+        return [], "0"
     params = {
         "apikey": OMDB_API_KEY,
         "s": search_term,
@@ -126,18 +132,27 @@ def main():
     """
     Main function to fetch movies from OMDB, process them, and save to JSON.
     Instructions:
-    1. Ensure you have a .env file in the project root with your OMDB_API_KEY:
-       OMDB_API_KEY=your_actual_omdb_api_key
+    1. Ensure you have a .env file in the project root. It should contain your OMDb API key.
+       Example .env file content:
+       OMDB_API_KEY=d42a0580 
+       (Replace d42a0580 with your actual key if different)
+
     2. Install necessary libraries: pip install requests python-dotenv
+       (Run this in your terminal in the project directory if you haven't already)
+
     3. Run this script from your project root: python omdb_fetcher.py
-    4. After the script finishes, it will create 'omdb_movies.json' file 
-       in the project root.
-    5. Manually MOVE this 'omdb_movies.json' file into the 'src/data/' directory 
-       of your Next.js project. Create 'src/data/' if it doesn't exist.
+       (This will create 'omdb_movies.json' in the project root)
+
+    4. Manually MOVE the generated 'omdb_movies.json' file into the 'src/data/' 
+       directory of your Next.js project. Create 'src/data/' if it doesn't exist.
+       You will need to overwrite the existing placeholder file if it's there.
     """
     if not OMDB_API_KEY:
-        print("Error: OMDB_API_KEY not found in .env file or environment variables.")
-        print("Please create a .env file in the project root with OMDB_API_KEY='your_key_here'")
+        print("Error: OMDB_API_KEY not found in environment variables.")
+        print("Please create a .env file in the project root with the following line:")
+        print("OMDB_API_KEY=d42a0580")
+        print("(Replace d42a0580 with your actual OMDb API key if it's different or you have a personal one.)")
+        print("The script will not run without an API key.")
         return
 
     all_movies_processed = []
@@ -206,8 +221,10 @@ def main():
             json.dump(categorized_movies, outfile, indent=2)
         print(f"\nMovie data successfully exported to '{output_filename}' in the project root.")
         print(f"IMPORTANT: Manually MOVE this file to 'src/data/{output_filename}' in your Next.js project.")
+        print(f"Make sure to overwrite any existing 'omdb_movies.json' in 'src/data/'.")
     except IOError as e:
         print(f"Error writing to file {output_filename}: {e}")
 
 if __name__ == "__main__":
     main()
+
