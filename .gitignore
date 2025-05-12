@@ -1,45 +1,63 @@
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# Dependencies
 /node_modules
 /.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+.pnp.js
 
-# testing
+# Testing
 /coverage
 
-# next.js
+# Next.js build
 /.next/
 /out/
 
-# production
+# Production
 /build
 
-# misc
+# Misc
 .DS_Store
 *.pem
 
-# debug
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pnpm-debug.log*
 
-# vercel
-.vercel
+# Local .env file
+.env
+.env*.local
+.env*.development.local
+.env*.test.local
+.env*.production.local
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# Debug log from Next.js
+.nextjs.debug.log
 
-.genkit/*
-.env*
+# Editor directories and files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.sublime-workspace
 
-# firebase
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# Output files from Python script
+*.json
+
+# Optional: if you want to exclude the Python script itself from the repo
+# (though often utility scripts are kept, just ensure no sensitive data in them)
+# tmdb_fetcher.py
+
+# Firebase
+.firebase
 firebase-debug.log
-firestore-debug.log
