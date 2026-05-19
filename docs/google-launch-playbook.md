@@ -73,3 +73,17 @@ This is a practical plan for launching `crypticcinema.com` with monetization and
   - Public sitemap feed endpoint for frontend/static generation workflows.
   - Optional editorial metadata fields (source links, publish/update timestamps, author).
   - Rate limiting + bot abuse controls before scaling traffic.
+
+## Official references
+
+- AdSense Program policies: https://support.google.com/adsense/answer/48182
+- AdSense setup and site review: https://support.google.com/adsense/answer/7402256
+- ads.txt guide: https://support.google.com/adsense/answer/12171612
+- Google Search Essentials: https://developers.google.com/search/docs/essentials
+- AI features and your website: https://developers.google.com/search/docs/appearance/ai-overviews
+- Guidance on generative AI content: https://developers.google.com/search/docs/fundamentals/using-gen-ai-content
+- Movie structured data: https://developers.google.com/search/docs/appearance/structured-data/movie
+- Page experience and Core Web Vitals context: https://developers.google.com/search/docs/appearance/page-experience
+- Cloud Run container deployment: https://cloud.google.com/run/docs/deploying
+- Cloud Run custom domains: https://cloud.google.com/run/docs/mapping-custom-domains
+- Cloud Run to Cloud SQL (Postgres): https://cloud.google.com/sql/docs/postgres/connect-run
