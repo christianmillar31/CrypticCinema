@@ -1,0 +1,101 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/functions/node_modules
+
+# compiled output
+/functions/lib
+/.next/
+/out/
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# dotenv environment variables file
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Firebase
+firebase-debug.log
+firebase-debug.*.log
+*.log
+
+# macOS
+.DS_Store
+
+# Optional: Moles Git plugin for JetBrains IDEs (https://plugins.jetbrains.com/plugin/18048-moles-git)
+.moles
+
+# Next.js build output
+.next
+out
+
+# Production builds and logs
+build/
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# misc
+.DS_Store
+*.pem
+*.seed
+*~
+*.swp
+Thumbs.db
+
+# Local Firebase emulators data
+.firebase/emulators/
+firestore.rules
+database.rules
+storage.rules
+
+# Python cache and virtual environment
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.hypothesis/
+.pytest_cache/
+celerybeat-schedule
+*.mo
+*.pot
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+instance/
+.webassets-cache
+.sass-cache/
+*.mp4
+*.webm
+*.mov
+
+# Typescript
+*.tsbuildinfo
