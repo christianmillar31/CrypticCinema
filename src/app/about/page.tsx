@@ -29,7 +29,6 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: `About ${siteName}`,
-        'data-ai-hint': 'library books',
       },
     ],
   },

@@ -23,7 +23,6 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: 'Contact Cryptic Cinema',
-        'data-ai-hint': 'mail letter',
       },
     ],
   },

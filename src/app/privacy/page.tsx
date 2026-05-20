@@ -28,7 +28,6 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: `Privacy Policy for ${siteName}`,
-        'data-ai-hint': 'legal document',
       },
     ],
   },

@@ -1,5 +1,5 @@
 
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
@@ -80,9 +80,12 @@ export const metadata: Metadata = {
     //   { rel: 'icon', type: 'image/png', sizes: '512x512', url: '/android-chrome-512x512.png' }, // For PWA
     // ],
   },
-  themeColor: [ // For browser UI theming
-    { media: '(prefers-color-scheme: light)', color: '#FFFFFF' }, // Placeholder for light theme primary or white
-    { media: '(prefers-color-scheme: dark)', color: themeColorDark },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
+    { media: "(prefers-color-scheme: dark)", color: themeColorDark },
   ],
 };
 
