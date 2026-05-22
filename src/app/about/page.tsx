@@ -1,15 +1,14 @@
-
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/layout/Header';
 import { Info, Film, Target, Brain } from 'lucide-react';
+import { ogImageAlt, ogImagePath, siteConfig, siteUrl } from '@/lib/site';
 
-const siteName = 'Cryptic Cinema';
+const siteName = siteConfig.name;
 const pageTitle = `About ${siteName} - Our Story and Mission`;
 const pageDescription = `Learn more about ${siteName}, the AI-powered movie guessing game. Discover our mission to provide cinephiles with a fun, challenging, and unique trivia experience.`;
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -25,10 +24,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://picsum.photos/1200/630?image=1040', // Placeholder image for about page
+        url: ogImagePath,
         width: 1200,
         height: 630,
-        alt: `About ${siteName}`,
+        alt: ogImageAlt,
       },
     ],
   },
@@ -36,7 +35,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: pageTitle,
     description: pageDescription,
-    images: ['https://picsum.photos/1200/630?image=1040'],
+    images: [ogImagePath],
   },
 };
 

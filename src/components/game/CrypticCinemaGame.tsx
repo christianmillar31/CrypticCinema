@@ -2,11 +2,6 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { generateCrypticClue } from "@/ai/flows/generate-cryptic-clue";
-import type {
-  GenerateCrypticClueInput,
-  GenerateCrypticClueOutput,
-} from "@/ai/flows/generate-cryptic-clue";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -32,19 +27,22 @@ import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/layout/Header";
 import {
   allMovies as moviesData,
-  filterMovies,
   getMovieKey,
+  filterMovies,
   getUniqueDecades,
   getUniqueGenres,
+  movieDatasetHealth,
   type Movie,
   type MovieDifficulty,
 } from "@/lib/movies";
+import AdSlot from "@/components/ads/AdSlot";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
+import { adsenseSlots } from "@/lib/site";
 
 type GamePhase =
   | "loading"
@@ -56,8 +54,8 @@ type GamePhase =
   | "no_movie_found";
 
 const MAX_LIVES = 3;
-const CLUE_TIMEOUT_MS = 12000;
 const DIFFICULTIES: MovieDifficulty[] = ["easy", "medium", "hard"];
+const MAX_HINT_LEVEL = 3;
 
 function normalizeAnswer(value: string): string {
   return value
@@ -118,6 +116,19 @@ function buildFallbackClue(movie: Movie): string {
   return `In this ${movie.decade} ${firstGenre.toLowerCase()} mystery, ${plotSnippet}... What movie is this?`;
 }
 
+function getPreloadedClue(movie: Movie, difficulty: MovieDifficulty): string | null {
+  const clues = movie.clues;
+  if (!clues) return null;
+
+  const direct = clues[difficulty];
+  if (direct && direct.trim().length > 0) return direct.trim();
+
+  const fallback = clues.medium ?? clues.easy ?? clues.hard;
+  if (fallback && fallback.trim().length > 0) return fallback.trim();
+
+  return null;
+}
+
 export default function CrypticCinemaGame() {
   const [currentMovie, setCurrentMovie] = useState<Movie | null>(null);
   const [clue, setClue] = useState("");
@@ -126,6 +137,7 @@ export default function CrypticCinemaGame() {
   const [lives, setLives] = useState(MAX_LIVES);
   const [gamePhase, setGamePhase] = useState<GamePhase>("loading");
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
+  const [hintLevel, setHintLevel] = useState(0);
   const [selectedDifficulty, setSelectedDifficulty] = useState<MovieDifficulty>("medium");
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const [selectedDecades, setSelectedDecades] = useState<string[]>([]);
@@ -138,6 +150,39 @@ export default function CrypticCinemaGame() {
 
   const availableGenres = useMemo(() => getUniqueGenres(moviesData), []);
   const availableDecades = useMemo(() => getUniqueDecades(moviesData), []);
+  const currentHintText = useMemo(() => {
+    if (!currentMovie || hintLevel <= 0) return null;
+
+    if (hintLevel === 1) {
+      const wordCount = currentMovie.title.split(/\s+/).filter(Boolean).length;
+      return `Hint 1: The movie title has ${wordCount} word${wordCount === 1 ? "" : "s"}.`;
+    }
+
+    if (hintLevel === 2) {
+      const initials = currentMovie.title
+        .split(/\s+/)
+        .filter(Boolean)
+        .map((word) => word[0]?.toUpperCase())
+        .filter(Boolean)
+        .join(". ");
+      return `Hint 2: The initials are ${initials}.`;
+    }
+
+    const primaryGenre = currentMovie.genres[0] || "Unknown";
+    return `Hint 3: It is mainly a ${primaryGenre} film from the ${currentMovie.decade}.`;
+  }, [currentMovie, hintLevel]);
+
+  const nextHintLabel = useMemo(() => {
+    if (hintLevel === 0) return "Hint: Word Count";
+    if (hintLevel === 1) return "Hint: Initials";
+    return "Hint: Genre + Decade";
+  }, [hintLevel]);
+
+  useEffect(() => {
+    if (movieDatasetHealth.warnings.length > 0) {
+      console.warn("[CrypticCinema] Dataset health warnings:", movieDatasetHealth);
+    }
+  }, []);
 
   const filterSignature = useMemo(() => {
     return JSON.stringify({
@@ -148,41 +193,20 @@ export default function CrypticCinemaGame() {
   }, [selectedDifficulty, selectedGenres, selectedDecades]);
 
   const generateClueText = useCallback(async (movie: Movie): Promise<string> => {
-    console.log("[CrypticCinema] clue generation start", {
+    const preloadedClue = getPreloadedClue(movie, selectedDifficulty);
+    if (preloadedClue) {
+      console.log("[CrypticCinema] using preloaded clue", {
+        title: movie.title,
+        difficulty: selectedDifficulty,
+      });
+      return preloadedClue;
+    }
+
+    console.log("[CrypticCinema] using local fallback clue", {
       title: movie.title,
       difficulty: selectedDifficulty,
     });
-
-    const clueInput: GenerateCrypticClueInput = {
-      movieTitle: movie.title,
-      plotSummary: movie.plot,
-      crypticLevel: selectedDifficulty,
-      language: "English",
-    };
-
-    const timeoutPromise = new Promise<never>((_, reject) => {
-      setTimeout(() => reject(new Error("Clue generation timed out.")), CLUE_TIMEOUT_MS);
-    });
-
-    try {
-      const result = (await Promise.race([
-        generateCrypticClue(clueInput),
-        timeoutPromise,
-      ])) as GenerateCrypticClueOutput;
-
-      if (!result?.clue || result.clue.trim().length === 0) {
-        throw new Error("Clue response was empty.");
-      }
-
-      console.log("[CrypticCinema] clue generation success", { title: movie.title });
-      return result.clue.trim();
-    } catch (error) {
-      console.log("[CrypticCinema] clue generation failure", {
-        title: movie.title,
-        error: error instanceof Error ? error.message : "Unknown error",
-      });
-      throw error;
-    }
+    return buildFallbackClue(movie);
   }, [selectedDifficulty]);
 
   const loadRound = useCallback(
@@ -194,6 +218,7 @@ export default function CrypticCinemaGame() {
       setFeedbackMessage(null);
       setUserGuess("");
       setClue("");
+      setHintLevel(0);
 
       const selectedFiltersLog = {
         difficulty: selectedDifficulty,
@@ -297,8 +322,14 @@ export default function CrypticCinemaGame() {
     let basePoints = 100;
     if (selectedDifficulty === "easy") basePoints -= 20;
     if (selectedDifficulty === "hard") basePoints += 20;
-    return Math.max(10, basePoints);
-  }, [selectedDifficulty]);
+    const hintPenaltyByLevel = {
+      0: 0,
+      1: 15,
+      2: 35,
+      3: 55,
+    } as const;
+    return Math.max(5, basePoints - hintPenaltyByLevel[hintLevel as 0 | 1 | 2 | 3]);
+  }, [hintLevel, selectedDifficulty]);
 
   const handleGuessSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -376,6 +407,16 @@ export default function CrypticCinemaGame() {
     void loadRound({ forcedMovie: retryMovieRef.current });
   };
 
+  const handleRevealHint = () => {
+    if (!currentMovie || gamePhase !== "playing" || hintLevel >= MAX_HINT_LEVEL) return;
+    const nextLevel = hintLevel + 1;
+    setHintLevel(nextLevel);
+    toast({
+      title: "Hint Unlocked",
+      description: `Hint ${nextLevel} revealed. Potential points reduced.`,
+    });
+  };
+
   const handleGenreChange = (genre: string, checked: boolean | "indeterminate") => {
     if (typeof checked !== "boolean") return;
     setSelectedGenres((prev) =>
@@ -405,13 +446,26 @@ export default function CrypticCinemaGame() {
     <div className="flex flex-col items-center min-h-screen p-4 selection:bg-accent selection:text-accent-foreground">
       <Header />
       <main className="flex flex-col items-center justify-center w-full max-w-2xl mx-auto mt-8 space-y-8">
+        {adsenseSlots.gameTop && (
+          <div className="w-full">
+            <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-muted-foreground text-center">
+              Advertisement
+            </p>
+            <AdSlot
+              slot={adsenseSlots.gameTop}
+              className="rounded-lg border border-border/60 bg-card/50 p-2"
+              format="horizontal"
+            />
+          </div>
+        )}
+
         <Card className="w-full shadow-2xl bg-card text-card-foreground">
           <CardHeader className="text-center">
             <div className="flex items-center justify-center mb-4">
               <Clapperboard className="w-12 h-12 text-primary mr-3" aria-hidden="true" />
               <CardTitle className="text-4xl font-bold">Guess the Movie!</CardTitle>
             </div>
-            <CardDescription className="text-lg text-muted-foreground">
+            <CardDescription className="text-sm sm:text-base text-muted-foreground">
               Pick filters, decode the clue, and guess the title.
             </CardDescription>
           </CardHeader>
@@ -419,13 +473,15 @@ export default function CrypticCinemaGame() {
           <CardContent className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 w-full">
               <div className="space-y-1">
-                <Label htmlFor="difficulty-select">Difficulty</Label>
+                <Label htmlFor="difficulty-select" className="text-xs font-semibold uppercase tracking-wide text-foreground/85">
+                  Difficulty
+                </Label>
                 <Select
                   value={selectedDifficulty}
                   onValueChange={(value) => setSelectedDifficulty(value as MovieDifficulty)}
                   disabled={gamePhase === "loading"}
                 >
-                  <SelectTrigger id="difficulty-select" className="h-11">
+                  <SelectTrigger id="difficulty-select" className="h-11 border-border/70 bg-background/50 text-sm">
                     <SelectValue placeholder="Select difficulty" />
                   </SelectTrigger>
                   <SelectContent>
@@ -439,14 +495,16 @@ export default function CrypticCinemaGame() {
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="genre-popover-trigger">Genres</Label>
+                <Label htmlFor="genre-popover-trigger" className="text-xs font-semibold uppercase tracking-wide text-foreground/85">
+                  Genres
+                </Label>
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
                       id="genre-popover-trigger"
                       variant="outline"
                       role="combobox"
-                      className="w-full justify-between h-11 font-normal"
+                      className="w-full justify-between h-11 font-normal border-border/70 bg-background/50 text-sm"
                       disabled={gamePhase === "loading" || availableGenres.length === 0}
                     >
                       <span className="truncate">
@@ -480,14 +538,16 @@ export default function CrypticCinemaGame() {
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="decade-popover-trigger">Decades</Label>
+                <Label htmlFor="decade-popover-trigger" className="text-xs font-semibold uppercase tracking-wide text-foreground/85">
+                  Decades
+                </Label>
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
                       id="decade-popover-trigger"
                       variant="outline"
                       role="combobox"
-                      className="w-full justify-between h-11 font-normal"
+                      className="w-full justify-between h-11 font-normal border-border/70 bg-background/50 text-sm"
                       disabled={gamePhase === "loading" || availableDecades.length === 0}
                     >
                       <span className="truncate">
@@ -521,16 +581,45 @@ export default function CrypticCinemaGame() {
               </div>
             </div>
 
+            {movieDatasetHealth.warnings.length > 0 && (
+              <Alert
+                variant={movieDatasetHealth.totalMovies === 0 ? "destructive" : "default"}
+                className={cn(
+                  movieDatasetHealth.totalMovies === 0 &&
+                    "border-destructive bg-destructive/10 text-destructive dark:text-red-400"
+                )}
+              >
+                <AlertTitle className="text-base">Dataset Health Notice</AlertTitle>
+                <AlertDescription>
+                  <div className="space-y-1">
+                    <p>
+                      Movies: {movieDatasetHealth.totalMovies} (easy {movieDatasetHealth.difficultyCounts.easy},
+                      {" "}medium {movieDatasetHealth.difficultyCounts.medium}, hard {movieDatasetHealth.difficultyCounts.hard})
+                    </p>
+                    {movieDatasetHealth.warnings.slice(0, 2).map((warning) => (
+                      <p key={warning}>- {warning}</p>
+                    ))}
+                  </div>
+                </AlertDescription>
+              </Alert>
+            )}
+
             {gamePhase === "loading" && (
               <div className="text-center py-10 space-y-4">
                 <RotateCw className="w-16 h-16 mx-auto animate-spin text-primary" aria-hidden="true" />
-                <p className="text-xl text-muted-foreground">Crafting a new cinematic enigma...</p>
+                <p className="text-base text-muted-foreground">Crafting a new cinematic enigma...</p>
               </div>
             )}
 
             {gamePhase !== "loading" && hasRenderableClue && (
               <div className="p-6 bg-background/50 rounded-lg shadow-inner min-h-[120px] flex items-center justify-center border border-border">
-                <p className="text-2xl italic text-center font-serif">"{displayedClue}"</p>
+                <p className="text-2xl sm:text-3xl leading-relaxed italic text-center font-serif">"{displayedClue}"</p>
+              </div>
+            )}
+
+            {currentHintText && (gamePhase === "playing" || gamePhase === "correct" || gamePhase === "skipped") && (
+              <div className="rounded-md border border-primary/30 bg-primary/10 px-4 py-3">
+                <p className="text-sm font-medium text-primary">{currentHintText}</p>
               </div>
             )}
 
@@ -610,6 +699,16 @@ export default function CrypticCinemaGame() {
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 w-full sm:w-auto">
+              {gamePhase === "playing" && lives > 0 && hintLevel < MAX_HINT_LEVEL && (
+                <Button
+                  variant="outline"
+                  onClick={handleRevealHint}
+                  className="w-full sm:w-auto"
+                >
+                  {nextHintLabel}
+                </Button>
+              )}
+
               {gamePhase === "playing" && lives > 0 && (
                 <Button
                   variant="outline"
@@ -654,6 +753,19 @@ export default function CrypticCinemaGame() {
             </div>
           </CardFooter>
         </Card>
+
+        {adsenseSlots.gameBottom && (
+          <div className="w-full">
+            <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-muted-foreground text-center">
+              Advertisement
+            </p>
+            <AdSlot
+              slot={adsenseSlots.gameBottom}
+              className="rounded-lg border border-border/60 bg-card/50 p-2"
+              format="horizontal"
+            />
+          </div>
+        )}
       </main>
 
       <footer className="w-full max-w-2xl mx-auto mt-12 text-center text-sm text-muted-foreground pb-8">

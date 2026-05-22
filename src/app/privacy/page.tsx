@@ -1,14 +1,14 @@
-
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/layout/Header';
 import { ShieldCheck, FileText, Mail } from 'lucide-react';
+import { ogImageAlt, ogImagePath, siteConfig, siteUrl } from '@/lib/site';
 
-const siteName = 'Cryptic Cinema';
+const siteName = siteConfig.name;
 const pageTitle = `Privacy Policy - ${siteName}`;
 const pageDescription = `Read the Privacy Policy for ${siteName}. Learn how we handle data, use cookies, and protect your privacy while you enjoy our AI movie guessing game.`;
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
+const lastUpdated = 'May 22, 2026';
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -24,10 +24,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://picsum.photos/1200/630?image=1069', // Placeholder image for privacy policy
+        url: ogImagePath,
         width: 1200,
         height: 630,
-        alt: `Privacy Policy for ${siteName}`,
+        alt: ogImageAlt,
       },
     ],
   },
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: pageTitle,
     description: pageDescription,
-    images: ['https://picsum.photos/1200/630?image=1069'],
+    images: [ogImagePath],
   },
 };
 
@@ -50,7 +50,7 @@ export default function PrivacyPolicyPage() {
               <ShieldCheck className="h-10 w-10" />
             </div>
             <CardTitle className="text-4xl font-bold">Privacy Policy</CardTitle>
-            <p className="text-muted-foreground">Last Updated: {new Date().toLocaleDateString()}</p>
+            <p className="text-muted-foreground">Last Updated: {lastUpdated}</p>
           </CardHeader>
           <CardContent className="space-y-6 text-base leading-relaxed prose dark:prose-invert max-w-none">
             <p>
@@ -84,12 +84,15 @@ export default function PrivacyPolicyPage() {
               <p>
                 Our website may use third-party services, such as Google AdSense, for advertising purposes. These services may use cookies or similar tracking technologies to serve you advertisements based on your visit to our site and other sites on the Internet.
               </p>
+              <p>
+                Depending on your location, we may request consent before personalized ads are served.
+              </p>
               <ul className="list-disc list-inside space-y-1 mt-2 pl-4">
                 <li>
                   Google's use of advertising cookies enables it and its partners to serve ads to your users based on their visit to your sites and/or other sites on the Internet.
                 </li>
                 <li>
-                  Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="http://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">www.aboutads.info/choices</a>.
+                  Users may opt out of personalized advertising by visiting <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">www.aboutads.info/choices</a>.
                 </li>
               </ul>
               <p>

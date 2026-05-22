@@ -89,6 +89,9 @@ def assign_difficulty(imdb_votes_str):
         print(f"Could not parse imdbVotes: {imdb_votes_str}")
         return "hard"
 
+def get_decade_label(year: int) -> str:
+    return f"{(year // 10) * 10}s"
+
 def process_movie_entry(movie_details):
     """Processes a single detailed movie entry from OMDB."""
     if not movie_details or movie_details.get("Type") != "movie":
@@ -115,16 +118,23 @@ def process_movie_entry(movie_details):
     
     genre_str = movie_details.get("Genre", "")
     genres = [g.strip() for g in genre_str.split(",") if g.strip()] if genre_str else []
+    plot = movie_details.get("Plot", "")
 
     if not title or not genres: # Require title and at least one genre
         return None
+
+    popularity_value = int(imdb_votes_str.replace(",", "")) if imdb_votes_str and imdb_votes_str != "N/A" else 0
 
     return {
         "title": title,
         "year": year,
         "genres": genres,
-        "popularity": int(imdb_votes_str.replace(",", "")) if imdb_votes_str and imdb_votes_str != "N/A" else 0,
+        "decade": get_decade_label(year),
+        "plot": plot if plot and plot != "N/A" else "",
+        "popularity": popularity_value,
         "difficulty": difficulty,
+        "imdbRating": movie_details.get("imdbRating") if movie_details.get("imdbRating") != "N/A" else None,
+        "tmdbVoteCount": None, # Reserved for future TMDB enrichment.
         "imdbID": movie_details.get("imdbID") # Keep IMDb ID for reference
     }
 
@@ -227,4 +237,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

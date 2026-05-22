@@ -1,5 +1,3730 @@
 {
-  "easy": [],
-  "medium": [],
-  "hard": []
+  "easy": [
+    {
+      "title": "The Matrix",
+      "year": 1999,
+      "genres": [
+        "Action",
+        "Sci-Fi"
+      ],
+      "decade": "1990s",
+      "plot": "A hacker discovers that reality is a simulation controlled by machines and joins a rebellion to free humanity.",
+      "difficulty": "easy",
+      "clue": "A sleepless office worker learns reality has source code."
+    },
+    {
+      "title": "Titanic",
+      "year": 1997,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "decade": "1990s",
+      "plot": "A wealthy young woman and a poor artist fall in love aboard a doomed ocean liner on its maiden voyage.",
+      "difficulty": "easy",
+      "clue": "A brief romance sinks beneath class division and freezing water."
+    },
+    {
+      "title": "Jurassic Park",
+      "year": 1993,
+      "genres": [
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "1990s",
+      "plot": "Scientists clone dinosaurs for a theme park, but the creatures escape control and hunt the visitors.",
+      "difficulty": "easy",
+      "clue": "Scientists resurrect extinction and immediately regret the business model."
+    },
+    {
+      "title": "The Dark Knight",
+      "year": 2008,
+      "genres": [
+        "Action",
+        "Crime"
+      ],
+      "decade": "2000s",
+      "plot": "A masked vigilante faces a chaotic criminal mastermind who pushes a city and its heroes past moral limits.",
+      "difficulty": "easy",
+      "clue": "A man in black fights chaos while slowly borrowing its methods."
+    },
+    {
+      "title": "Forrest Gump",
+      "year": 1994,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "decade": "1990s",
+      "plot": "A kindhearted man with a simple outlook unintentionally witnesses and influences major moments in modern American history.",
+      "difficulty": "easy",
+      "clue": "A gentle optimist accidentally speedruns decades of national history."
+    },
+    {
+      "title": "Star Wars: Episode IV - A New Hope",
+      "year": 1977,
+      "genres": [
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "1970s",
+      "plot": "A farm boy joins rebels, rescues a princess, and helps attack a superweapon built by a galactic empire.",
+      "difficulty": "easy",
+      "clue": "A desert nobody follows old faith and improbable aim into a galaxy-sized rebellion."
+    },
+    {
+      "title": "The Lion King",
+      "year": 1994,
+      "genres": [
+        "Animation",
+        "Adventure"
+      ],
+      "decade": "1990s",
+      "plot": "A young lion prince flees after tragedy and later returns to reclaim his homeland from a cruel usurper.",
+      "difficulty": "easy",
+      "clue": "Exile, guilt, and good advice eventually return a runaway heir to a broken kingdom."
+    },
+    {
+      "title": "Back to the Future",
+      "year": 1985,
+      "genres": [
+        "Adventure",
+        "Comedy",
+        "Sci-Fi"
+      ],
+      "decade": "1980s",
+      "plot": "A teenager travels to the past in a time machine and must ensure his parents fall in love to preserve his own future.",
+      "difficulty": "easy",
+      "clue": "A teenager crashes into yesterday and must repair his own origin story."
+    },
+    {
+      "title": "Jaws",
+      "year": 1975,
+      "genres": [
+        "Thriller",
+        "Adventure"
+      ],
+      "decade": "1970s",
+      "plot": "A seaside town is terrorized by a giant shark while local leaders delay action for economic reasons.",
+      "difficulty": "easy",
+      "clue": "A beach economy debates denial until the ocean starts auditing everyone."
+    },
+    {
+      "title": "Avatar",
+      "year": 2009,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "2000s",
+      "plot": "A disabled marine inhabits an engineered body on an alien world and must choose between orders and conscience.",
+      "difficulty": "easy",
+      "clue": "A borrowed body on a distant moon teaches a soldier where loyalty actually lives."
+    },
+    {
+      "title": "The Lord of the Rings: The Fellowship of the Ring",
+      "year": 2001,
+      "genres": [
+        "Adventure",
+        "Fantasy"
+      ],
+      "decade": "2000s",
+      "plot": "An unlikely group sets out to destroy a powerful ring before a dark ruler can reclaim it.",
+      "difficulty": "easy",
+      "clue": "A group hike goes catastrophically wrong because jewelry is evil."
+    },
+    {
+      "title": "Toy Story",
+      "year": 1995,
+      "genres": [
+        "Animation",
+        "Comedy",
+        "Family"
+      ],
+      "decade": "1990s",
+      "plot": "A toy cowboy feels replaced by a flashy newcomer and must learn friendship before both are lost.",
+      "difficulty": "easy",
+      "clue": "A plastic midlife crisis turns into a rescue mission and a lesson in sharing the spotlight."
+    },
+    {
+      "title": "Inception",
+      "year": 2010,
+      "genres": [
+        "Action",
+        "Sci-Fi",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A skilled thief who steals secrets through dream-sharing is tasked with planting an idea in a target's mind.",
+      "clue": "A thief enters sleeping minds to plant a thought that feels self-authored.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "The Shawshank Redemption",
+      "year": 1994,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1990s",
+      "plot": "A banker wrongly imprisoned for murder forms a lasting friendship and quietly plans for freedom.",
+      "clue": "Two prisoners trade patience for decades until a wall finally answers back.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "The Godfather",
+      "year": 1972,
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "decade": "1970s",
+      "plot": "The reluctant son of a mafia patriarch is drawn into the family business and becomes a ruthless leader.",
+      "clue": "A family wedding opens a long lesson in loyalty, debt, and inherited power.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "The Avengers",
+      "year": 2012,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "Earth's mightiest heroes unite to stop a godlike invader from conquering the planet.",
+      "clue": "A team of incompatible egos becomes the only firewall against a sky-sized invasion.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Finding Nemo",
+      "year": 2003,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Family"
+      ],
+      "decade": "2000s",
+      "plot": "A cautious clownfish crosses the ocean to rescue his captured son with help from a forgetful companion.",
+      "clue": "An anxious father swims through chaos to recover one very small reason to keep going.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Harry Potter and the Sorcerer's Stone",
+      "year": 2001,
+      "genres": [
+        "Adventure",
+        "Fantasy",
+        "Family"
+      ],
+      "decade": "2000s",
+      "plot": "A neglected boy discovers he is a wizard and enters a magical school while uncovering a hidden threat.",
+      "clue": "A cupboard kid inherits wonder, friends, and a school year full of near-death electives.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "E.T. the Extra-Terrestrial",
+      "year": 1982,
+      "genres": [
+        "Family",
+        "Sci-Fi"
+      ],
+      "decade": "1980s",
+      "plot": "A lonely child befriends a stranded alien and helps him find a way home while evading authorities.",
+      "clue": "A suburban child shelters a homesick visitor while adults weaponize curiosity.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "The Wizard of Oz",
+      "year": 1939,
+      "genres": [
+        "Adventure",
+        "Family",
+        "Fantasy"
+      ],
+      "decade": "1930s",
+      "plot": "A farm girl is swept to a magical land and journeys with unusual friends to find a way back home.",
+      "clue": "A storm reroutes a farm girl into color, where courage and home both need translation.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Home Alone",
+      "year": 1990,
+      "genres": [
+        "Comedy",
+        "Family"
+      ],
+      "decade": "1990s",
+      "plot": "A young boy is accidentally left behind at Christmas and defends his home from two burglars.",
+      "clue": "Holiday neglect turns one child into a tiny architect of elaborate pain.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "The Terminator",
+      "year": 1984,
+      "genres": [
+        "Action",
+        "Sci-Fi"
+      ],
+      "decade": "1980s",
+      "plot": "A cyborg assassin travels from the future to kill a woman whose unborn son will lead human resistance.",
+      "clue": "The future sends metal backward to erase hope before it is born.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Rocky",
+      "year": 1976,
+      "genres": [
+        "Drama",
+        "Sport"
+      ],
+      "decade": "1970s",
+      "plot": "A small-time boxer gets a once-in-a-lifetime shot at the heavyweight champion.",
+      "clue": "An underdog trains in borrowed time for a fight he is not expected to survive.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Spider-Man: No Way Home",
+      "year": 2021,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy"
+      ],
+      "decade": "2020s",
+      "plot": "When his identity is revealed, a young hero seeks magical help and tears open realities full of old enemies.",
+      "clue": "A teenager asks for anonymity and accidentally summons a multiverse of consequences.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Top Gun",
+      "year": 1986,
+      "genres": [
+        "Action",
+        "Drama"
+      ],
+      "decade": "1980s",
+      "plot": "A talented but reckless naval aviator competes at an elite fighter school while confronting loss and responsibility.",
+      "clue": "A gifted pilot learns altitude is easier than maturity.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "The Hunger Games",
+      "year": 2012,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "A teenager volunteers to take her sister's place in a televised fight-to-the-death spectacle.",
+      "clue": "A regime sells survival as entertainment until one tribute rewrites the script.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "The Notebook",
+      "year": 2004,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "decade": "2000s",
+      "plot": "A young couple separated by class and circumstance reconnect years later with enduring devotion.",
+      "clue": "A summer romance refuses to obey class rules or memory.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Moana",
+      "year": 2016,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Family"
+      ],
+      "decade": "2010s",
+      "plot": "A chief's daughter sails beyond the reef to restore a stolen relic and save her people.",
+      "clue": "An island heir follows the ocean's call to repair a god-sized mistake.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Frozen",
+      "year": 2013,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Family"
+      ],
+      "decade": "2010s",
+      "plot": "A princess with dangerous ice powers isolates herself, plunging her kingdom into winter until her sister intervenes.",
+      "clue": "A kingdom freezes under fear until sisterhood proves warmer than magic.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Coco",
+      "year": 2017,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Family"
+      ],
+      "decade": "2010s",
+      "plot": "A music-loving boy enters the Land of the Dead to uncover his family's past and reclaim his future.",
+      "clue": "A forbidden song sends one boy across memory's border to negotiate with the dead.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Gladiator",
+      "year": 2000,
+      "genres": [
+        "Action",
+        "Drama"
+      ],
+      "decade": "2000s",
+      "plot": "A betrayed Roman general is enslaved and rises as a gladiator seeking justice against a corrupt emperor.",
+      "clue": "A fallen general climbs an arena ladder to take revenge in front of an empire.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "The Silence of the Lambs",
+      "year": 1991,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "1990s",
+      "plot": "A young FBI trainee seeks help from an imprisoned cannibal to catch another serial killer.",
+      "clue": "A trainee hunts one monster by consulting another behind glass.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Pirates of the Caribbean: The Curse of the Black Pearl",
+      "year": 2003,
+      "genres": [
+        "Adventure",
+        "Fantasy"
+      ],
+      "decade": "2000s",
+      "plot": "A blacksmith and an eccentric pirate pursue cursed raiders who kidnapped a governor's daughter.",
+      "clue": "A blacksmith and a rogue chase cursed sailors whose moonlight tells the truth.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "The Sixth Sense",
+      "year": 1999,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Thriller"
+      ],
+      "decade": "1990s",
+      "plot": "A troubled child psychologist tries to help a boy who claims he can see and speak to the dead.",
+      "clue": "A boy confesses an impossible gift, and an adult listener misses one crucial detail.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Mean Girls",
+      "year": 2004,
+      "genres": [
+        "Comedy"
+      ],
+      "decade": "2000s",
+      "plot": "A homeschooled teen enters public school and is pulled into a ruthless hierarchy of popularity.",
+      "clue": "A new student infiltrates a pink empire and learns social warfare has uniforms.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "The Breakfast Club",
+      "year": 1985,
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "1980s",
+      "plot": "Five high school students from different cliques spend detention together and discover shared struggles.",
+      "clue": "Five stereotypes spend a Saturday in detention and leave with altered labels.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Deadpool",
+      "year": 2016,
+      "genres": [
+        "Action",
+        "Comedy"
+      ],
+      "decade": "2010s",
+      "plot": "A mercenary subjected to an experiment gains regenerative powers and seeks revenge while mocking everything.",
+      "clue": "A scarred antihero weaponizes immortality, sarcasm, and very poor impulse control.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Interstellar",
+      "year": 2014,
+      "genres": [
+        "Adventure",
+        "Drama",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "Explorers travel through a wormhole searching for a new home as Earth becomes uninhabitable.",
+      "clue": "A father leaves a dying planet and gambles that love can outlast relativity.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Black Panther",
+      "year": 2018,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "A newly crowned king must defend his nation and redefine its role in the world after a challenger emerges.",
+      "clue": "A hidden kingdom debates isolation while a rival demands justice by force.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Shrek",
+      "year": 2001,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2000s",
+      "plot": "An ogre reluctantly rescues a princess to reclaim his swamp and finds unexpected friendship and love.",
+      "clue": "A grumpy recluse makes one deal too many and ends up with friendship, chaos, and romance.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Aladdin",
+      "year": 1992,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Family"
+      ],
+      "decade": "1990s",
+      "plot": "A street thief finds a magic lamp and pretends to be a prince to win love and thwart a scheming vizier.",
+      "clue": "A street kid rents nobility with magic and must eventually tell the truth.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Ghostbusters",
+      "year": 1984,
+      "genres": [
+        "Comedy",
+        "Fantasy"
+      ],
+      "decade": "1980s",
+      "plot": "Three scientists start a ghost-catching business in New York and face an apocalyptic supernatural threat.",
+      "clue": "Unemployed scientists turn hauntings into a startup until the sky tries to end the city.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "The Truman Show",
+      "year": 1998,
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Sci-Fi"
+      ],
+      "decade": "1990s",
+      "plot": "An ordinary man slowly realizes his entire life is a constructed television program watched by millions.",
+      "clue": "A cheerful man notices his world repeats, and the set starts to crack.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Avatar: The Way of Water",
+      "year": 2022,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "2020s",
+      "plot": "A family forced from their forest home seeks refuge with ocean clans while old enemies return.",
+      "clue": "A warrior family flees old war into new waters, where survival requires learning a second world.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "The Incredibles",
+      "year": 2004,
+      "genres": [
+        "Animation",
+        "Action",
+        "Adventure"
+      ],
+      "decade": "2000s",
+      "plot": "A retired superhero and his family return to action to stop a vengeful genius.",
+      "clue": "A suburban family hides extraordinary gifts until a grudge-powered villain calls them back.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Toy Story 3",
+      "year": 2010,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2010s",
+      "plot": "As their owner grows up, a group of toys faces abandonment and a dangerous new daycare.",
+      "clue": "A toy family confronts obsolescence and discovers daycare can feel like a prison state.",
+      "difficulty": "easy"
+    },
+    {
+      "title": "Star Wars: Episode V - The Empire Strikes Back",
+      "year": 1980,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "1980s",
+      "plot": "Rebels face devastating setbacks while a young hero deepens his training and confronts a dark truth.",
+      "difficulty": "easy",
+      "clue": "A rebellion scatters, a hero trains in exile, and a mask delivers a family earthquake."
+    },
+    {
+      "title": "Star Wars: Episode VI - Return of the Jedi",
+      "year": 1983,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "1980s",
+      "plot": "Allies reunite for a final strike against an empire while a son tries to redeem his father.",
+      "difficulty": "easy",
+      "clue": "A final assault begins outside a moon while one son bets on redemption inside a throne room."
+    },
+    {
+      "title": "Star Wars: Episode VII - The Force Awakens",
+      "year": 2015,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "A scavenger and a defector join a new resistance against a revived authoritarian threat.",
+      "difficulty": "easy",
+      "clue": "Old myths reboot through a scavenger, a runaway soldier, and a weapon built to erase systems."
+    },
+    {
+      "title": "Avengers: Infinity War",
+      "year": 2018,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "Earth's heroes unite across worlds to stop a warlord collecting cosmic artifacts.",
+      "difficulty": "easy",
+      "clue": "A cosmic accountant seeks perfect balance, and every hero receives an impossible deadline."
+    },
+    {
+      "title": "Avengers: Endgame",
+      "year": 2019,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "Surviving heroes attempt a risky plan across time to undo a catastrophic loss.",
+      "difficulty": "easy",
+      "clue": "After universal grief, a broken team raids time itself for one last reversal."
+    },
+    {
+      "title": "Iron Man",
+      "year": 2008,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "2000s",
+      "plot": "A weapons magnate survives captivity, builds advanced armor, and redefines his purpose.",
+      "difficulty": "easy",
+      "clue": "A billionaire engineer escapes his own industry by forging a conscience in metal."
+    },
+    {
+      "title": "Captain America: The Winter Soldier",
+      "year": 2014,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "A supersoldier uncovers corruption within his own agency and faces a ghost from his past.",
+      "difficulty": "easy",
+      "clue": "A patriotic symbol learns the institution he serves has already been replaced from within."
+    },
+    {
+      "title": "Thor: Ragnarok",
+      "year": 2017,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2010s",
+      "plot": "A banished god must survive an alien arena and prevent his homeland's destruction.",
+      "difficulty": "easy",
+      "clue": "A dethroned thunder god escapes a cosmic game show to save a kingdom already burning."
+    },
+    {
+      "title": "Guardians of the Galaxy",
+      "year": 2014,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "A band of unlikely outlaws forms a team to keep a powerful artifact from a fanatic.",
+      "difficulty": "easy",
+      "clue": "A mixtape-powered group of misfits turns petty crime into galactic crisis management."
+    },
+    {
+      "title": "Doctor Strange",
+      "year": 2016,
+      "genres": [
+        "Action",
+        "Fantasy",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "A brilliant surgeon loses his career and discovers mystic arts that reshape reality.",
+      "difficulty": "easy",
+      "clue": "An arrogant healer breaks his hands and finds new control over time and space."
+    },
+    {
+      "title": "Spider-Man",
+      "year": 2002,
+      "genres": [
+        "Action",
+        "Adventure"
+      ],
+      "decade": "2000s",
+      "plot": "A teenager gains spider-like abilities and learns heroism comes with painful responsibility.",
+      "difficulty": "easy",
+      "clue": "A teenager receives impossible gifts and learns every choice arrives with collateral."
+    },
+    {
+      "title": "Spider-Man 2",
+      "year": 2004,
+      "genres": [
+        "Action",
+        "Adventure"
+      ],
+      "decade": "2000s",
+      "plot": "A young hero struggles to balance ordinary life and duty while facing a brilliant new enemy.",
+      "difficulty": "easy",
+      "clue": "Burnout hits a neighborhood hero just as a scientist turns ambition into catastrophe."
+    },
+    {
+      "title": "Batman Begins",
+      "year": 2005,
+      "genres": [
+        "Action",
+        "Crime"
+      ],
+      "decade": "2000s",
+      "plot": "A traumatized heir trains abroad and returns to fight systemic crime in his city.",
+      "difficulty": "easy",
+      "clue": "A wounded heir turns fear into branding and declares war on urban corruption."
+    },
+    {
+      "title": "The Dark Knight Rises",
+      "year": 2012,
+      "genres": [
+        "Action",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "Years after retirement, a vigilante returns when a revolutionary terrorist threatens the city.",
+      "difficulty": "easy",
+      "clue": "A retired symbol is dragged back as a city mistakes collapse for liberation."
+    },
+    {
+      "title": "Jurassic World",
+      "year": 2015,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "A new dinosaur theme park spirals into disaster after engineering a hybrid predator.",
+      "difficulty": "easy",
+      "clue": "A rebooted dinosaur park upgrades spectacle and accidentally upgrades panic."
+    },
+    {
+      "title": "The Super Mario Bros. Movie",
+      "year": 2023,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2020s",
+      "plot": "Two brothers are pulled into a fantastical kingdom and must stop a tyrant's invasion.",
+      "difficulty": "easy",
+      "clue": "Two plumbers fall through a pipe and inherit responsibility for a colorful kingdom war."
+    },
+    {
+      "title": "Finding Dory",
+      "year": 2016,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2010s",
+      "plot": "A forgetful fish sets out to find her parents with help from old friends.",
+      "difficulty": "easy",
+      "clue": "A forgetful traveler follows emotional breadcrumbs across an ocean to find home."
+    },
+    {
+      "title": "Monsters, Inc.",
+      "year": 2001,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2000s",
+      "plot": "Two monsters who harvest children's screams discover laughter is more powerful energy.",
+      "difficulty": "easy",
+      "clue": "A city runs on fear until one child exposes a better fuel source."
+    },
+    {
+      "title": "Inside Out",
+      "year": 2015,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2010s",
+      "plot": "Personified emotions inside a girl's mind struggle to guide her through a major life change.",
+      "difficulty": "easy",
+      "clue": "Inside one mind, competing emotions learn sadness is not the villain."
+    },
+    {
+      "title": "Up",
+      "year": 2009,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2000s",
+      "plot": "An elderly widower lifts his house with balloons and embarks on a journey with a stowaway.",
+      "difficulty": "easy",
+      "clue": "A grieving widower launches his house skyward and accidentally becomes a mentor."
+    },
+    {
+      "title": "Ratatouille",
+      "year": 2007,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2000s",
+      "plot": "A rat with refined taste partners with a young kitchen worker to become a chef in Paris.",
+      "difficulty": "easy",
+      "clue": "A culinary perfectionist with whiskers ghost-directs a human in a famous kitchen."
+    },
+    {
+      "title": "WALL-E",
+      "year": 2008,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Family"
+      ],
+      "decade": "2000s",
+      "plot": "A lonely waste-collecting robot on Earth follows another robot into a mission that may save humanity.",
+      "difficulty": "easy",
+      "clue": "A lonely trash-compactor finds love and accidentally reboots human destiny."
+    },
+    {
+      "title": "Zootopia",
+      "year": 2016,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2010s",
+      "plot": "A rookie rabbit cop and a sly fox uncover a conspiracy dividing a modern animal city.",
+      "difficulty": "easy",
+      "clue": "A rookie rabbit and a hustler fox chase a case that preys on prejudice."
+    },
+    {
+      "title": "How to Train Your Dragon",
+      "year": 2010,
+      "genres": [
+        "Animation",
+        "Action",
+        "Adventure"
+      ],
+      "decade": "2010s",
+      "plot": "A young Viking befriends a dragon and challenges his tribe's assumptions.",
+      "difficulty": "easy",
+      "clue": "A misfit warrior befriends the enemy and forces a village to rewrite tradition."
+    },
+    {
+      "title": "Despicable Me",
+      "year": 2010,
+      "genres": [
+        "Animation",
+        "Comedy",
+        "Family"
+      ],
+      "decade": "2010s",
+      "plot": "A supervillain adopts three girls as part of a scheme, then unexpectedly becomes a father.",
+      "difficulty": "easy",
+      "clue": "A professional villain plans a giant theft and is defeated by parenting."
+    },
+    {
+      "title": "Minions",
+      "year": 2015,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2010s",
+      "plot": "Three yellow followers search for a new master and stumble into world-domination chaos.",
+      "difficulty": "easy",
+      "clue": "Tiny chaos interns travel history searching for leadership and finding trouble."
+    },
+    {
+      "title": "Kung Fu Panda",
+      "year": 2008,
+      "genres": [
+        "Animation",
+        "Action",
+        "Adventure"
+      ],
+      "decade": "2000s",
+      "plot": "An unlikely panda is chosen to fulfill a martial prophecy and defend his valley.",
+      "difficulty": "easy",
+      "clue": "An underqualified noodle enthusiast is drafted into prophecy and punches above destiny."
+    },
+    {
+      "title": "Encanto",
+      "year": 2021,
+      "genres": [
+        "Animation",
+        "Comedy",
+        "Family"
+      ],
+      "decade": "2020s",
+      "plot": "A magical family loses its gifts, and the only ordinary member searches for the cause.",
+      "difficulty": "easy",
+      "clue": "When a gifted household starts cracking, the one powerless daughter becomes the fix."
+    },
+    {
+      "title": "Beauty and the Beast",
+      "year": 1991,
+      "genres": [
+        "Animation",
+        "Family",
+        "Fantasy"
+      ],
+      "decade": "1990s",
+      "plot": "A young woman is held in an enchanted castle and helps break a curse through compassion.",
+      "difficulty": "easy",
+      "clue": "A prisoner finds humanity in a monster while an entire castle waits for emotional repair."
+    },
+    {
+      "title": "The Little Mermaid",
+      "year": 1989,
+      "genres": [
+        "Animation",
+        "Family",
+        "Fantasy"
+      ],
+      "decade": "1980s",
+      "plot": "A mermaid trades her voice for a chance at human life and love.",
+      "difficulty": "easy",
+      "clue": "A young dreamer bargains away her voice to cross worlds for love."
+    },
+    {
+      "title": "Mulan",
+      "year": 1998,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Family"
+      ],
+      "decade": "1990s",
+      "plot": "A young woman disguises herself as a man to take her father's place in the army.",
+      "difficulty": "easy",
+      "clue": "To protect her family, one daughter borrows an identity and rewrites a legend."
+    },
+    {
+      "title": "Tangled",
+      "year": 2010,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2010s",
+      "plot": "A sheltered princess with magical hair escapes her tower with a wanted thief.",
+      "difficulty": "easy",
+      "clue": "A tower-bound royal cuts a deal with a fugitive and discovers the world is brighter than fear."
+    },
+    {
+      "title": "Cars",
+      "year": 2006,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2000s",
+      "plot": "A self-centered racecar is stranded in a small town and learns humility.",
+      "difficulty": "easy",
+      "clue": "A speed-obsessed celebrity gets detoured into a town where ego is slower than growth."
+    },
+    {
+      "title": "Shrek 2",
+      "year": 2004,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2000s",
+      "plot": "An ogre meets royal in-laws while schemes threaten his marriage.",
+      "difficulty": "easy",
+      "clue": "A fairytale couple visits the in-laws and discovers diplomacy is harder than dragon battles."
+    },
+    {
+      "title": "Madagascar",
+      "year": 2005,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2000s",
+      "plot": "A group of zoo animals escape captivity and end up surviving in the wild.",
+      "difficulty": "easy",
+      "clue": "Pampered city animals trade routine for wilderness and panic."
+    },
+    {
+      "title": "Ice Age",
+      "year": 2002,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2000s",
+      "plot": "Unlikely prehistoric companions escort a human baby home during a migration.",
+      "difficulty": "easy",
+      "clue": "An odd trio of prehistoric loners becomes a reluctant family on a rescue trek."
+    },
+    {
+      "title": "Pirates of the Caribbean: Dead Man's Chest",
+      "year": 2006,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy"
+      ],
+      "decade": "2000s",
+      "plot": "A pirate captain races to settle a supernatural debt while rivals hunt a legendary chest.",
+      "difficulty": "easy",
+      "clue": "A charming pirate owes a sea demon and needs one very inconvenient container."
+    },
+    {
+      "title": "Indiana Jones and the Raiders of the Lost Ark",
+      "year": 1981,
+      "genres": [
+        "Action",
+        "Adventure"
+      ],
+      "decade": "1980s",
+      "plot": "An archaeologist races hostile forces to recover a biblical artifact.",
+      "difficulty": "easy",
+      "clue": "A fedora-wearing professor outruns history's deadliest collectors."
+    },
+    {
+      "title": "Mission: Impossible - Fallout",
+      "year": 2018,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "An elite operative chases stolen plutonium while betrayals complicate every mission.",
+      "difficulty": "easy",
+      "clue": "A spy sprints through impossible stunts to stop a chain reaction of global failure."
+    },
+    {
+      "title": "Top Gun: Maverick",
+      "year": 2022,
+      "genres": [
+        "Action",
+        "Drama"
+      ],
+      "decade": "2020s",
+      "plot": "A veteran pilot returns to train a new generation for a high-risk mission.",
+      "difficulty": "easy",
+      "clue": "An aging ace trains younger pilots and finally confronts unfinished grief at full speed."
+    },
+    {
+      "title": "The Fast and the Furious",
+      "year": 2001,
+      "genres": [
+        "Action",
+        "Crime",
+        "Thriller"
+      ],
+      "decade": "2000s",
+      "plot": "An undercover officer infiltrates a street-racing crew tied to a series of heists.",
+      "difficulty": "easy",
+      "clue": "An undercover cop enters street-racing culture and finds loyalty harder than law."
+    },
+    {
+      "title": "Furious 7",
+      "year": 2015,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Crime"
+      ],
+      "decade": "2010s",
+      "plot": "A close-knit crew is hunted by a vengeful operative while chasing a surveillance device.",
+      "difficulty": "easy",
+      "clue": "A family of outlaws outruns revenge, gravity, and several definitions of plausible driving."
+    },
+    {
+      "title": "Jumanji: Welcome to the Jungle",
+      "year": 2017,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Comedy"
+      ],
+      "decade": "2010s",
+      "plot": "Teenagers are pulled into a video game world and must survive as mismatched avatars.",
+      "difficulty": "easy",
+      "clue": "Four teens load into a jungle game and discover puberty has avatars now."
+    },
+    {
+      "title": "The Hangover",
+      "year": 2009,
+      "genres": [
+        "Comedy"
+      ],
+      "decade": "2000s",
+      "plot": "After a bachelor party blackout, friends retrace a chaotic night to find the groom.",
+      "difficulty": "easy",
+      "clue": "A wedding countdown becomes forensic comedy after one catastrophic night."
+    },
+    {
+      "title": "Superbad",
+      "year": 2007,
+      "genres": [
+        "Comedy"
+      ],
+      "decade": "2000s",
+      "plot": "Two friends try to secure one memorable high-school party before graduation.",
+      "difficulty": "easy",
+      "clue": "Two teens attempt one legendary night and discover chaos has a fake ID."
+    },
+    {
+      "title": "Bridesmaids",
+      "year": 2011,
+      "genres": [
+        "Comedy",
+        "Romance"
+      ],
+      "decade": "2010s",
+      "plot": "A woman's life unravels while she competes to be best friend and maid of honor.",
+      "difficulty": "easy",
+      "clue": "Wedding politics turns friendship into a competitive contact sport."
+    },
+    {
+      "title": "Step Brothers",
+      "year": 2008,
+      "genres": [
+        "Comedy"
+      ],
+      "decade": "2000s",
+      "plot": "Two immature middle-aged men become stepbrothers and ignite household chaos.",
+      "difficulty": "easy",
+      "clue": "Two adult children are forced into one home and immediately declare emotional war."
+    },
+    {
+      "title": "Elf",
+      "year": 2003,
+      "genres": [
+        "Comedy",
+        "Family",
+        "Fantasy"
+      ],
+      "decade": "2000s",
+      "plot": "A human raised at the North Pole travels to New York to find his biological father.",
+      "difficulty": "easy",
+      "clue": "A cheerful outsider from the North Pole collides with a city allergic to wonder."
+    },
+    {
+      "title": "Home Alone 2: Lost in New York",
+      "year": 1992,
+      "genres": [
+        "Adventure",
+        "Comedy",
+        "Family"
+      ],
+      "decade": "1990s",
+      "plot": "A resourceful child is separated from his family again and outsmarts familiar burglars.",
+      "difficulty": "easy",
+      "clue": "One child gets loose in a giant city and upgrades his defensive architecture."
+    },
+    {
+      "title": "The Polar Express",
+      "year": 2004,
+      "genres": [
+        "Animation",
+        "Adventure",
+        "Family"
+      ],
+      "decade": "2000s",
+      "plot": "A skeptical boy boards a magical train to the North Pole on Christmas Eve.",
+      "difficulty": "easy",
+      "clue": "A midnight train invites doubters to rediscover belief before dawn."
+    },
+    {
+      "title": "The Karate Kid",
+      "year": 1984,
+      "genres": [
+        "Action",
+        "Drama",
+        "Family"
+      ],
+      "decade": "1980s",
+      "plot": "A bullied teenager learns martial arts from a humble mentor to face local rivals.",
+      "difficulty": "easy",
+      "clue": "A bullied teen learns balance, patience, and one very decisive kick."
+    },
+    {
+      "title": "The Princess Bride",
+      "year": 1987,
+      "genres": [
+        "Adventure",
+        "Comedy",
+        "Family"
+      ],
+      "decade": "1980s",
+      "plot": "A farmhand turned pirate crosses swords and schemes to rescue his true love.",
+      "difficulty": "easy",
+      "clue": "A bedtime fairytale combines swordplay, revenge, and aggressively sincere romance."
+    },
+    {
+      "title": "The Goonies",
+      "year": 1985,
+      "genres": [
+        "Adventure",
+        "Comedy",
+        "Family"
+      ],
+      "decade": "1980s",
+      "plot": "A group of kids follow an old map through traps and caves to save their homes.",
+      "difficulty": "easy",
+      "clue": "A neighborhood of kids goes treasure hunting to stop eviction."
+    },
+    {
+      "title": "The Lego Movie",
+      "year": 2014,
+      "genres": [
+        "Animation",
+        "Action",
+        "Adventure"
+      ],
+      "decade": "2010s",
+      "plot": "An ordinary construction figure is mistaken for a chosen hero and joins a resistance.",
+      "difficulty": "easy",
+      "clue": "An average builder gets cast as prophecy and must outgrow instructions."
+    }
+  ],
+  "medium": [
+    {
+      "title": "Children of Men",
+      "year": 2006,
+      "genres": [
+        "Drama",
+        "Sci-Fi",
+        "Thriller"
+      ],
+      "decade": "2000s",
+      "plot": "In a world where humans can no longer have children, a cynical former activist must protect a miraculously pregnant woman.",
+      "difficulty": "medium",
+      "clue": "When the future goes silent, a cynic must escort a forbidden heartbeat."
+    },
+    {
+      "title": "Nightcrawler",
+      "year": 2014,
+      "genres": [
+        "Crime",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "An ambitious drifter enters freelance crime journalism and manipulates events to capture increasingly shocking footage.",
+      "difficulty": "medium",
+      "clue": "A hungry outsider discovers disaster looks best when framed for broadcast."
+    },
+    {
+      "title": "No Country for Old Men",
+      "year": 2007,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "2000s",
+      "plot": "After finding money at a drug deal gone wrong, a hunter is chased across Texas by a relentless killer.",
+      "difficulty": "medium",
+      "clue": "Found money becomes a moving curse, and fate keeps flipping metal."
+    },
+    {
+      "title": "Whiplash",
+      "year": 2014,
+      "genres": [
+        "Drama",
+        "Music"
+      ],
+      "decade": "2010s",
+      "plot": "A young jazz drummer endures extreme psychological pressure from a demanding instructor at an elite conservatory.",
+      "difficulty": "medium",
+      "clue": "Talent enters a practice room where cruelty is graded as discipline."
+    },
+    {
+      "title": "Her",
+      "year": 2013,
+      "genres": [
+        "Drama",
+        "Romance",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "A lonely writer forms an intimate relationship with an advanced operating system designed to evolve through conversation.",
+      "difficulty": "medium",
+      "clue": "A lonely writer outsources intimacy and falls for an operating voice."
+    },
+    {
+      "title": "Arrival",
+      "year": 2016,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "A linguist is recruited to communicate with extraterrestrials and uncovers a language that reshapes her perception of time.",
+      "difficulty": "medium",
+      "clue": "Learning an alien grammar rewires one woman's relationship with time."
+    },
+    {
+      "title": "Ex Machina",
+      "year": 2014,
+      "genres": [
+        "Drama",
+        "Sci-Fi",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A programmer is invited to evaluate a humanoid AI and becomes trapped in a psychological contest of control.",
+      "difficulty": "medium",
+      "clue": "A remote house test for intelligence turns into a negotiation of captivity."
+    },
+    {
+      "title": "The Prestige",
+      "year": 2006,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "decade": "2000s",
+      "plot": "Two rival magicians obsessively sabotage each other while pursuing the ultimate illusion, sacrificing everything in the process.",
+      "difficulty": "medium",
+      "clue": "Two magicians feed obsession until wonder becomes collateral."
+    },
+    {
+      "title": "Gone Girl",
+      "year": 2014,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "When his wife disappears, a man becomes the focus of a media frenzy that exposes the dark performance inside their marriage.",
+      "difficulty": "medium",
+      "clue": "A marriage edits itself in public until truth looks staged."
+    },
+    {
+      "title": "Blade Runner 2049",
+      "year": 2017,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "A replicant officer uncovers a secret that could destabilize society and begins to question his own identity.",
+      "difficulty": "medium",
+      "clue": "A compliant hunter follows a buried anomaly into questions of personhood."
+    },
+    {
+      "title": "Parasite",
+      "year": 2019,
+      "genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A poor family infiltrates a wealthy household through deception, triggering a chain of class tensions and violence.",
+      "difficulty": "medium",
+      "clue": "A poor family climbs into luxury and discovers another basement beneath aspiration."
+    },
+    {
+      "title": "The Social Network",
+      "year": 2010,
+      "genres": [
+        "Biography",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A college student's website project explodes into a global platform while lawsuits and broken friendships follow.",
+      "difficulty": "medium",
+      "clue": "A late-night ranking site mutates into empire while friendships litigate the origin."
+    },
+    {
+      "title": "Prisoners",
+      "year": 2013,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2010s",
+      "plot": "When two girls disappear, a desperate father takes matters into his own hands while police pursue leads.",
+      "clue": "Two missing children turn faith and justice into competing forms of violence.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Zodiac",
+      "year": 2007,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2000s",
+      "plot": "Journalists and investigators become obsessed with identifying a serial killer who taunts authorities with coded letters.",
+      "clue": "A cipher-writing killer leaves puzzles that age into obsession.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Donnie Darko",
+      "year": 2001,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "decade": "2000s",
+      "plot": "A troubled teenager survives a bizarre accident and is guided by visions toward unsettling acts and revelations.",
+      "clue": "A troubled teen follows a prophecy from something wearing a rabbit face.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Memento",
+      "year": 2000,
+      "genres": [
+        "Mystery",
+        "Thriller"
+      ],
+      "decade": "2000s",
+      "plot": "A man with short-term memory loss uses notes and tattoos to hunt his wife's killer.",
+      "clue": "A man with vanishing memory pursues revenge one note at a time.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Edge of Tomorrow",
+      "year": 2014,
+      "genres": [
+        "Action",
+        "Sci-Fi",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A reluctant soldier relives the same battle against alien invaders and learns to become a fighter.",
+      "clue": "A reluctant soldier repeats one fatal day until fear becomes muscle memory.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Looper",
+      "year": 2012,
+      "genres": [
+        "Action",
+        "Sci-Fi",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A hitman who kills targets sent from the future must confront an older version of himself.",
+      "clue": "A contract killer meets his own future and hesitates at the trigger.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "The Nice Guys",
+      "year": 2016,
+      "genres": [
+        "Action",
+        "Comedy",
+        "Crime"
+      ],
+      "decade": "2010s",
+      "plot": "A private eye and an enforcer team up to investigate a missing girl and uncover a larger conspiracy.",
+      "clue": "Two mismatched investigators stumble into a conspiracy bigger than their competence.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Sicario",
+      "year": 2015,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "An idealistic FBI agent joins a shadowy task force targeting cartel operations across the border.",
+      "clue": "An idealist joins a border task force where rules are mostly theater.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Hell or High Water",
+      "year": 2016,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "Two brothers rob banks to save their family land while an aging ranger closes in.",
+      "clue": "Desperation robs institutions that have already done the same.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "The Menu",
+      "year": 2022,
+      "genres": [
+        "Comedy",
+        "Horror",
+        "Thriller"
+      ],
+      "decade": "2020s",
+      "plot": "Elite diners attend an exclusive island restaurant where the chef's tasting menu turns lethal.",
+      "clue": "Fine dining becomes ritual punishment for people who mistake price for meaning.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "The Banshees of Inisherin",
+      "year": 2022,
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2020s",
+      "plot": "On a remote island, one lifelong friend abruptly ends the friendship, triggering escalating consequences.",
+      "clue": "On a small island, one friendship ends and pride does the rest.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Three Billboards Outside Ebbing, Missouri",
+      "year": 2017,
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A grieving mother publicly challenges local police over the unsolved murder of her daughter.",
+      "clue": "A grieving mother rents public outrage to force a stalled town awake.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Eternal Sunshine of the Spotless Mind",
+      "year": 2004,
+      "genres": [
+        "Drama",
+        "Romance",
+        "Sci-Fi"
+      ],
+      "decade": "2000s",
+      "plot": "After a painful breakup, two former lovers undergo a procedure to erase each other from memory.",
+      "clue": "Two lovers erase each other and still keep colliding in the dark.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "The Lobster",
+      "year": 2015,
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "decade": "2010s",
+      "plot": "In a dystopia where single people are transformed into animals, a man searches for love under strict rules.",
+      "clue": "Singlehood is penalized by metamorphosis in a society obsessed with pairing.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "The Favourite",
+      "year": 2018,
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "Two cousins compete for influence over a fragile queen in early 18th-century England.",
+      "clue": "At court, affection functions like currency and sabotage.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Drive",
+      "year": 2011,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A quiet stunt driver and getaway specialist is pulled into violence while trying to protect a neighbor and her son.",
+      "clue": "A man of few words drives by night until attachment breaks his code.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "The Revenant",
+      "year": 2015,
+      "genres": [
+        "Adventure",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A frontiersman left for dead after a brutal bear attack endures a harsh wilderness to seek revenge.",
+      "clue": "Left for dead in winter, one man crawls toward a single debt.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Moon",
+      "year": 2009,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "decade": "2000s",
+      "plot": "A solitary lunar worker nearing the end of his contract discovers he may not be alone or unique.",
+      "clue": "A solitary worker nears contract end and discovers he is not singular.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Annihilation",
+      "year": 2018,
+      "genres": [
+        "Adventure",
+        "Drama",
+        "Horror"
+      ],
+      "decade": "2010s",
+      "plot": "A biologist leads an expedition into a mysterious zone where nature mutates and identity unravels.",
+      "clue": "Inside a shimmering frontier, biology mutates faster than identity can keep up.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "The Witch",
+      "year": 2015,
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Horror"
+      ],
+      "decade": "2010s",
+      "plot": "A devout family exiled to a remote farm experiences paranoia and terror as unseen forces close in.",
+      "clue": "Exile and devotion curdle into suspicion at the edge of the woods.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Lady Bird",
+      "year": 2017,
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "An outspoken teenager clashes with her mother while navigating identity, love, and ambition in Sacramento.",
+      "clue": "A restless teen auditions new identities while home keeps scoring the performance.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Frances Ha",
+      "year": 2012,
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "decade": "2010s",
+      "plot": "A young dancer in New York drifts between apartments, jobs, and friendships while searching for footing.",
+      "clue": "A drifting artist mistakes motion for progress until adulthood catches up.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Baby Driver",
+      "year": 2017,
+      "genres": [
+        "Action",
+        "Crime",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A gifted getaway driver with tinnitus tries to leave crime behind after falling in love.",
+      "clue": "A rhythm-dependent getaway driver tries to exit crime without missing the beat.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "The Florida Project",
+      "year": 2017,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A precocious child and her struggling mother live week-to-week in budget motels near Disney World.",
+      "clue": "Childhood imagination glows beside eviction notices and motel neon.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "The Handmaiden",
+      "year": 2016,
+      "genres": [
+        "Drama",
+        "Romance",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A con woman poses as a maid to help swindle a wealthy heiress, but loyalties and desire shift unexpectedly.",
+      "clue": "A con staged through class and desire keeps reversing its loyalties.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Oldboy",
+      "year": 2003,
+      "genres": [
+        "Action",
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2000s",
+      "plot": "A man imprisoned for years without explanation is released and hunts for the reason behind his captivity.",
+      "clue": "Released after years of private captivity, a man chases the author of his suffering.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Pan's Labyrinth",
+      "year": 2006,
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "War"
+      ],
+      "decade": "2000s",
+      "plot": "In post-Civil War Spain, a young girl escapes brutal reality through encounters with mythical creatures and dangerous trials.",
+      "clue": "A girl follows mythic tests while authoritarian violence patrols the real world.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "The Raid",
+      "year": 2011,
+      "genres": [
+        "Action",
+        "Crime",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "An elite police squad becomes trapped in a high-rise controlled by a ruthless crime lord.",
+      "clue": "A police unit enters a vertical fortress where every floor rejects mercy.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Train to Busan",
+      "year": 2016,
+      "genres": [
+        "Action",
+        "Horror",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "Passengers on a high-speed train fight to survive a sudden zombie outbreak racing through South Korea.",
+      "clue": "A train becomes a moving siege where selfishness spreads as fast as infection.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Wind River",
+      "year": 2017,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2010s",
+      "plot": "A wildlife tracker and an inexperienced FBI agent investigate a young woman's death on a Native American reservation.",
+      "clue": "On frozen ground, grief and jurisdiction obscure a killing.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Sound of Metal",
+      "year": 2019,
+      "genres": [
+        "Drama",
+        "Music"
+      ],
+      "decade": "2010s",
+      "plot": "A punk drummer loses his hearing and must choose between restoring his old life or embracing a new identity.",
+      "clue": "A drummer loses hearing and must decide whether silence is loss or language.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Inside Llewyn Davis",
+      "year": 2013,
+      "genres": [
+        "Drama",
+        "Music"
+      ],
+      "decade": "2010s",
+      "plot": "A struggling folk singer drifts through 1960s New York, facing setbacks and uncertain prospects.",
+      "clue": "A gifted singer loops through bad luck, pride, and one cold season.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "The Last Duel",
+      "year": 2021,
+      "genres": [
+        "Action",
+        "Drama",
+        "History"
+      ],
+      "decade": "2020s",
+      "plot": "A knight challenges his former friend to a trial by combat after his wife accuses the friend of assault.",
+      "clue": "One accusation fractures three narratives and lets steel arbitrate truth.",
+      "difficulty": "medium"
+    },
+    {
+      "title": "Se7en",
+      "year": 1995,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "1990s",
+      "plot": "Two detectives hunt a serial killer who stages murders around the seven deadly sins.",
+      "difficulty": "medium",
+      "clue": "A rain-soaked city receives seven lessons in sin, each delivered as a crime scene."
+    },
+    {
+      "title": "Fight Club",
+      "year": 1999,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1990s",
+      "plot": "An insomniac office worker forms an underground fight club that evolves into a violent anti-consumer movement.",
+      "difficulty": "medium",
+      "clue": "An exhausted narrator finds purpose in bruises and wakes up inside his own rebellion."
+    },
+    {
+      "title": "The Departed",
+      "year": 2006,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "2000s",
+      "plot": "An undercover cop and a mob mole race to expose each other within police and organized crime.",
+      "difficulty": "medium",
+      "clue": "Two infiltrators mirror each other across law and crime until identity itself is compromised."
+    },
+    {
+      "title": "Shutter Island",
+      "year": 2010,
+      "genres": [
+        "Mystery",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A U.S. marshal investigates a disappearance at an isolated psychiatric facility.",
+      "difficulty": "medium",
+      "clue": "A missing-patient case on an island hospital slowly interrogates the investigator instead."
+    },
+    {
+      "title": "Mystic River",
+      "year": 2003,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2000s",
+      "plot": "Three childhood friends are reunited by tragedy and suspicion after one daughter is murdered.",
+      "difficulty": "medium",
+      "clue": "Old neighborhood trauma resurfaces when one killing forces three men to reopen buried history."
+    },
+    {
+      "title": "Gone Baby Gone",
+      "year": 2007,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2000s",
+      "plot": "Two private investigators search for a missing child and face moral compromises.",
+      "difficulty": "medium",
+      "clue": "A child abduction case leads two investigators to a choice with no clean winner."
+    },
+    {
+      "title": "The Girl with the Dragon Tattoo",
+      "year": 2011,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2010s",
+      "plot": "A journalist and a brilliant hacker investigate a decades-old disappearance in a wealthy family.",
+      "difficulty": "medium",
+      "clue": "A disgraced reporter and a lethal researcher dig through a dynasty's frozen secrets."
+    },
+    {
+      "title": "Argo",
+      "year": 2012,
+      "genres": [
+        "Biography",
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A CIA operative uses a fake film production as cover to rescue hostages from Tehran.",
+      "difficulty": "medium",
+      "clue": "A geopolitical rescue mission hides inside a movie pitch too absurd to reject."
+    },
+    {
+      "title": "Spotlight",
+      "year": 2015,
+      "genres": [
+        "Biography",
+        "Crime",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "Journalists investigate systemic abuse and institutional cover-ups within a powerful church.",
+      "difficulty": "medium",
+      "clue": "A newsroom follows paperwork and testimony until one city's silence becomes undeniable."
+    },
+    {
+      "title": "The Big Short",
+      "year": 2015,
+      "genres": [
+        "Biography",
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A handful of investors predict the housing crash and bet against the financial system.",
+      "difficulty": "medium",
+      "clue": "A few outsiders read the footnotes and wager that the economy is a house of cards."
+    },
+    {
+      "title": "Moneyball",
+      "year": 2011,
+      "genres": [
+        "Biography",
+        "Drama",
+        "Sport"
+      ],
+      "decade": "2010s",
+      "plot": "A baseball general manager uses analytics to rebuild a team on a limited budget.",
+      "difficulty": "medium",
+      "clue": "An underfunded team stops shopping for stars and starts buying probabilities."
+    },
+    {
+      "title": "The Imitation Game",
+      "year": 2014,
+      "genres": [
+        "Biography",
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A brilliant mathematician leads codebreaking efforts during World War II while concealing personal truths.",
+      "difficulty": "medium",
+      "clue": "A brilliant outsider races to crack a wartime cipher while living behind another one."
+    },
+    {
+      "title": "The Theory of Everything",
+      "year": 2014,
+      "genres": [
+        "Biography",
+        "Drama",
+        "Romance"
+      ],
+      "decade": "2010s",
+      "plot": "The life and work of physicist Stephen Hawking unfolds alongside his first marriage.",
+      "difficulty": "medium",
+      "clue": "A young theorist confronts a collapsing body while expanding the universe on paper."
+    },
+    {
+      "title": "Dallas Buyers Club",
+      "year": 2013,
+      "genres": [
+        "Biography",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "An HIV-positive man starts an underground network to provide unapproved treatments.",
+      "difficulty": "medium",
+      "clue": "Given a terminal countdown, one man builds a black-market lifeline from defiance."
+    },
+    {
+      "title": "Birdman",
+      "year": 2014,
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A faded actor known for a superhero role mounts a Broadway play while unraveling psychologically.",
+      "difficulty": "medium",
+      "clue": "A former blockbuster icon chases artistic legitimacy while his ego gains wings."
+    },
+    {
+      "title": "The Grand Budapest Hotel",
+      "year": 2014,
+      "genres": [
+        "Adventure",
+        "Comedy",
+        "Crime"
+      ],
+      "decade": "2010s",
+      "plot": "A concierge and lobby boy are drawn into a murder mystery and inheritance battle.",
+      "difficulty": "medium",
+      "clue": "A meticulous concierge and his protege sprint through theft, murder, and old-world nostalgia."
+    },
+    {
+      "title": "Jojo Rabbit",
+      "year": 2019,
+      "genres": [
+        "Comedy",
+        "Drama",
+        "War"
+      ],
+      "decade": "2010s",
+      "plot": "A lonely boy in Nazi Germany discovers his mother is hiding a Jewish girl in their home.",
+      "difficulty": "medium",
+      "clue": "A child's propaganda fantasy collapses when compassion moves into his attic."
+    },
+    {
+      "title": "Knives Out",
+      "year": 2019,
+      "genres": [
+        "Comedy",
+        "Crime",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A detective investigates the suspicious death of a wealthy novelist amid a dysfunctional family.",
+      "difficulty": "medium",
+      "clue": "A famous writer dies, and inheritance anxiety turns every relative into a suspect."
+    },
+    {
+      "title": "The Hurt Locker",
+      "year": 2008,
+      "genres": [
+        "Drama",
+        "Thriller",
+        "War"
+      ],
+      "decade": "2000s",
+      "plot": "An elite bomb disposal unit operates under intense pressure during the Iraq War.",
+      "difficulty": "medium",
+      "clue": "An expert in defusing bombs becomes addicted to the nearness of explosion."
+    },
+    {
+      "title": "Zero Dark Thirty",
+      "year": 2012,
+      "genres": [
+        "Drama",
+        "History",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "An intelligence analyst spends years tracking the world's most wanted terrorist.",
+      "difficulty": "medium",
+      "clue": "A decade-long intelligence hunt narrows from rumors to one compound door."
+    },
+    {
+      "title": "District 9",
+      "year": 2009,
+      "genres": [
+        "Action",
+        "Sci-Fi",
+        "Thriller"
+      ],
+      "decade": "2000s",
+      "plot": "In segregated Johannesburg, a bureaucrat overseeing aliens is transformed and forced to reevaluate everything.",
+      "difficulty": "medium",
+      "clue": "A paperwork enforcer in an alien ghetto becomes what his system dehumanized."
+    },
+    {
+      "title": "Source Code",
+      "year": 2011,
+      "genres": [
+        "Action",
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2010s",
+      "plot": "A soldier repeatedly inhabits another man's final minutes to prevent a larger attack.",
+      "difficulty": "medium",
+      "clue": "Eight minutes loop endlessly while one mission tries to outrun a second disaster."
+    },
+    {
+      "title": "Predestination",
+      "year": 2014,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "A temporal agent pursues a bomber through paradoxes that entangle his own identity.",
+      "difficulty": "medium",
+      "clue": "A time-travel assignment turns into a closed circuit of identity and causation."
+    },
+    {
+      "title": "Coherence",
+      "year": 2013,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "A dinner party descends into reality fractures after a comet passes overhead.",
+      "difficulty": "medium",
+      "clue": "One suburban dinner splinters when parallel versions of everyone begin arriving."
+    },
+    {
+      "title": "The Martian",
+      "year": 2015,
+      "genres": [
+        "Adventure",
+        "Drama",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "An astronaut stranded on Mars uses science and ingenuity to survive while Earth mounts a rescue.",
+      "difficulty": "medium",
+      "clue": "Left for dead on Mars, one botanist argues with entropy using duct tape and math."
+    },
+    {
+      "title": "Ad Astra",
+      "year": 2019,
+      "genres": [
+        "Adventure",
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2010s",
+      "plot": "An astronaut travels the solar system to find his missing father and stop mysterious surges.",
+      "difficulty": "medium",
+      "clue": "A stoic astronaut flies farther from Earth to confront a father who never came home."
+    },
+    {
+      "title": "The Shape of Water",
+      "year": 2017,
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Romance"
+      ],
+      "decade": "2010s",
+      "plot": "A mute cleaner in a Cold War laboratory forms a bond with an amphibious captive.",
+      "difficulty": "medium",
+      "clue": "In a sterile lab, a silent woman and a captive creature invent their own language."
+    },
+    {
+      "title": "Black Swan",
+      "year": 2010,
+      "genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A ballerina's pursuit of perfection in Swan Lake pushes her into paranoia and self-destruction.",
+      "difficulty": "medium",
+      "clue": "An artist chasing flawless duality finds her reflection increasingly hostile."
+    },
+    {
+      "title": "The Wrestler",
+      "year": 2008,
+      "genres": [
+        "Drama",
+        "Sport"
+      ],
+      "decade": "2000s",
+      "plot": "An aging professional wrestler struggles with health, family, and life beyond the ring.",
+      "difficulty": "medium",
+      "clue": "A fading ring legend keeps performing long after his body has filed objections."
+    },
+    {
+      "title": "Nocturnal Animals",
+      "year": 2016,
+      "genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A gallery owner receives a manuscript from her ex-husband that mirrors unresolved guilt and revenge.",
+      "difficulty": "medium",
+      "clue": "A manuscript from an ex reopens a marriage autopsy disguised as a thriller."
+    },
+    {
+      "title": "The Place Beyond the Pines",
+      "year": 2012,
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A stunt rider turns to bank robbery to support his son, affecting multiple generations.",
+      "difficulty": "medium",
+      "clue": "One desperate father's crimes echo forward into the sons who inherit the aftermath."
+    },
+    {
+      "title": "Blue Valentine",
+      "year": 2010,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "decade": "2010s",
+      "plot": "A marriage is examined through alternating memories of tenderness and present-day collapse.",
+      "difficulty": "medium",
+      "clue": "A love story and a breakup occupy the same timeline and refuse to reconcile."
+    },
+    {
+      "title": "Before Sunrise",
+      "year": 1995,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "decade": "1990s",
+      "plot": "Two strangers meet on a train and spend one night walking and talking through Vienna.",
+      "difficulty": "medium",
+      "clue": "Two travelers borrow one city and one night to test whether conversation can become destiny."
+    },
+    {
+      "title": "Before Sunset",
+      "year": 2004,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "decade": "2000s",
+      "plot": "Nine years later, two former strangers reunite in Paris for an afternoon before a flight.",
+      "difficulty": "medium",
+      "clue": "A chance reunion years later asks whether timing was ever the real antagonist."
+    },
+    {
+      "title": "Before Midnight",
+      "year": 2013,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "decade": "2010s",
+      "plot": "A long-term couple on vacation confronts the strain between ideal love and ordinary life.",
+      "difficulty": "medium",
+      "clue": "Romantic mythology meets middle age and negotiates terms in real time."
+    },
+    {
+      "title": "Minari",
+      "year": 2020,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2020s",
+      "plot": "A Korean American family moves to rural Arkansas to build a farm and pursue stability.",
+      "difficulty": "medium",
+      "clue": "A family plants a future in unfamiliar soil while each member pays a different cost."
+    },
+    {
+      "title": "The Farewell",
+      "year": 2019,
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A family stages a wedding as cover to gather around their matriarch, who does not know she is dying.",
+      "difficulty": "medium",
+      "clue": "A family reunion disguised as celebration protects one beloved lie."
+    },
+    {
+      "title": "Past Lives",
+      "year": 2023,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "decade": "2020s",
+      "plot": "Two childhood friends reconnect across continents and years, contemplating love, fate, and identity.",
+      "difficulty": "medium",
+      "clue": "Two lives drift across oceans and reunite long enough to measure what might have been."
+    },
+    {
+      "title": "Nomadland",
+      "year": 2020,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2020s",
+      "plot": "After economic collapse, a widow lives on the road and joins a community of modern nomads.",
+      "difficulty": "medium",
+      "clue": "After losing everything fixed, one woman learns to live in motion."
+    },
+    {
+      "title": "Manchester by the Sea",
+      "year": 2016,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A withdrawn handyman becomes guardian to his teenage nephew after a sudden family death.",
+      "difficulty": "medium",
+      "clue": "A man who left his hometown returns and finds grief has kept his room."
+    },
+    {
+      "title": "The Trial of the Chicago 7",
+      "year": 2020,
+      "genres": [
+        "Drama",
+        "History",
+        "Thriller"
+      ],
+      "decade": "2020s",
+      "plot": "Activists charged after 1968 protests face a politicized courtroom battle.",
+      "difficulty": "medium",
+      "clue": "A protest spills into court where procedure itself becomes part of the prosecution."
+    },
+    {
+      "title": "Captain Phillips",
+      "year": 2013,
+      "genres": [
+        "Biography",
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A cargo ship captain is taken hostage by Somali pirates during a tense standoff.",
+      "difficulty": "medium",
+      "clue": "A merchant captain is pulled into a geopolitical hostage crisis one decision at a time."
+    },
+    {
+      "title": "The King's Speech",
+      "year": 2010,
+      "genres": [
+        "Biography",
+        "Drama",
+        "History"
+      ],
+      "decade": "2010s",
+      "plot": "A reluctant king works with an unorthodox speech therapist to overcome a stammer before wartime broadcasts.",
+      "difficulty": "medium",
+      "clue": "A monarch with a voice obstacle prepares to address a nation entering war."
+    },
+    {
+      "title": "Tinker Tailor Soldier Spy",
+      "year": 2011,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A retired intelligence officer is asked to uncover a Soviet mole inside British espionage leadership.",
+      "difficulty": "medium",
+      "clue": "A cold-war veteran returns to expose a traitor hidden at the top of his own service."
+    },
+    {
+      "title": "The Fighter",
+      "year": 2010,
+      "genres": [
+        "Biography",
+        "Drama",
+        "Sport"
+      ],
+      "decade": "2010s",
+      "plot": "A boxer tries to build his own career while navigating family dysfunction and his brother's addiction.",
+      "difficulty": "medium",
+      "clue": "A promising boxer must escape family gravity before he can claim his own fight."
+    },
+    {
+      "title": "Foxcatcher",
+      "year": 2014,
+      "genres": [
+        "Biography",
+        "Drama",
+        "Sport"
+      ],
+      "decade": "2010s",
+      "plot": "An eccentric millionaire sponsors Olympic wrestlers in a relationship that darkens into control and violence.",
+      "difficulty": "medium",
+      "clue": "Patronage, loneliness, and ambition collide on a training mat with tragic consequences."
+    },
+    {
+      "title": "Carol",
+      "year": 2015,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "decade": "2010s",
+      "plot": "In 1950s New York, a young photographer and an older woman begin a relationship under social pressure.",
+      "difficulty": "medium",
+      "clue": "A department-store encounter in the 1950s grows into love under surveillance and judgment."
+    },
+    {
+      "title": "The Master",
+      "year": 2012,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A drifting veteran becomes entangled with a charismatic movement leader and his inner circle.",
+      "difficulty": "medium",
+      "clue": "A damaged drifter and a magnetic leader test whether belonging is healing or control."
+    },
+    {
+      "title": "Nebraska",
+      "year": 2013,
+      "genres": [
+        "Adventure",
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A son drives his stubborn father across states to claim what may be a fraudulent prize.",
+      "difficulty": "medium",
+      "clue": "A road trip to collect a questionable fortune becomes a slow excavation of family history."
+    },
+    {
+      "title": "A Separation",
+      "year": 2011,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A couple's divorce and caregiving conflict spirals into legal and moral complexity in Tehran.",
+      "difficulty": "medium",
+      "clue": "A domestic dispute opens into a courtroom puzzle where every truth carries a cost."
+    },
+    {
+      "title": "The Peanut Butter Falcon",
+      "year": 2019,
+      "genres": [
+        "Adventure",
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A young man with Down syndrome escapes care and journeys to pursue his wrestling dream.",
+      "difficulty": "medium",
+      "clue": "An unlikely duo drifts downriver chasing dignity, family, and a wrestling fantasy."
+    },
+    {
+      "title": "Palm Springs",
+      "year": 2020,
+      "genres": [
+        "Comedy",
+        "Fantasy",
+        "Mystery"
+      ],
+      "decade": "2020s",
+      "plot": "Two wedding guests become trapped in a time loop and reconsider what gives life meaning.",
+      "difficulty": "medium",
+      "clue": "A wedding day repeats until two trapped strangers decide repetition can still evolve."
+    },
+    {
+      "title": "10 Cloverfield Lane",
+      "year": 2016,
+      "genres": [
+        "Drama",
+        "Horror",
+        "Mystery"
+      ],
+      "decade": "2010s",
+      "plot": "A woman wakes in an underground bunker and must decide whether her captor is savior or threat.",
+      "difficulty": "medium",
+      "clue": "After a crash, survival means choosing which story in the bunker is the lie."
+    },
+    {
+      "title": "I, Tonya",
+      "year": 2017,
+      "genres": [
+        "Biography",
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "Figure skater Tonya Harding's rise and scandal are retold through conflicting perspectives.",
+      "difficulty": "medium",
+      "clue": "A sports scandal biography spins through clashing testimonies and class resentment."
+    },
+    {
+      "title": "Another Round",
+      "year": 2020,
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2020s",
+      "plot": "Four teachers test a theory that maintaining a constant blood alcohol level will improve their lives.",
+      "difficulty": "medium",
+      "clue": "Four teachers experiment with sustained intoxication and discover confidence has a bill."
+    }
+  ],
+  "hard": [
+    {
+      "title": "Synecdoche, New York",
+      "year": 2008,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2000s",
+      "plot": "A theater director attempts to stage a complete replica of his life, building an ever-expanding world that consumes him.",
+      "difficulty": "hard",
+      "clue": "A man builds a copy of his life large enough to disappear inside."
+    },
+    {
+      "title": "Stalker",
+      "year": 1979,
+      "genres": [
+        "Drama",
+        "Sci-Fi"
+      ],
+      "decade": "1970s",
+      "plot": "Three men travel through a forbidden zone to reach a room rumored to grant one's deepest desire.",
+      "difficulty": "hard",
+      "clue": "Three men walk toward a room that may know them better than they do."
+    },
+    {
+      "title": "Mulholland Drive",
+      "year": 2001,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Thriller"
+      ],
+      "decade": "2000s",
+      "plot": "An aspiring actress and an amnesiac woman investigate a strange identity mystery that dissolves into dream logic.",
+      "difficulty": "hard",
+      "clue": "A dream fractures when Hollywood stops pretending."
+    },
+    {
+      "title": "Possession",
+      "year": 1981,
+      "genres": [
+        "Drama",
+        "Horror"
+      ],
+      "decade": "1980s",
+      "plot": "A couple's violent separation descends into paranoia, madness, and horrifying manifestations of emotional collapse.",
+      "difficulty": "hard",
+      "clue": "A collapsing marriage becomes something physically impossible."
+    },
+    {
+      "title": "Beau Travail",
+      "year": 1999,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1990s",
+      "plot": "A Foreign Legion officer in Djibouti grows obsessively jealous of a younger recruit, unraveling discipline and purpose.",
+      "difficulty": "hard",
+      "clue": "A soldier loses control long before he loses command."
+    },
+    {
+      "title": "Primer",
+      "year": 2004,
+      "genres": [
+        "Drama",
+        "Sci-Fi",
+        "Thriller"
+      ],
+      "decade": "2000s",
+      "plot": "Two engineers accidentally invent a time machine and become trapped in increasingly tangled loops of secrecy.",
+      "difficulty": "hard",
+      "clue": "Two engineers invent tomorrow by accident and then can't agree which yesterday is real."
+    },
+    {
+      "title": "Under the Skin",
+      "year": 2013,
+      "genres": [
+        "Drama",
+        "Horror",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "An alien woman roams Scotland luring men into a predatory void, while gradually confronting human vulnerability.",
+      "difficulty": "hard",
+      "clue": "A predator wears borrowed beauty until empathy interrupts the hunt."
+    },
+    {
+      "title": "Upstream Color",
+      "year": 2013,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "Two strangers whose lives were manipulated by parasitic control struggle to rebuild identity and connection.",
+      "difficulty": "hard",
+      "clue": "Two damaged strangers trace their stolen selves through parasites, memory gaps, and strange echoes."
+    },
+    {
+      "title": "Burning",
+      "year": 2018,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A young man becomes consumed by suspicion when a wealthy acquaintance claims to burn abandoned greenhouses.",
+      "difficulty": "hard",
+      "clue": "Jealousy follows a smiling rich man whose hobby may or may not leave smoke."
+    },
+    {
+      "title": "The Holy Mountain",
+      "year": 1973,
+      "genres": [
+        "Adventure",
+        "Drama",
+        "Fantasy"
+      ],
+      "decade": "1970s",
+      "plot": "A thief joins a mystic and a band of powerful figures on a surreal quest for immortality and enlightenment.",
+      "difficulty": "hard",
+      "clue": "A spiritual heist escalates into alchemy, satire, and a climb toward manufactured eternity."
+    },
+    {
+      "title": "A Ghost Story",
+      "year": 2017,
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Romance"
+      ],
+      "decade": "2010s",
+      "plot": "After dying, a man returns as a silent ghost and watches time pass around the home he once shared.",
+      "difficulty": "hard",
+      "clue": "A sheet-covered witness waits in one house long enough for time to change its language."
+    },
+    {
+      "title": "Werckmeister Harmonies",
+      "year": 2000,
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2000s",
+      "plot": "In a bleak town, a giant circus whale and rising unrest expose fragile social order and collective dread.",
+      "difficulty": "hard",
+      "clue": "A town meets a dead giant and slowly rehearses the choreography of collapse."
+    },
+    {
+      "title": "Persona",
+      "year": 1966,
+      "genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "1960s",
+      "plot": "A nurse cares for an actress who has stopped speaking, and their identities begin to blur in unsettling ways.",
+      "clue": "One woman goes silent, another keeps talking, and the border between them erodes.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "The Color of Pomegranates",
+      "year": 1969,
+      "genres": [
+        "Biography",
+        "Drama"
+      ],
+      "decade": "1960s",
+      "plot": "A poetic, non-linear portrait of the life and inner world of Armenian poet Sayat-Nova.",
+      "clue": "A poet's life is told as ritual images where symbolism replaces chronology.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Satantango",
+      "year": 1994,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1990s",
+      "plot": "In a decaying Hungarian village, residents await salvation that arrives in the form of manipulation and despair.",
+      "clue": "A collapsing village waits for a savior and receives a slow choreography of ruin.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "The Turin Horse",
+      "year": 2011,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A farmer and his daughter endure repetitive days as wind, darkness, and fatigue consume their isolated world.",
+      "clue": "A father, a daughter, and relentless wind perform the same day until light itself resigns.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Mirror",
+      "year": 1975,
+      "genres": [
+        "Biography",
+        "Drama"
+      ],
+      "decade": "1970s",
+      "plot": "A dying man reflects on childhood, war, family, and memory in fragmented, dreamlike images.",
+      "clue": "Memory edits a lifetime into fragments where history and family haunt the same room.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "The Sacrifice",
+      "year": 1986,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1980s",
+      "plot": "During the threat of nuclear war, an intellectual bargains with God and promises an extreme sacrifice for peace.",
+      "clue": "Facing apocalypse, a man makes a private bargain and prepares to pay publicly.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Yi Yi",
+      "year": 2000,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "decade": "2000s",
+      "plot": "A middle-class Taipei family navigates personal crises, love, loss, and spiritual uncertainty over one year.",
+      "clue": "One family quietly drifts through work, love, illness, and the small revelations of ordinary time.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Uncle Boonmee Who Can Recall His Past Lives",
+      "year": 2010,
+      "genres": [
+        "Drama",
+        "Fantasy"
+      ],
+      "decade": "2010s",
+      "plot": "A dying man in rural Thailand is visited by ghosts and memories as he contemplates reincarnation and mortality.",
+      "clue": "At the edge of death, dinner guests include ghosts and unfinished versions of a soul.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Last Year at Marienbad",
+      "year": 1961,
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "1960s",
+      "plot": "In an opulent hotel, a man insists he met a woman there the previous year, but memory and truth remain uncertain.",
+      "clue": "In a palace of echoes, two strangers debate whether their past is memory or invention.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Jeanne Dielman, 23 quai du Commerce, 1080 Bruxelles",
+      "year": 1975,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1970s",
+      "plot": "A widowed mother's rigid domestic routine gradually unravels over three meticulous days.",
+      "clue": "A precise household routine shifts by inches until one disruption becomes catastrophic.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "The Discreet Charm of the Bourgeoisie",
+      "year": 1972,
+      "genres": [
+        "Comedy"
+      ],
+      "decade": "1970s",
+      "plot": "A group of upper-class friends repeatedly attempts to share a meal but is interrupted by absurd events and dreams.",
+      "clue": "Polite elites keep trying to eat dinner while reality refuses to cooperate.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Fanny and Alexander",
+      "year": 1982,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1980s",
+      "plot": "Two siblings from a theatrical family endure upheaval after their mother remarries a strict bishop.",
+      "clue": "Childhood wonder collides with authoritarian piety after a second marriage redraws home.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "The Double Life of Veronique",
+      "year": 1991,
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Music"
+      ],
+      "decade": "1990s",
+      "plot": "Two women in different countries who resemble each other seem mysteriously connected across distance and fate.",
+      "clue": "Two women share a face, a melody, and a connection neither can fully explain.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "The Cook, the Thief, His Wife & Her Lover",
+      "year": 1989,
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "decade": "1980s",
+      "plot": "In a lavish restaurant ruled by a violent gangster, his abused wife begins a secret affair with tragic consequences.",
+      "clue": "A tyrant dines nightly while desire and revenge simmer in his own dining room.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Aguirre, the Wrath of God",
+      "year": 1972,
+      "genres": [
+        "Adventure",
+        "Biography",
+        "Drama"
+      ],
+      "decade": "1970s",
+      "plot": "A Spanish expedition searching for El Dorado descends into madness under the leadership of an unhinged conquistador.",
+      "clue": "A jungle expedition chases gold until ambition mutates into delirium.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Fitzcarraldo",
+      "year": 1982,
+      "genres": [
+        "Adventure",
+        "Drama"
+      ],
+      "decade": "1980s",
+      "plot": "An eccentric dreamer attempts to build an opera house in the Amazon by hauling a steamship over a mountain.",
+      "clue": "A dreamer drags a ship uphill to fund opera in the middle of the rainforest.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Dogtooth",
+      "year": 2009,
+      "genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "2000s",
+      "plot": "Parents isolate their adult children from the outside world and control them through fabricated language and rules.",
+      "clue": "A family builds a private reality where language itself is a cage.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Cache",
+      "year": 2005,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Thriller"
+      ],
+      "decade": "2000s",
+      "plot": "A couple receives anonymous surveillance tapes that force confrontation with buried guilt and colonial violence.",
+      "clue": "Anonymous tapes arrive, and a comfortable life starts answering for an unburied past.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "The White Ribbon",
+      "year": 2009,
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2000s",
+      "plot": "In a pre-World War I German village, a series of violent incidents exposes authoritarian cruelty and moral rot.",
+      "clue": "A village preaches purity while unseen hands rehearse the politics of future violence.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Holy Motors",
+      "year": 2012,
+      "genres": [
+        "Drama",
+        "Fantasy"
+      ],
+      "decade": "2010s",
+      "plot": "Over one day in Paris, a man travels by limousine performing surreal roles that blur acting and identity.",
+      "clue": "A man rides through the city changing lives by changing faces, and never arrives as himself.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Enter the Void",
+      "year": 2009,
+      "genres": [
+        "Drama",
+        "Fantasy"
+      ],
+      "decade": "2000s",
+      "plot": "After a young drug dealer is killed in Tokyo, his spirit drifts through neon memories and out-of-body visions.",
+      "clue": "A dead narrator floats above neon streets, replaying attachment as afterlife cinema.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Antichrist",
+      "year": 2009,
+      "genres": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ],
+      "decade": "2000s",
+      "plot": "A grieving couple retreats to a remote cabin where therapy gives way to psychological and physical horror.",
+      "clue": "Grief retreats to the woods and returns as violence, dread, and unbearable intimacy.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Inland Empire",
+      "year": 2006,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Thriller"
+      ],
+      "decade": "2000s",
+      "plot": "An actress taking a role in a cursed production slips into fragmented identities and nightmarish realities.",
+      "clue": "An actress enters a role and exits into a maze where identity no longer has edges.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Tropical Malady",
+      "year": 2004,
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Romance"
+      ],
+      "decade": "2000s",
+      "plot": "A tender romance in Thailand transforms into a mythic jungle pursuit that questions desire and transformation.",
+      "clue": "A love story splits in two, then vanishes into a jungle where desire stalks back.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Syndromes and a Century",
+      "year": 2006,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2000s",
+      "plot": "Mirrored episodes in rural and urban hospitals explore memory, place, and recurring lives in modern Thailand.",
+      "clue": "Two hospitals, two eras, and recurring gestures suggest memory can inhabit architecture.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Embrace of the Serpent",
+      "year": 2015,
+      "genres": [
+        "Adventure",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "An Amazonian shaman guides two scientists decades apart on spiritual quests tied to colonial exploitation.",
+      "clue": "A river guide leads two eras of outsiders toward healing, knowledge, and the scars of conquest.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Cemetery of Splendour",
+      "year": 2015,
+      "genres": [
+        "Drama",
+        "Fantasy"
+      ],
+      "decade": "2010s",
+      "plot": "In a town where soldiers sleep from a mysterious illness, a woman uncovers layers of memory, myth, and politics.",
+      "clue": "Sleeping soldiers and glowing machines hint that history itself is refusing to wake up.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "The Assassin",
+      "year": 2015,
+      "genres": [
+        "Action",
+        "Drama",
+        "History"
+      ],
+      "decade": "2010s",
+      "plot": "A highly trained killer in ninth-century China is ordered to assassinate a man from her past.",
+      "clue": "A disciplined blade is sent toward an old bond, and precision becomes hesitation.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Son of Saul",
+      "year": 2015,
+      "genres": [
+        "Drama",
+        "War"
+      ],
+      "decade": "2010s",
+      "plot": "In Auschwitz, a prisoner forced into crematorium work seeks to give a dead boy a proper burial.",
+      "clue": "Inside industrialized death, one man clings to ritual as his final act of resistance.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Happy Hour",
+      "year": 2015,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "Four women in Kobe navigate friendship, marriage, and personal change as their lives quietly diverge.",
+      "clue": "Four friendships absorb the stress fractures of adulthood until old balance finally fails.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Long Day's Journey Into Night",
+      "year": 2018,
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2010s",
+      "plot": "A man returns to his hometown seeking a woman from his past, drifting through memory and dreamlike spaces.",
+      "clue": "A man returns home chasing one vanished woman and falls through memory like a trapdoor.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "A Pigeon Sat on a Branch Reflecting on Existence",
+      "year": 2014,
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "Two novelty salesmen wander through absurd vignettes that expose loneliness, mortality, and human awkwardness.",
+      "clue": "Deadpan merchants drift through absurd tableaux while existence keeps clearing its throat.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "Memoria",
+      "year": 2021,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "decade": "2020s",
+      "plot": "A woman in Colombia becomes obsessed with a mysterious booming sound only she seems to hear.",
+      "clue": "A woman hears an impossible sound and follows it into buried time.",
+      "difficulty": "hard"
+    },
+    {
+      "title": "8½",
+      "year": 1963,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1960s",
+      "plot": "A filmmaker in creative crisis retreats into memories, fantasies, and anxiety while preparing a new project.",
+      "difficulty": "hard",
+      "clue": "A director without a film stages his own inner chaos as cinema."
+    },
+    {
+      "title": "Andrei Rublev",
+      "year": 1966,
+      "genres": [
+        "Biography",
+        "Drama",
+        "History"
+      ],
+      "decade": "1960s",
+      "plot": "Episodes from the life of a medieval icon painter unfold amid violence, faith, and artistic doubt.",
+      "difficulty": "hard",
+      "clue": "An artist of sacred images moves through war and silence, searching for permission to create."
+    },
+    {
+      "title": "Solaris",
+      "year": 1972,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "decade": "1970s",
+      "plot": "A psychologist on a space station confronts physical manifestations of memory generated by an alien ocean.",
+      "difficulty": "hard",
+      "clue": "An orbiting station becomes a laboratory where grief takes human form."
+    },
+    {
+      "title": "Nostalghia",
+      "year": 1983,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1980s",
+      "plot": "A Russian writer in Italy drifts through spiritual longing, memory, and an enigmatic local visionary.",
+      "difficulty": "hard",
+      "clue": "Exile and memory dilute one man until home becomes a metaphysical weather system."
+    },
+    {
+      "title": "Come and See",
+      "year": 1985,
+      "genres": [
+        "Drama",
+        "War"
+      ],
+      "decade": "1980s",
+      "plot": "A Belarusian boy joins partisan fighters and witnesses the atrocities of Nazi occupation.",
+      "difficulty": "hard",
+      "clue": "A child enters war expecting heroism and exits carrying the face of catastrophe."
+    },
+    {
+      "title": "The Ascent",
+      "year": 1977,
+      "genres": [
+        "Drama",
+        "War"
+      ],
+      "decade": "1970s",
+      "plot": "Two Soviet partisans on a supply mission are captured, forcing a brutal moral reckoning.",
+      "difficulty": "hard",
+      "clue": "Captured fighters choose between survival and conscience on a frozen moral cliff."
+    },
+    {
+      "title": "Marketa Lazarová",
+      "year": 1967,
+      "genres": [
+        "Drama",
+        "History",
+        "Romance"
+      ],
+      "decade": "1960s",
+      "plot": "A medieval clan conflict and kidnapping evolve into a sprawling vision of brutality and desire.",
+      "difficulty": "hard",
+      "clue": "Medieval blood feuds and stolen love combine into a savage national myth."
+    },
+    {
+      "title": "A Brighter Summer Day",
+      "year": 1991,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Romance"
+      ],
+      "decade": "1990s",
+      "plot": "In 1960s Taipei, a teenager is pulled into gang rivalry, family pressure, and first love.",
+      "difficulty": "hard",
+      "clue": "Adolescence, politics, and street violence converge until one moment changes everything."
+    },
+    {
+      "title": "Taipei Story",
+      "year": 1985,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1980s",
+      "plot": "A drifting former baseball player and his partner navigate modernizing Taipei and emotional distance.",
+      "difficulty": "hard",
+      "clue": "Urban progress outpaces two people who can no longer inhabit the same future."
+    },
+    {
+      "title": "Rebels of the Neon God",
+      "year": 1992,
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "decade": "1990s",
+      "plot": "A disaffected student obsesses over petty criminals in Taipei while drifting from his family.",
+      "difficulty": "hard",
+      "clue": "Alienated youth circles petty crime under neon skies, mistaking fixation for purpose."
+    },
+    {
+      "title": "Millennium Mambo",
+      "year": 2001,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "decade": "2000s",
+      "plot": "A young woman narrates her early-2000s life of nightlife, unstable relationships, and uncertainty.",
+      "difficulty": "hard",
+      "clue": "A woman floats through club lights and emotional static, narrating from a distant future."
+    },
+    {
+      "title": "Goodbye, Dragon Inn",
+      "year": 2003,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2000s",
+      "plot": "On the final night of an old movie theater, workers and patrons wander through loneliness and memory.",
+      "difficulty": "hard",
+      "clue": "A dying cinema hosts ghosts, stragglers, and one last screening before silence."
+    },
+    {
+      "title": "Vive L'Amour",
+      "year": 1994,
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "decade": "1990s",
+      "plot": "Three lonely strangers unknowingly share an empty apartment while drifting through Taipei.",
+      "difficulty": "hard",
+      "clue": "Three isolated lives overlap in one vacant apartment without truly meeting."
+    },
+    {
+      "title": "The Hole",
+      "year": 1998,
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Musical"
+      ],
+      "decade": "1990s",
+      "plot": "During floods and disease paranoia, two neighbors communicate through a hole between apartments.",
+      "difficulty": "hard",
+      "clue": "In a quarantined city, a hole in the floor becomes an awkward lifeline."
+    },
+    {
+      "title": "Platform",
+      "year": 2000,
+      "genres": [
+        "Drama",
+        "History"
+      ],
+      "decade": "2000s",
+      "plot": "A troupe of performers travels through rural China as the country transforms in the late 20th century.",
+      "difficulty": "hard",
+      "clue": "A traveling theater drifts across decades while a nation rewrites itself offstage."
+    },
+    {
+      "title": "Still Life",
+      "year": 2006,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2000s",
+      "plot": "Two people search for missing spouses in a town being demolished by the Three Gorges Dam project.",
+      "difficulty": "hard",
+      "clue": "As a city disappears under development, two strangers search for vanished marriages."
+    },
+    {
+      "title": "An Elephant Sitting Still",
+      "year": 2018,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "Interconnected lives in a bleak Chinese city converge around a rumored elephant in Manzhouli.",
+      "difficulty": "hard",
+      "clue": "Several desperate lives move toward a distant rumor of stillness and escape."
+    },
+    {
+      "title": "Kaili Blues",
+      "year": 2015,
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2010s",
+      "plot": "A doctor searching for his nephew enters a dreamlike journey through memory, time, and identity.",
+      "difficulty": "hard",
+      "clue": "A rural search turns into a time-bending drift where memory becomes geography."
+    },
+    {
+      "title": "The Wild Goose Lake",
+      "year": 2019,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A gang leader on the run seeks redemption while hunted by police and rivals.",
+      "difficulty": "hard",
+      "clue": "A fugitive navigates neon underworld rules while bargaining with his own final value."
+    },
+    {
+      "title": "Hard to Be a God",
+      "year": 2013,
+      "genres": [
+        "Drama",
+        "Sci-Fi"
+      ],
+      "decade": "2010s",
+      "plot": "On a distant planet stuck in a brutal medieval era, observers from Earth cannot intervene directly.",
+      "difficulty": "hard",
+      "clue": "An observer trapped in endless mud and cruelty learns non-interference has a body count."
+    },
+    {
+      "title": "Leviathan",
+      "year": 2014,
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A mechanic battles a corrupt mayor trying to seize his family property in a Russian coastal town.",
+      "difficulty": "hard",
+      "clue": "One man fights civic corruption and discovers the state always arrives with larger teeth."
+    },
+    {
+      "title": "Loveless",
+      "year": 2017,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A divorcing couple's son disappears, exposing emotional neglect and social coldness.",
+      "difficulty": "hard",
+      "clue": "A missing child reveals that two adults already abandoned him emotionally."
+    },
+    {
+      "title": "Silent Light",
+      "year": 2007,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "decade": "2000s",
+      "plot": "In a Mennonite community, a married farmer falls in love with another woman.",
+      "difficulty": "hard",
+      "clue": "Faith, desire, and duty collide quietly in a landscape where every choice echoes."
+    },
+    {
+      "title": "Post Tenebras Lux",
+      "year": 2012,
+      "genres": [
+        "Drama",
+        "Fantasy"
+      ],
+      "decade": "2010s",
+      "plot": "A fragmented portrait of family life, class tension, and surreal interruption in rural Mexico.",
+      "difficulty": "hard",
+      "clue": "Domestic life fractures into class anxiety and surreal intrusions with no clean border."
+    },
+    {
+      "title": "Zama",
+      "year": 2017,
+      "genres": [
+        "Drama",
+        "History"
+      ],
+      "decade": "2010s",
+      "plot": "An 18th-century colonial officer awaits transfer for years as bureaucracy and decay consume him.",
+      "difficulty": "hard",
+      "clue": "A colonial bureaucrat waits for reassignment until waiting becomes his identity."
+    },
+    {
+      "title": "The Headless Woman",
+      "year": 2008,
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2000s",
+      "plot": "After a road accident, a woman drifts through denial while her class insulates her from consequences.",
+      "difficulty": "hard",
+      "clue": "A hit-and-run blur is absorbed by privilege, leaving guilt to wander unprocessed."
+    },
+    {
+      "title": "Jauja",
+      "year": 2014,
+      "genres": [
+        "Adventure",
+        "Drama",
+        "Fantasy"
+      ],
+      "decade": "2010s",
+      "plot": "A Danish officer in 19th-century Patagonia searches for his runaway daughter and drifts into myth.",
+      "difficulty": "hard",
+      "clue": "A father's search across Patagonia slips from frontier realism into dream logic."
+    },
+    {
+      "title": "The Tribe",
+      "year": 2014,
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "At a boarding school for deaf students, a new arrival is drawn into violent criminal hierarchies.",
+      "difficulty": "hard",
+      "clue": "In a silent institution, power speaks through brutality and ritual."
+    },
+    {
+      "title": "Winter Sleep",
+      "year": 2014,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A former actor running a hotel in Cappadocia confronts moral complacency with his family and tenants.",
+      "difficulty": "hard",
+      "clue": "A cultured landlord debates ethics while his own life freezes into self-justifying comfort."
+    },
+    {
+      "title": "Once Upon a Time in Anatolia",
+      "year": 2011,
+      "genres": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "2010s",
+      "plot": "Police and officials search the Anatolian steppe at night for a buried body.",
+      "difficulty": "hard",
+      "clue": "A nocturnal body search across open land reveals more about the searchers than the dead."
+    },
+    {
+      "title": "The Death of Mr. Lazarescu",
+      "year": 2005,
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2000s",
+      "plot": "An ill elderly man is transferred between overcrowded hospitals during one long night.",
+      "difficulty": "hard",
+      "clue": "One sick man is passed from hospital to hospital until bureaucracy outlasts his body."
+    },
+    {
+      "title": "4 Months, 3 Weeks and 2 Days",
+      "year": 2007,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2000s",
+      "plot": "Two students in 1980s Romania navigate an illegal abortion under a repressive regime.",
+      "difficulty": "hard",
+      "clue": "Friendship and survival are negotiated in hushed rooms under authoritarian pressure."
+    },
+    {
+      "title": "Police, Adjective",
+      "year": 2009,
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "decade": "2000s",
+      "plot": "A detective surveilling teenagers over minor drug use clashes with legalistic policing.",
+      "difficulty": "hard",
+      "clue": "A stakeout over trivial crime becomes a linguistic argument about law and conscience."
+    },
+    {
+      "title": "The Great Beauty",
+      "year": 2013,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A Roman socialite reflects on aging, artifice, and lost meaning amid decadent high society.",
+      "difficulty": "hard",
+      "clue": "A jaded social king wanders Rome asking whether beauty survived the parties."
+    },
+    {
+      "title": "The Square",
+      "year": 2017,
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A museum curator's polished worldview unravels through scandal and public-art controversy.",
+      "difficulty": "hard",
+      "clue": "An art-world moralist loses control of both his message and his own behavior."
+    },
+    {
+      "title": "Borgman",
+      "year": 2013,
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Thriller"
+      ],
+      "decade": "2010s",
+      "plot": "A mysterious drifter infiltrates an affluent family and destabilizes their life.",
+      "difficulty": "hard",
+      "clue": "A stranger enters a wealthy household and quietly turns comfort into dread."
+    },
+    {
+      "title": "Force Majeure",
+      "year": 2014,
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "After an avalanche scare, a father's instinctive retreat destabilizes his family dynamic.",
+      "difficulty": "hard",
+      "clue": "One moment of fear on a ski holiday reshapes an entire marriage hierarchy."
+    },
+    {
+      "title": "About Endlessness",
+      "year": 2019,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "2010s",
+      "plot": "A series of still vignettes reflects on love, pain, absurdity, and human persistence.",
+      "difficulty": "hard",
+      "clue": "Brief tableaux of ordinary sorrow and absurdity accumulate into a portrait of being alive."
+    },
+    {
+      "title": "Songs from the Second Floor",
+      "year": 2000,
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2000s",
+      "plot": "Surreal episodes depict spiritual and economic collapse in a modern city.",
+      "difficulty": "hard",
+      "clue": "A society in slow-motion breakdown performs deadpan rituals of collective failure."
+    },
+    {
+      "title": "You, the Living",
+      "year": 2007,
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "decade": "2000s",
+      "plot": "Dreamlike scenes of ordinary people reveal loneliness, desire, and absurd social routines.",
+      "difficulty": "hard",
+      "clue": "Small human embarrassments and longings unfold like melancholy sketches."
+    },
+    {
+      "title": "Certified Copy",
+      "year": 2010,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "decade": "2010s",
+      "plot": "A writer and an antiques dealer spend a day together, shifting between strangers and spouses.",
+      "difficulty": "hard",
+      "clue": "A first meeting in Tuscany gradually performs the possibility of a long marriage."
+    },
+    {
+      "title": "Close-Up",
+      "year": 1990,
+      "genres": [
+        "Biography",
+        "Drama"
+      ],
+      "decade": "1990s",
+      "plot": "A cinephile impersonates a famous director, leading to a docu-fiction courtroom reflection on identity.",
+      "difficulty": "hard",
+      "clue": "A man impersonates a filmmaker and forces everyone to ask what authenticity really means."
+    },
+    {
+      "title": "Taste of Cherry",
+      "year": 1997,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1990s",
+      "plot": "A man drives around Tehran seeking someone to assist with his planned suicide.",
+      "difficulty": "hard",
+      "clue": "A driver asks strangers for one final favor and receives philosophies instead of certainty."
+    },
+    {
+      "title": "The Wind Will Carry Us",
+      "year": 1999,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1990s",
+      "plot": "A film crew waits in a Kurdish village for a funeral ritual while everyday life continues around them.",
+      "difficulty": "hard",
+      "clue": "Outsiders waiting for death in a village slowly confront the life they ignored."
+    },
+    {
+      "title": "Where Is the Friend's House?",
+      "year": 1987,
+      "genres": [
+        "Drama",
+        "Family"
+      ],
+      "decade": "1980s",
+      "plot": "A boy crosses villages trying to return his classmate's notebook before punishment falls.",
+      "difficulty": "hard",
+      "clue": "One child's stubborn errand becomes an epic of responsibility and kindness."
+    },
+    {
+      "title": "Landscape in the Mist",
+      "year": 1988,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1980s",
+      "plot": "Two siblings travel across Greece searching for the father they believe lives in Germany.",
+      "difficulty": "hard",
+      "clue": "Two children walk through a bleak landscape chasing a father-shaped rumor."
+    },
+    {
+      "title": "Eternity and a Day",
+      "year": 1998,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1990s",
+      "plot": "A terminally ill poet forms a bond with a migrant child while reflecting on unfinished life.",
+      "difficulty": "hard",
+      "clue": "A dying writer and a young stranger share one day that stretches beyond chronology."
+    },
+    {
+      "title": "Ugetsu",
+      "year": 1953,
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "War"
+      ],
+      "decade": "1950s",
+      "plot": "Two men pursue ambition during civil war and are tempted by illusion with tragic consequences.",
+      "difficulty": "hard",
+      "clue": "Ambition during wartime leads two men into wealth, ghosts, and irreversible loss."
+    },
+    {
+      "title": "Woman in the Dunes",
+      "year": 1964,
+      "genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "decade": "1960s",
+      "plot": "An amateur entomologist is trapped in a sand pit and forced into a strange domestic captivity.",
+      "difficulty": "hard",
+      "clue": "A man seeking insects is captured by dunes and learns captivity has routines."
+    },
+    {
+      "title": "Sansho the Bailiff",
+      "year": 1954,
+      "genres": [
+        "Drama",
+        "History"
+      ],
+      "decade": "1950s",
+      "plot": "Children separated from their family are sold into slavery and struggle to preserve compassion.",
+      "difficulty": "hard",
+      "clue": "Separated siblings endure cruelty while one moral instruction refuses to die."
+    },
+    {
+      "title": "Harakiri",
+      "year": 1962,
+      "genres": [
+        "Action",
+        "Drama",
+        "Mystery"
+      ],
+      "decade": "1960s",
+      "plot": "A ronin requests ritual suicide at a feudal estate to expose hypocrisy and injustice.",
+      "difficulty": "hard",
+      "clue": "A formal request for death unravels into an indictment of samurai honor."
+    },
+    {
+      "title": "Kwaidan",
+      "year": 1964,
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Horror"
+      ],
+      "decade": "1960s",
+      "plot": "Four stylized ghost stories explore desire, vanity, and supernatural consequence.",
+      "difficulty": "hard",
+      "clue": "Four haunted fables treat beauty, pride, and fear as contracts with the unseen."
+    },
+    {
+      "title": "Funeral Parade of Roses",
+      "year": 1969,
+      "genres": [
+        "Drama"
+      ],
+      "decade": "1960s",
+      "plot": "An avant-garde portrait of Tokyo's queer underground refracts identity, rivalry, and myth.",
+      "difficulty": "hard",
+      "clue": "A fragmented portrait of underground Tokyo remixes identity and tragedy into modern myth."
+    },
+    {
+      "title": "The Face of Another",
+      "year": 1966,
+      "genres": [
+        "Drama",
+        "Sci-Fi"
+      ],
+      "decade": "1960s",
+      "plot": "A disfigured man receives an artificial face and experiments with new identity and morality.",
+      "difficulty": "hard",
+      "clue": "Given a new face, one man discovers anonymity can dissolve ethics."
+    },
+    {
+      "title": "Playtime",
+      "year": 1967,
+      "genres": [
+        "Comedy"
+      ],
+      "decade": "1960s",
+      "plot": "A gentle everyman wanders a hyper-modern Paris where architecture and consumer design overwhelm human behavior.",
+      "difficulty": "hard",
+      "clue": "In a maze of glass and modern design, everyday life turns into silent choreography."
+    }
+  ]
 }
